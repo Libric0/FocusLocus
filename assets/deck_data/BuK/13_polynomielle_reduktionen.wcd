@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knowledge>
+    <knowledgeItem type="mathUniverse" id="problemeInUndNichtInNP">
+        <namesSingular>
+            <name>Problem</name>
+            <name>Sprache</name>
+        </namesSingular>
+        <namesPlural>
+            <name>Probleme</name>
+            <name>Sprachen</name>
+        </namesPlural>
+        <mathObjects>
+            <mathObject id="SAT">$$\text{SAT}$$</mathObject>
+            <mathObject id="TSP">$$\text{TSP}$$</mathObject>
+            <mathObject id="IND-SET">$$\text{IND-SET}$$</mathObject>
+            <mathObject id="VC">$$\text{VC}$$</mathObject>
+            <mathObject id="CLIQUE">$$\text{CLIQUE}$$</mathObject>
+            <mathObject id="PRIME">$$\text{PRIME}$$</mathObject>
+            <!--Not in NP-->
+            <mathObject id="H">$$H$$</mathObject>
+            <mathObject id="H epsilon">$$H_\varepsilon$$</mathObject>
+            <mathObject id="H tot">$$H_tot$$</mathObject>
+            <mathObject id="D">$$D$$</mathObject>
+            <mathObject id="overline D">$$\overline D$$</mathObject>
+        </mathObjects>
+    </knowledgeItem>
+    <!--<knowledgeItem type="knowledgeStatement" id="exptime def">
+        <topicSingular>Komplexitätsklasse</topicSingular>
+        <topicPlural>Komplexitätsklassen</topicPlural>
+        <contentItems>
+            <contentItemCompletable/>
+            <contentItem>ist die Klasse aller Entscheidungsprobleme, die durch eine deterministische TM $$M$$ entschieden werden, deren Worst Case Laufzeit durch $$2^{q(n)}$$ mit einem Polynom $$q$$ beschränkt ist</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$\text{EXPTIME}$$</fillIn>
+            <fillIn>EXPTIME</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>P</fillIn>
+            <fillIn>NP</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="exptime def2">
+        <topicSingular>Komplexitätsklasse</topicSingular>
+        <topicPlural>Komplexitätsklassen</topicPlural>
+        <contentItems>
+            <contentItem>$$\text{EXPTIME}$$ ist die Klasse aller Entscheidungsprobleme, die durch eine deterministische TM $$M$$ entschieden werden, deren </contentItem>
+            <contentItemCompletable/>
+            <contentItem>Laufzeit durch $$2^{q(n)}$$ mit einem Polynom $$q$$ beschränkt ist</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Worst Case</fillIn>
+            <fillIn>Worst-Case</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Best Case</fillIn>
+            <fillIn>Average Case</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>-->
+    <knowledgeItem type="knowledgeCategory" id="np sprachen">
+        <universe>problemeInUndNichtInNP</universe>
+        <questions>
+            <question>Welche Probleme sind in $$\text{NP}$$?</question>
+        </questions>
+        <categoryNamesSingular>
+            <name>Problem in $$\text{NP}$$</name>
+            <name>Sprache in $$\text{NP}$$</name>
+        </categoryNamesSingular>
+        <categoryNamesPlural>
+            <name>Probleme in $$\text{NP}$$</name>
+            <name>Sprachen in $$\text{NP}$$</name>
+        </categoryNamesPlural>
+        <indicesInCategory>0,1,2,3,4,5</indicesInCategory>
+    </knowledgeItem>
+    <knowledgeItem type="mathUniverse" id="Laufzeiten">
+        <namesSingular>
+            <name>Laufzeit</name>
+        </namesSingular>
+        <namesPlural>
+            <name>Laufzeiten</name>
+        </namesPlural>
+        <mathObjects>
+            <mathObject id="O(n)">$$O(n)$$</mathObject>
+            <mathObject id="O(nlog n)">$$O(n\log n)$$</mathObject>
+            <mathObject id="O(n3)">$$O(n^3)$$</mathObject>
+            <mathObject id="O(n4)">$$O(n^4)$$</mathObject>
+            <mathObject id="O(n50)">$$O(n^50)$$</mathObject>
+            <mathObject id="O(log n)">$$O(\log n)$$</mathObject>
+            <!--items not in P-->
+            <mathObject id="O(2 hoch n)">$$O(2^n)$$</mathObject>
+            <mathObject id="O(4 hoch n)">$$O(4^n)$$</mathObject>
+            <mathObject id="O(3 hoch n)">$$O(3^n)$$</mathObject>
+            <mathObject id="O(n!)">$$O(n!)$$</mathObject>
+            <mathObject id="O(n cdot 2 hoch n)">$$O(n\cdot 2^n)$$</mathObject>
+            <mathObject id="O(2 sqrt n)">$$O(2^{\sqrt n})$$</mathObject>
+            <!-- Items not in exptime-->
+            <mathObject id="O(2^{2^n})">$$O(2^{2^n})$$</mathObject>
+            <mathObject id="O(2n fakultaet)">$$O(2^{n!})$$</mathObject>
+            <mathObject id="O(3^{3^n})">$$O(2^{2^n})$$</mathObject>
+            <mathObject id="O(3^{2^n})">$$O(2^{2^n})$$</mathObject>
+            <mathObject id="O(n hoch n hoch n)">$$O(n^{n^n})$$</mathObject>
+            <mathObject id="O(A(3 n))">$$O(A(3,n))$$</mathObject>
+        </mathObjects>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeCategory" id="exponentielle laufzeiten">
+        <universe>Laufzeiten</universe>
+        <questions>
+            <question>Welche Laufzeiten sind einfach exponentiell?</question>
+        </questions>
+        <categoryNamesSingular>
+            <name>einfach exponentielle Laufzeit</name>
+        </categoryNamesSingular>
+        <categoryNamesPlural>
+            <name>einfach exponentielle Laufzeiten</name>
+        </categoryNamesPlural>
+        <indicesInCategory>0,1,2,3,4,5,6,7,8,9,10,11</indicesInCategory>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="p vs np bekannte aussagen">
+        <questions>
+            <question>Welche Aussagen sind bekanntermaßen wahr?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$\text P \subseteq \text{NP}$$</choice>
+            <choice>$$\text P \subseteq \text{EXPTIME}$$</choice>
+            <choice>$$\text{NP} \subseteq \text{EXPTIME}$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$\text{P} \neq \text{NP}$$</choice>
+            <choice>$$\text{P} = \text{NP}$$</choice>
+            <choice>$$\text{P} \subsetneq \text{NP}$$</choice>
+            <choice>$$\text{P} \supseteq \text{NP}$$</choice>
+            <choice>$$\text{NP} \supseteq \text{EXPTIME}$$</choice>
+            <choice>$$\text{NP} \neq \text{EXPTIME}$$</choice>
+            <choice>$$\text{NP} = \text{EXPTIME}$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="loesung finden vs loesbarkeit">
+        <questions>
+            <question>Welche Aussagen kamen in der Vorlesung über das Finden einer Lösung von $$\text{NP}$$-Problemen vor?</question>
+        </questions>
+        <correctChoices>
+            <choice>Ein schneller Algorithmus, der die Lösbarkeit entscheidet, kann oft dazu benutzt werden, um eine Lösung zu finden</choice>
+            <choice>Bei $$\text{SAT}$$ kann man sukzessiv Variablen fest setzen und prüfen, ob die Formel noch immer lösbar ist</choice>
+            <choice>Bei $$\text{CLIQUE}$$ kann man sukzessiv Knoten entfernen und prüfen, ob es noch immer eine $$k-\text{CLIQUE}$$ gibt</choice>
+            <choice>Bei $$\text{Ham-Cycle}$$ kann man sukzessiv Kanten entfernen und prüfen, ob es noch immer einen $$\text{Ham-Cycle}$$ gibt</choice>
+            <choice>Sollte bei $$\text{SAT}$$ das festsetzen einer Variable $$\varphi$$ unerfüllbar machen, muss sie den anderen Wert haben</choice>
+            <choice>Sollte nach dem Entfernen eines Knotens immernoch eine $$k$$-Clique existieren, dann kann man den Knoten verwerfen</choice>
+            <choice>Sollte nach dem Entfernen einer Kante immernoch ein Hamiltonkreis existieren, dann kann man den Kante verwerfen</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Ein schneller Algorithmus, der die Lösbarkeit entscheidet, kann nicht dazu benutzt werden, um eine Lösung zu finden</choice>
+            <choice>Bei $$\text{SAT}$$ muss man nur eine Variable fest setzen und prüfen, ob die Formel noch immer lösbar ist</choice>
+            <choice>Bei $$\text{CLIQUE}$$ kann man sukzessiv Knoten hinzufügen und prüfen, ob es noch immer eine $$k-\text{CLIQUE}$$ gibt</choice>
+            <choice>Bei $$\text{Ham-Cycle}$$ kann man sukzessiv Knoten entfernen und prüfen, ob es noch immer einen $$\text{Ham-Cycle}$$ gibt</choice>
+            <choice>Sollte bei $$\text{SAT}$$ das festsetzen einer Variable $$\varphi$$ unerfüllbar machen, muss sie diesen Wert haben</choice>
+            <choice>Sollte nach dem Entfernen eines Knotens immernoch eine $$k$$-Clique existieren, dann gehört der Knoten zu der Clique</choice>
+            <choice>Sollte nach dem Entfernen einer Kante immernoch ein Hamiltonkreis existieren, dann gehört diese Kante zum Hamiltonkreis</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="optimierungsproblem def">
+        <topicSingular>Problem</topicSingular>
+        <topicPlural>Probleme</topicPlural>
+        <contentItems>
+            <contentItem>Die</contentItem>
+            <contentItemCompletable/>
+            <contentItem>eines Optimierungsproblems spezifiziert (implizit oder Explizit) eine Menge $$\mathcal L$$ von zulässigen Lösungen mit einer Zielfunktion $$f: \mathcal L\rightarrow \N$$, die Kosten, Gewicht oder Profit misst</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Eingabe</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Spezifikation</fillIn>
+            <fillIn>Ausgabe</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="optimierungsproblem def 2">
+        <topicSingular>Problem</topicSingular>
+        <topicPlural>Probleme</topicPlural>
+        <contentItems>
+            <contentItem>Die Eingabe eines</contentItem>
+            <contentItemCompletable/>
+            <contentItem>spezifiziert (implizit oder Explizit) eine Menge $$\mathcal L$$ von zulässigen Lösungen mit einer Zielfunktion $$f: \mathcal L\rightarrow \N$$, die Kosten, Gewicht oder Profit misst</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Optimierungsproblems</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Entscheidungsproblems</fillIn>
+            <fillIn>Berechnungsproblems</fillIn>
+            <fillIn>Problems</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="optimierungsproblem def 3">
+        <topicSingular>Problem</topicSingular>
+        <topicPlural>Probleme</topicPlural>
+        <contentItems>
+            <contentItem>Die Eingabe eines Optimierungsproblems spezifiziert (implizit oder Explizit) eine Menge $$\mathcal L$$ von zulässigen</contentItem>
+            <contentItemCompletable/>
+            <contentItem>mit einer Zielfunktion $$f: \mathcal L\rightarrow \N$$, die Kosten, Gewicht oder Profit misst</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Lösungen</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Entscheidungen</fillIn>
+            <fillIn>Berechnungswegen</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="optimierungsproblem def 4">
+        <topicSingular>Problem</topicSingular>
+        <topicPlural>Probleme</topicPlural>
+        <contentItems>
+            <contentItem>Die Eingabe eines Optimierungsproblems spezifiziert (implizit oder Explizit) eine Menge $$\mathcal L$$ von zulässigen Lösungen mit einer</contentItem>
+            <contentItemCompletable/>
+            <contentItem>$$f: \mathcal L\rightarrow \N$$, die Kosten, Gewicht oder Profit misst</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Zielfunktion</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Polynomfunktion</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="optimierungsprobleme def 5">
+        <questions>
+            <question>Was passt zur Definition von Optimierungsproblemen?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$\mathcal L$$ ist die Menge an zulässigen Lösungen</choice>
+            <choice>$$f:\mathcal L \rightarrow \N$$ ist die Zielfunktion</choice>
+            <choice>Die Kosten, Gewichte oder Profite werden von der Zielfunktion gemessen</choice>
+            <choice>In Minimierungsproblemen müssen die Kosten minimiert werden</choice>
+            <choice>In Maximierungsproblemen müssen die Profite maximiert werden</choice>
+            <choice>Die Klassen $$\text{P}$$ und $$\text{NP}$$ enthalten nur Entscheidungsprobleme</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$\mathcal L$$ ist die Menge an zulässigen Berechnungswegen</choice>
+            <choice>$$f:\mathcal L \rightarrow \N$$ ist die Laufzeit</choice>
+            <choice>In Minimierungsproblemen müssen die Profite maximiert werden</choice>
+            <choice>In Maximierungsproblemen müssen die Kosten minimiert werden</choice>
+            <choice>Die Klassen $$\text{P}$$ und $$\text{NP}$$ enthalten nur Berechnungsprobleme</choice>
+            <choice>Die Klassen $$\text{P}$$ und $$\text{NP}$$ enthalten nur Optimierungsprobleme</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="ompimierungs zu entscheidungsproblem">
+        <topicSingular>Problem</topicSingular>
+        <topicPlural>Probleme</topicPlural>
+        <contentItems>
+            <contentItem>Wenn man aus einem Optimierungsproblem ein Entscheidungsproblem macht, erweitert man die Eingabe um eine</contentItem>
+            <contentItemCompletable/>
+            <contentItem>$$\gamma \in \N$$</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Schranke</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>beliebige Zahl</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="poly reduktion def">
+        <questions>
+            <question>Was passt zur Definition einer polynomiellen Reduktion von $$L_1$$ auf $$L_2$$?</question>
+        </questions>
+        <correctChoices>
+            <choice>Eine polynomielle Reduktion ist eine polynomiell berechenbare Funktion $$f:\Sigma^* \rightarrow \Sigma^*$$</choice>
+            <choice>$$\forall x \in \Sigma^*:$$$$x\in L_1 \Leftrightarrow f(x) \in L_2$$</choice>
+            <choice>$$L_1$$ ist reduzierbar auf $$L_2$$ wird geschrieben: $$L_1 \leq_p L_2$$
+            </choice>
+            <choice>$$L_1 \leq_p L_2$$, wenn es eine polynomielle Reduktion von $$L_1$$ auf $$L_2$$ </choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Eine polynomielle Reduktion ist eine berechenbare Funktion $$f:\Sigma^* \rightarrow \Sigma^*$$</choice>
+            <choice>$$\forall x \in \Sigma^*:$$$$x\in L_2 \Leftrightarrow f(x) \in L_1$$</choice>
+            <choice>$$L_1$$ ist reduzierbar auf $$L_2$$ wird geschrieben: $$L_1 \leq L_2$$
+            </choice>
+            <choice>$$L_1 \leq_p L_2$$, wenn es eine Reduktion von $$L_1$$ auf $$L_2$$ </choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="l1 leq p l2 leq p l3">
+        <questions>
+            <question>Angenommen $$L_1 \leq_p L_2 \leq_p L_3$$. Was gilt?</question>
+        </questions>
+        <correctChoices>
+            <!-- in P-->
+            <choice>Ist $$L_2 \in \text P$$, dann ist auch $$L_1 \in \text P$$</choice>
+            <choice>Ist $$L_3 \in \text P$$, dann ist auch $$L_1 \in \text P$$</choice>
+            <choice>Ist $$L_3 \in \text P$$, dann ist auch $$L_2 \in \text P$$</choice>
+            <!-- in NP-->
+            <choice>Ist $$L_2 \in \text{NP}$$, dann ist auch $$L_1 \in \text{NP}$$</choice>
+            <choice>Ist $$L_3 \in \text{NP}$$, dann ist auch $$L_1 \in \text{NP}$$</choice>
+            <choice>Ist $$L_3 \in \text{NP}$$, dann ist auch $$L_2 \in \text{NP}$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <!-- in P-->
+            <choice>Ist $$L_1 \in \text P$$, dann ist auch $$L_2 \in \text P$$</choice>
+            <choice>Ist $$L_1 \in \text P$$, dann ist auch $$L_3 \in \text P$$</choice>
+            <choice>Ist $$L_2 \in \text P$$, dann ist auch $$L_3 \in \text P$$</choice>
+            <!-- in NP-->
+            <choice>Ist $$L_1 \in \text{NP}$$, dann ist auch $$L_2 \in \text{NP}$$</choice>
+            <choice>Ist $$L_1 \in \text{NP}$$, dann ist auch $$L_3 \in \text{NP}$$</choice>
+            <choice>Ist $$L_2 \in \text{NP}$$, dann ist auch $$L_3 \in \text{NP}$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="coloring">
+        <questions>
+            <question>Welche Aussagen sind über $$\text{COLORING}$$ gefallen?</question>
+        </questions>
+        <correctChoices>
+            <choice>Eingabe: Ein ungerichteter Graph $$G=(V,E)$$ und eine Zahl $$k\in \N$$</choice>
+            <choice>Frage: Gibt es eine Färbung $$c: V\rightarrow {1,...,k}$$ der Knoten mit $$k$$ Farben, sodass benachbarte Knoten verschiedene Farben enthalten?</choice>
+            <choice>$$\forall e  = \{u,v\} \in E: c(u) \neq c(v)$$</choice>
+            <choice>$$\text{COLORING} \leq_p \text{SAT}$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Eingabe: Ein gerichteter Graph $$G=(V,E)$$ und eine Zahl $$k\in \N$$</choice>
+            <choice>Eingabe: Ein ungerichteter Graph $$G=(V,E)$$</choice>
+            <choice>Eingabe: Ein ungerichteter Graph $$G=(V,E)$$ und eine Zahl $$k\in \Z$$</choice>
+            <choice>Frage: Gibt es eine Färbung $$c: V\rightarrow {1,...,k}$$ der Knoten mit $$k$$ Farben, sodass benachbarte Knoten stets gleiche Farben enthalten?</choice>
+            <choice>$$\exists e  = \{u,v\} \in E: c(u) \neq c(v)$$</choice>
+            <choice>$$\text{COLORING} \not \leq_p \text{SAT}$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+</knowledge>

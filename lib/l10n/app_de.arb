@@ -1,0 +1,34 @@
+{
+    "chooseACourse": "Choose a Course!",
+    "copiedEmailAdressToClipboard": "Copied e-Mail adress to Clipboard!",
+    "courses": "Kurse",
+    "user": "User",
+    "stats": "Stats",
+    "help": "Help",
+    "thankYou": "Thank You!",
+    "about": "About",
+    "lrsResponses": "LRS Responses",
+    "correctionCorrectMessage": "Correct! Nice!",
+    "correctionIncorrectMessage": "Ups, da ist was schief gelaufen.",
+    "coursesCouldNotBeLoadedPleaseRestart": "The courses failed to load. Please restart the app",
+    "courseCouldNotBeLoaded": "The course {courseName} could not be loaded. Please restart the app or reimport the course.",
+    "@courseCouldNotBeLoaded": {
+        "placeholders":{
+            "courseName": {
+                "type": "String",
+                "example": "UnbekannterKurs"
+            }
+        }
+    },
+    "close":"Close",
+    "knowledgeCategoryStandardQuestion": "Which are {categoryNamePlural}?",
+    "@knowledgeCategoryStandardQuestion": {
+        "placeholders":{
+            "categoryNamePlural": {
+                "type": "String",
+                "example": "blue"
+            }
+        }
+    },
+    "ifYouNeedAssistanceOrEncounteredABugWriteAMailTo": "If you need assistance or encountered a bug, write a mail to"
+}

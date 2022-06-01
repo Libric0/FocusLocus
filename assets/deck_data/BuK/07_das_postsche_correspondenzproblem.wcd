@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knowledge>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="informelle definition pcp">
+        <questions>
+            <question>Wie wurde das $$\text{PCP}$$ informell erklärt?</question>
+        </questions>
+        <correctChoices>
+            <choice>Gegeben ist eine Menge $$K$$ an Dominosteinen</choice>
+            <choice>Jeder Dominostein ist mit zwei Wörtern über $$\Sigma$$ beschriftet: Eins oben, eins unten</choice>
+            <choice>Die Aufgabe ist es eine correspondierende Folge zu finden</choice>
+            <choice>Bei einer correspondierenden Folge ergibt sich aus den Dominos oben und unten das selbe Wort</choice>
+            <choice>Jeder Dominostein darf beliebig oft verwendet werden</choice>
+            <choice>Die Folge muss mindestens einen Dominostein enthalten</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Gegeben ist eine Menge $$K$$ an Puzzleteilen</choice>
+            <choice>Jeder Dominostein ist mit zwei Wörtern über $$\Sigma$$ beschriftet: Eins links, eins rechts</choice>
+            <choice>Die Aufgabe ist es jede correspondierende Folge zu finden</choice>
+            <choice>Bei einer correspondierenden Folge ergibt sich aus den Dominos oben und unten ein unendliches Wort</choice>
+            <choice>Jeder Dominostein darf unendlich oft verwendet werden</choice>
+            <choice>Jeder Dominostein darf 10 mal verwendet werden</choice>
+            <choice>Die Folge muss mindestens zwei Dominosteine enthalten</choice>
+            <choice>Die Folge kann auch keine Dominosteine enthalten</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="pcp instanz">
+        <questions>
+            <question>Mit welchen Dominosteinen am Ende ergibt sich eine Korrespondierende Folge für diese Dominos: $$\left[ \begin{matrix}{aa}\\\hline {a}\end{matrix} \right] \left[ \begin{matrix}{baa}\\\hline{ab} \end{matrix}\right]$$</question>
+            <!--|aa||baa|-->
+            <!--|a ||ab |-->
+        </questions>
+        <correctChoices>
+            <choice>$$\left[ \begin{matrix}{ba}\\\hline {aaba}\end{matrix} \right]$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$\left[ \frac{aaba}{ba} \right]$$</choice>
+            <choice>$$\left[ \begin{matrix}{baa}\\\hline {aaaba}\end{matrix} \right]$$</choice>
+            <choice>$$\left[ \begin{matrix}{b}\\\hline {abb}\end{matrix} \right]$$</choice>
+            <choice>$$\left[ \begin{matrix}{aa}\\\hline {aaa}\end{matrix} \right]$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="pcp instanz 2">
+        <questions>
+            <question>Mit welchen Dominosteinen am Ende ergibt sich eine Korrespondierende Folge für diese Dominos: $$\left[ \begin{matrix}{ba}\\\hline {b}\end{matrix} \right] \left[ \begin{matrix}{baa}\\\hline{abaa} \end{matrix}\right]$$</question>
+            <!--|ba||baa|-->
+            <!--|b ||abaa |-->
+        </questions>
+        <correctChoices>
+            <choice>$$\left[ \begin{matrix}{a}\\\hline {a}\end{matrix} \right]$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$\left[ \frac{a}{ba} \right]$$</choice>
+            <choice>$$\left[ \begin{matrix}{baa}\\\hline {aaa}\end{matrix} \right]$$</choice>
+            <choice>$$\left[ \begin{matrix}{ab}\\\hline {baab}\end{matrix} \right]$$</choice>
+            <choice>$$\left[ \begin{matrix}{aa}\\\hline {abb}\end{matrix} \right]$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="mpcp">
+        <topicSingular>Problem</topicSingular>
+        <topicPlural>Probleme</topicPlural>
+        <contentItems>
+            <contentItem>Das $$\text{MPCP}$$ unterscheidet sich vom $$\text{PCP}$$ nur darin, dass es einen</contentItem>
+            <contentItemCompletable/>
+            <contentItem>gibt</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Startdomino</fillIn>
+            <fillIn>Anfangsdomino</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Enddomino</fillIn>
+            <fillIn>leeren Domino</fillIn>
+            <fillIn>unendlichen Domino</fillIn>
+            <fillIn>Mitteldomino</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="mpcp multiple choice">
+        <questions>
+            <question>Was gilt für das $$\text{MPCP}$$</question>
+        </questions>
+        <correctChoices>
+            <choice>Eine Lösung muss mit dem Startdomino anfangen</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Eine Lösung muss mit dem Enddomino aufhören</choice>
+            <choice>Eine Lösung kann unendlich viele Dominos benutzen</choice>
+            <choice>Eine Lösung kann auch keinen Domino benutzen</choice>
+            <choice>Eine Lösung muss jeden verfügbaren Domino benutzen</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="beweise pcp">
+        <questions>
+            <question>Welche Aussagen werden bewiesen, um zu zeigen dass das $$\text{PCP}$$ unentscheidbar ist?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$\text{MPCP} \leq \text{PCP}$$</choice>
+            <choice>$$H \leq \text{MPCP}$$</choice>
+            <choice>$$H \leq \text{PCP}$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$H_{tot} \leq \text{PCP}$$</choice>
+            <choice>$$H_{tot} \leq \text{MPCP}$$</choice>
+            <choice>$$D \leq \text{PCP}$$</choice>
+            <choice>$$\text{PCP} \leq \text{MPCP}$$</choice>
+            <choice>$$\text{PCP} \leq H$$</choice>
+            <choice>$$\text{MPCP} \leq H$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="mpcp leq pcp">
+        <questions>
+            <question>Wie wird die folgende Inztanz des $$\text{MPCP}$$ aufs $$\text{PCP}$$ reduziert? $$K = \left\{ \left[ \begin{matrix}{ab}\\\hline {a}\end{matrix} \right] , \left[ \begin{matrix}{c}\\\hline {abc}\end{matrix} \right] , \left[ \begin{matrix}{a}\\\hline {b}\end{matrix} \right] \right\}$$</question>
+        </questions>
+        <correctChoices>
+            <choice>$$\left[ \begin{matrix}{ab}\\\hline {a}\end{matrix} \right]$$$$\mapsto$$$$\left[ \begin{matrix}{\# a \# b \#}\\\hline {\# a}\end{matrix} \right],$$$$\left[ \begin{matrix}{a \# b \#}\\\hline {\# a}\end{matrix} \right]$$</choice>
+            <choice>$$\left[ \begin{matrix}{c}\\\hline {abc}\end{matrix} \right]$$$$\mapsto$$$$\left[ \begin{matrix}{c \#}\\\hline {\#a \#b \#c}\end{matrix} \right]$$</choice>
+            <choice>$$\left[ \begin{matrix}{a}\\\hline {b}\end{matrix} \right]$$$$\mapsto$$$$\left[ \begin{matrix}{a \#}\\\hline {\# b}\end{matrix} \right]$$</choice>
+            <choice>Neuer Domino $$\left[ \begin{matrix}{\$}\\\hline {\# \$}\end{matrix} \right]$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$\left[ \begin{matrix}{ab}\\\hline {a}\end{matrix} \right]$$$$\mapsto$$$$\left[ \begin{matrix}{\# a \# b \#}\\\hline {\# a}\end{matrix} \right]$$</choice>
+            <choice>$$\left[ \begin{matrix}{c}\\\hline {abc}\end{matrix} \right]$$$$\mapsto$$$$\left[ \begin{matrix}{\# c \#}\\\hline {\#a \#b \#c}\end{matrix} \right]$$</choice>
+            <choice>$$\left[ \begin{matrix}{a}\\\hline {b}\end{matrix} \right]$$$$\mapsto$$$$\left[ \begin{matrix}{a \#}\\\hline {\# b \#}\end{matrix} \right]$$</choice>
+            <choice>Neuer Domino $$\left[ \begin{matrix}{\# \$}\\\hline { \$}\end{matrix} \right]$$</choice>
+            <choice>Neuer Domino $$\left[ \begin{matrix}{\$}\\\hline { \$ \#}\end{matrix} \right]$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="beweis pcp">
+        <questions>
+            <question>Welche Arten von Dominos werden in dem Beweis $$H \leq \text{MPCP}$$ eingesetzt?</question>
+        </questions>
+        <correctChoices>
+            <!--$$\left[ \begin{matrix}{ }\\\hline { }\end{matrix} \right]$$-->
+            <choice>Startdomino: $$\left[ \begin{matrix}{\# }\\\hline { \# \# q_0w \#}\end{matrix} \right]$$</choice>
+            <choice>Kopierdominos: $$\left[ \begin{matrix}{a}\\\hline { a}\end{matrix} \right]$$ für alle $$a \in \Gamma \cup \{ \# \}$$</choice>
+            <choice>Überführungsdomino: $$\left[ \begin{matrix}{qa}\\\hline {q'c}\end{matrix} \right]$$, wenn $$\delta(q,a) =(q',c,N)$$</choice>
+            <choice>Überführungsdomino: $$\left[ \begin{matrix}{qa}\\\hline {cq'}\end{matrix} \right]$$, wenn $$\delta(q,a) =(q',c,R)$$</choice>
+            <choice>Überführungsdomino: $$\left[ \begin{matrix}{bqa}\\\hline {q'bc}\end{matrix} \right]$$, wenn $$\delta(q,a) =(q',c,L)$$</choice>
+            <choice>Überführungsdominos für implizite Blanks (außerhalb des bereits besuchten Bands)</choice>
+            <choice>Löschdominos für das Ende: $$\left[ \begin{matrix}{a \overline q}\\\hline {\overline q}\end{matrix} \right]$$ und $$\left[ \begin{matrix}{\overline q a}\\\hline {\overline q}\end{matrix} \right]$$</choice>
+            <choice>Abschlussdomino: $$\left[ \begin{matrix}{\#\overline q \#\#}\\\hline {\#}\end{matrix} \right]$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Startdomino: $$\left[ \begin{matrix}{\# }\\\hline { \# q_0w \#}\end{matrix} \right]$$</choice>
+            <choice>Kopierdominos: $$\left[ \begin{matrix}{a}\\\hline {aa}\end{matrix} \right]$$ für alle $$a \in \Gamma \cup \{ \# \}$$</choice>
+            <choice>Überführungsdomino: $$\left[ \begin{matrix}{qa}\\\hline {q'c}\end{matrix} \right]$$, wenn $$\delta(q,a) =(q',c,R)$$</choice>
+            <choice>Überführungsdomino: $$\left[ \begin{matrix}{qa}\\\hline {cq'}\end{matrix} \right]$$, wenn $$\delta(q,a) =(q',c,N)$$</choice>
+            <choice>Überführungsdomino: $$\left[ \begin{matrix}{bq}\\\hline {q'b}\end{matrix} \right]$$, wenn $$\delta(q,a) =(q',c,L)$$</choice>
+            <choice>Überführungsdominos für implizite Blanks (innerhalb des bereits besuchten Bands)</choice>
+            <choice>Löschdominos für das Ende: $$\left[ \begin{matrix}{a \overline q}\\\hline {a}\end{matrix} \right]$$ und $$\left[ \begin{matrix}{\overline q a}\\\hline {\overline q}\end{matrix} \right]$$</choice>
+            <choice>Abschlussdomino: $$\left[ \begin{matrix}{\#\overline q \#}\\\hline {\#}\end{matrix} \right]$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="varianten des pcp">
+        <questions>
+            <question>Welche Varianten des $$\text{PCP}$$ sind entscheidbar?</question>
+        </questions>
+        <correctChoices>
+            <choice>Alle Wörter haben Länge $$1$$</choice>
+            <choice>Instanzen mit nur einem Domino</choice>
+            <choice>Instanzen mit nur 2 Dominos</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Alle Wörter haben Länge $$1$$ oder $$2$$</choice>
+            <choice>Instanzen mit nur 5 Dominos</choice>
+            <choice>Instanzen mit nur 7 Dominos</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="pcp mit drei und vier">
+        <topicSingular>Variante des PCP</topicSingular>
+        <topicPlural>Varianten des $$\text{PCP}$$</topicPlural>
+        <contentItems>
+            <contentItem>Für $$\text{PCP}$$-Varianten mit nur 3 oder 4 Dominos ist die Entscheidbarkeit</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>ungeklärt</fillIn>
+            <fillIn>unbekannt</fillIn>
+            <fillIn>offen</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>nicht gegeben</fillIn>
+            <fillIn>klar</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+</knowledge>

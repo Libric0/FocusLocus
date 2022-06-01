@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knowledge>
+    <knowledgeItem type="knowledgeStatement" id="epsilon halteproblem definition">
+        <topicSingular>Problem</topicSingular>
+        <topicPlural>Probleme</topicPlural>
+        <contentItems>
+            <contentItem>$$H_\varepsilon =$$ $$\{\langle M \rangle |$$$$M \text{ hält auf der Eingabe}$$</contentItem>
+            <contentItemCompletable/>
+            <contentItem>$$\}$$</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$\varepsilon$$</fillIn>
+            <fillIn>epsilon</fillIn>
+            <fillIn>varepsilon</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>$$0$$</fillIn>
+            <fillIn>$$1$$</fillIn>
+            <fillIn>$$w$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Epsilon Halteproblem unentscheidbar">
+        <topicSingular>Problem</topicSingular>
+        <topicPlural>Probleme</topicPlural>
+        <contentItems>
+            <contentItem>$$H_\varepsilon$$ ist</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>unentscheidbar</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>endlich</fillIn>
+            <fillIn>entscheidbar</fillIn>
+            <fillIn>keine Sprache</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    
+    <!--Satz von Rice-->
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="Unentscheidbare Probleme">
+        <questions>
+            <question>Wenn wir $$\Sigma = \{0,1\}$$ annehmen sind welche der Probleme sind entscheidbar?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$\{\langle M \rangle | L(M) \subseteq \{0,1\}^*\}$$</choice>
+            <choice>$$\{\langle M \rangle | $$$$L(M) \text{ wird von einer TM}$$$$\text{akzeptiert}\}$$</choice>
+            <choice>$$\{\langle M \rangle | 2222 \in L(M)\}$$</choice>
+            <choice>$$\{\langle M \rangle | 2222 \not \in L(M)\}$$</choice>
+            <choice>$$\{\langle M \rangle | $$$$M \text{ hat eine gerade Anzahl}$$$$\text{von Zuständen}\}$$</choice>
+            <choice>$$\{\langle M \rangle | $$$$M \text{ hat einen Endzustand}\}$$</choice>
+            <choice>$$\{\langle M \rangle | $$$$|\langle M \rangle | \text{ ist Primzahl}\}$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$\{\langle M \rangle | $$$$\langle M \rangle \in L(M)\}$$</choice>
+            <choice>$$\{\langle M \rangle | $$$$ L(M) = \emptyset\}$$</choice>
+            <choice>$$\{\langle M \rangle | $$$$ L(M) = \Sigma^*\}$$</choice>
+            <choice>$$\{\langle M \rangle | $$$$ |L(M)|&lt; \infty\}$$</choice>
+            <choice>$$\{\langle M \rangle | $$$$ |L(M)|= \infty\}$$</choice>
+            <choice>$$\{\langle M \rangle | L(M) \text{ ist regulär}\}$$</choice>
+            <choice>$$\{\langle M \rangle | L(M) \text{ ist kontextfrei}\}$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="partielle funktionen">
+        <questions>
+            <question>Was gilt für TM-berechenbare partielle Funktionen?</question>
+        </questions>
+        <correctChoices>
+            <choice>Eine partielle Funktion ist eine Funktion der Form $$f_M: \{0,1\}^* \rightarrow \{0,1\}^* \cup \{\bot\}$$</choice>
+            <choice>Für Entscheidungsprobleme hat die partielle Funktion die Form $$f_M: \{0,1\}^* \rightarrow \{0,1,\bot\}$$</choice>
+            <choice>$$\bot$$ bedeutet dass die Maschine nicht hält</choice>
+            <choice>$$\bot$$ steht für undefiniert</choice>
+            <choice>Bei Entscheidungsproblemen steht $$0$$ für verwerfen</choice>
+            <choice>Bei Entscheidungsproblemen steht $$1$$ für akzeptieren</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Eine partielle Funktion ist eine Funktion der Form $$f_M: \{0,1\}^* \rightarrow \{0,1\}^* \cup \{\vdash\}$$</choice>
+            <choice>Für Entscheidungsprobleme hat die partielle Funktion die Form $$f_M: \{0,1\}^* \rightarrow \{0,1\}$$</choice>
+            <choice>$$\bot$$ bedeutet dass die Maschine nicht hält</choice>
+            <choice>$$\bot$$ ist ein Platzhalter, bis die Berechnung fertig ist.</choice>
+            <choice>Bei Entscheidungsproblemen steht $$0$$ für nicht halten</choice>
+            <choice>Bei Entscheidungsproblemen steht $$1$$ für halten</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="satz von rice">
+        <questions>
+            <question>Was passt zum Satz von Rice?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$\mathcal R$$ ist die Menge der von TMen berechenbaren, partiellen Funktionen</choice>
+            <choice>$$\emptyset \subsetneq \mathcal S$$</choice>
+            <choice>$$\mathcal S \subsetneq \mathcal R$$</choice>
+            <choice>$$\mathcal S \neq \emptyset$$</choice>
+            <choice>$$\mathcal S \neq \mathcal R$$</choice>
+            <choice>$$L(\mathcal S)=$$$$\{\langle M \rangle | f_M \in \mathcal S \}$$</choice>
+            <choice>$$L(\mathcal S)=$$$$\{\langle M \rangle |$$$$ M \text{ berechnet eine Funktion aus}$$$$\mathcal S\}$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$\mathcal R$$ ist die Menge der von TMen berechenbaren, totalen Funktionen</choice>
+            <choice>$$\emptyset = \mathcal S$$</choice>
+            <choice>$$\mathcal R \subsetneq \mathcal S$$</choice>
+            <choice>$$\mathcal S = \mathcal R$$</choice>
+            <choice>$$L(\mathcal S)=$$$$\{\langle M \rangle | f_M \not\in \mathcal S \}$$</choice>
+            <choice>$$L(\mathcal S)=$$$$\{\langle M \rangle |$$$$ M \text{ berechnet jede Funktion aus}$$$$\mathcal S\}$$</choice>
+            <choice>$$L(\mathcal S)=$$$$\{\langle M \rangle |$$$$ M \text{ berechnet keine Funktion aus}$$$$\mathcal S\}$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="satz von rice aussagekraft">
+        <questions>
+            <question>Wo sagt der Satz von Rice etwas aus?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$\{\langle M \rangle $$$$| M \text{ hält auf jeder Eingabe} \}$$</choice>
+            <choice>$$\{\langle M \rangle $$$$| M \text{ hält auf keiner Eingabe }\}$$</choice>
+            <choice>$$\{\langle M \rangle $$$$| M \text{ erkennt } H\}$$</choice>
+            <choice>$$\{\langle M \rangle $$$$| L(M) = \emptyset\}$$</choice>
+            <choice>$$\{\langle M \rangle $$$$| L(M) = H\}$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$\{\langle M \rangle $$$$| M \text{ hält immer nach }$$$$ \leq 40 \text{ schritten}\}$$</choice>
+            <choice>$$\{\langle M \rangle $$$$| \exists x\in \Sigma^*:$$$$ M\text{ erreicht auf } w $$$$\text{ mindestens einmal }q_{11}\}$$</choice>
+            <choice>$$\{\langle M \rangle $$$$| M \text{ entscheidet } D\}$$</choice>
+            <choice>$$\{\langle M \rangle $$$$| L(M) = H_{tot}\}$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+
+    <!-- Abschlusseigenschaften-->
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="Komplement">
+        <questions>
+        <question>Welche Abschlusseigenschaften gelten?</question>
+        </questions>
+        <correctChoices>
+            <choice>Wenn $$L\subseteq \Sigma^*$$ entscheidbar ist, dann auch $$\Sigma^* \backslash L$$</choice>
+            <choice>Wenn $$L\subseteq \Sigma^*$$ unentscheidbar ist, dann auch $$\Sigma^* \backslash L$$</choice>
+            <choice>Wenn $$L_1,L_2 \subseteq \Sigma^*$$ entscheidbar sind, dann auch $$L_1 \cup L_2$$</choice>
+            <choice>Wenn $$L_1,L_2 \subseteq \Sigma^*$$ entscheidbar sind, dann auch $$L_1 \cap L_2$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Wenn $$L_1,L_2 \subseteq \Sigma^*$$ unentscheidbar sind, dann auch $$L_1 \cup L_2$$</choice>
+            <choice>Wenn $$L_1,L_2 \subseteq \Sigma^*$$ unentscheidbar sind, dann auch $$L_1 \cap L_2$$</choice>
+            <choice>Wenn $$L\subseteq \Sigma^*$$ unentscheidbar ist, dann ist $$\Sigma^* \backslash L$$ entscheidbar</choice>
+            <choice>Wenn $$L\subseteq \Sigma^*$$ entscheidbar ist, dann ist $$\Sigma^* \backslash L$$ unentscheidbar</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Abgeschlossen unter komplement">
+        <topicSingular>Abschlusseigenschaft</topicSingular>
+        <topicPlural>Abschlusseigenschaften</topicPlural>
+        <contentItems>
+            <contentItem>Wenn $$L\subseteq \Sigma^*$$ entscheidbar ist, dann ist $$\Sigma^* \backslash L$$</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>entscheidbar</fillIn>
+            <fillIn>rekursiv</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>unentscheidbar</fillIn>
+            <fillIn>endlich</fillIn>
+            <fillIn>unendlich</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Abgeschlossen unter komplement">
+        <topicSingular>Abschlusseigenschaft</topicSingular>
+        <topicPlural>Abschlusseigenschaften</topicPlural>
+        <contentItems>
+            <contentItem>Wenn $$L_1,L_2\subseteq \Sigma^*$$ entscheidbar sind, dann ist $$L_1 \cup L_2$$</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>entscheidbar</fillIn>
+            <fillIn>rekursiv</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>unentscheidbar</fillIn>
+            <fillIn>endlich</fillIn>
+            <fillIn>unendlich</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Abgeschlossen unter komplement">
+        <topicSingular>Abschlusseigenschaft</topicSingular>
+        <topicPlural>Abschlusseigenschaften</topicPlural>
+        <contentItems>
+            <contentItem>Wenn $$L_1,L_2\subseteq \Sigma^*$$ entscheidbar sind, dann ist $$L_1 \cap L_2$$</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>entscheidbar</fillIn>
+            <fillIn>rekursiv</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>unentscheidbar</fillIn>
+            <fillIn>endlich</fillIn>
+            <fillIn>unendlich</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+</knowledge>

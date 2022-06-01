@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knowledge>
+    <knowledgeItem type="knowledgeStatement" id="entscheiden def">
+        <topicSingular>TM</topicSingular>
+        <topicPlural>TMs</topicPlural>
+        <contentItems>
+            <contentItem>Eine TM $$M$$ akzeptiert $$L\in \Sigma^*$$ wenn $$M$$</contentItem>
+            <contentItemCompletable/>
+            <contentItem>hält und genau die $$w \in L$$ akzeptiert</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>immer</fillIn>
+            <fillIn>auf jeder Eingabe</fillIn>
+            <fillIn>auf jedem Wort</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>meistens</fillIn>
+            <fillIn>unendlich oft</fillIn>
+            <fillIn>nie</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="entscheiden def">
+        <topicSingular>TM</topicSingular>
+        <topicPlural>TMs</topicPlural>
+        <contentItems>
+            <contentItem>Eine TM $$M$$ akzeptiert $$L\in \Sigma^*$$ wenn $$M$$ immer</contentItem>
+            <contentItemCompletable/>
+            <contentItem>und genau die $$w \in L$$ akzeptiert</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>hält</fillIn>
+            <fillIn>terminiert</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>akzeptiert</fillIn>
+            <fillIn>verwirft</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+
+    <knowledgeItem type="knowledgeStatement" id="entscheiden def">
+        <topicSingular>TM</topicSingular>
+        <topicPlural>TMs</topicPlural>
+        <contentItems>
+            <contentItem>Eine TM $$M$$ akzeptiert $$L\in \Sigma^*$$ wenn $$M$$ immer hält und</contentItem>
+            <contentItemCompletable/>
+            <contentItem>die $$w \in L$$ akzeptiert</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>genau</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>mindestens</fillIn>
+            <fillIn>nicht</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+
+    <knowledgeItem type="knowledgeStatement" id="erkennen def">
+        <topicSingular>TM</topicSingular>
+        <topicPlural>TMs</topicPlural>
+        <contentItems>
+            <contentItem>Eine TM $$M$$ erkennt eine Sprache $$L\subseteq \Sigma^*$$, wenn $$M$$</contentItem>
+            <contentItemCompletable/>
+            <contentItem>Wort aus $$L$$ und kein Wort aus $$\Sigma^* \backslash L$$ akzeptiert</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>jedes</fillIn>
+            <fillIn>alle</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>mindestens ein</fillIn>
+            <fillIn>kein</fillIn>
+            <fillIn>höchstens ein</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="entscheidbar def">
+        <topicSingular>Sprache</topicSingular>
+        <topicPlural>Sprachen</topicPlural>
+        <contentItems>
+            <contentItem>Eine Sprache $$L\subseteq \Sigma^*$$, die von einer TM $$M$$ entschieden wird, wird</contentItem>
+            <contentItemCompletable/>
+            <contentItem>genannt</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>entscheidbar</fillIn>
+            <fillIn>rekursiv</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>unentscheidbar</fillIn>
+            <fillIn>semi-entscheidbar</fillIn>
+            <fillIn>rekursiv aufzählbar</fillIn>
+            <fillIn>unendlich</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="entscheidbar def">
+        <topicSingular>Sprache</topicSingular>
+        <topicPlural>Sprachen</topicPlural>
+        <contentItems>
+            <contentItem>Eine Sprache $$L\subseteq \Sigma^*$$, die von einer TM $$M$$ erkannt wird, wird</contentItem>
+            <contentItemCompletable/>
+            <contentItem>genannt</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>semi-entscheidbar</fillIn>
+            <fillIn>rekursiv aufzählbar</fillIn>
+            <fillIn>Turing-erkennbar</fillIn>
+            <fillIn>Turing-akzeptierbar</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>unentscheidbar</fillIn>
+            <fillIn>entscheidbar</fillIn>
+            <fillIn>unendlich</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="entscheidbar impl semi entscheidbar">
+        <topicSingular>Sprache</topicSingular>
+        <topicPlural>Sprachen</topicPlural>
+        <contentItems>
+            <contentItem>Ist $$L\subseteq \Sigma^*$$ entscheidbar, so ist $$L$$ auch</contentItem>
+            <contentItemCompletable/>
+            <contentItem>-entscheidbar</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>semi</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>schnell</fillIn>
+            <fillIn>nicht</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="H ist semi entscheidbar">
+        <topicSingular>Problem</topicSingular>
+        <topicPlural>Probleme</topicPlural>
+        <contentItems>
+            <contentItem>$$H$$ ist zwar nicht entscheidbar, aber</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>semi-entscheidbar</fillIn>
+            <fillIn>rekursiv aufzählbar</fillIn>
+            <fillIn>Turing-erkennbar</fillIn>
+            <fillIn>Turing-akzeptierbar</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>endlich</fillIn>
+            <fillIn>unendlich</fillIn>
+            <fillIn>rekursiv</fillIn>
+            <fillIn>entscheidbar</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="aufzaehler">
+        <questions>
+            <question>Was passt zur Definition eines Aufzählers für $$L \in \Sigma^*$$?</question>
+        </questions>
+        <correctChoices>
+            <choice>Eine Variante der TM mit angeschlossenem Drucker</choice>
+            <choice>Startet mit leerem Band</choice>
+            <choice>Gibt mit der Zeit alle Wörter aus $$L$$ auf dem Drucker aus</choice>
+            <choice>Die Ausgegebenen Worte können sich wiederholen</choice>
+            <choice>Die Ausgegebenen Worte werden immer durch ein Trennzeichen, welches nicht in $$\Sigma$$ ist, separiert</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Eine Variante der TM mit angeschlossenem endlichem Speicher</choice>
+            <choice>Bekommt eine Eingabe $$w \in \Sigma^*$$ mit $$|w|>0$$</choice>
+            <choice>Jedes Wort in $$L$$ darf nur einmal ausgegeben werden</choice>
+            <choice>Die Ausgegebenen Worte werden immer durch $$111$$ separiert</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="rekursiv aufzaehlbar def">
+        <topicSingular>Sprache</topicSingular>
+        <topicPlural>Sprachen</topicPlural>
+        <contentItems>
+            <contentItem>Wenn es für eine Sprache $$L$$ einen Aufzähler gibt, wird $$L$$ als</contentItem>
+            <contentItemCompletable/>
+            <contentItem>bezeichnet</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>rekursiv aufzählbar</fillIn>
+            <fillIn>rekursiv aufzaelbar</fillIn>
+            <fillIn>Turing-erkennbar</fillIn>
+            <fillIn>Turing-akzeptierbar</fillIn>
+            <fillIn>semi-entscheidbar</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>entscheidbar</fillIn>
+            <fillIn>unentscheidbar</fillIn>
+            <fillIn>unendlich</fillIn>
+            <fillIn>endlich</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="rek aufzaehlbar gdw semi entscheidbar">
+        <topicSingular>Sprache</topicSingular>
+        <topicPlural>Sprachen</topicPlural>
+        <contentItems>
+            <contentItem>Eine Sprache ist genau dann rekursiv aufzählbar, wenn sie</contentItem>
+            <contentItemCompletable/>
+            <contentItem>ist</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>semi-entscheidbar</fillIn>
+            <fillIn>Turing-erkennbar</fillIn>
+            <fillIn>Turing-akzeptierbar</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>entscheidbar</fillIn>
+            <fillIn>unentscheidbar</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="rek aufzaehlbar gdw semi entscheidbar">
+        <topicSingular>Sprache</topicSingular>
+        <topicPlural>Sprachen</topicPlural>
+        <contentItems>
+            <contentItem>Eine Sprache ist genau dann rekursiv</contentItem>
+            <contentItemCompletable/>
+            <contentItem>, wenn sie semi-entscheidbar ist</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>aufzählbar</fillIn>
+            <fillIn>aufzaelbar</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>entscheidbar</fillIn>
+            <fillIn>unentscheidbar</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="abschlusseigenschaften rek aufz sprachen">
+        <questions>
+            <question>Welche Abschlusseigenschaften gelten?</question>
+        </questions>
+        <correctChoices>
+            <choice>Wenn $$L_1,L_2$$ rekursiv aufzählbar sind, dann auch $$L_1 \cup L_2$$</choice>
+            <choice>Wenn $$L_1,L_2$$ rekursiv aufzählbar sind, dann auch $$L_1 \cap L_2$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Wenn $$L_1,L_2$$ nicht rekursiv aufzählbar sind, dann auch $$L_1 \cap L_2$$</choice>
+            <choice>Wenn $$L_1,L_2$$ nicht rekursiv aufzählbar sind, dann auch $$L_1 \cup L_2$$</choice>
+            <choice>Wenn $$L$$ rekursiv aufzählbar ist, dann auch $$\Sigma^* \backslash L$$</choice>
+            <choice>Wenn $$L$$ nicht rekursiv aufzählbar ist, dann auch $$\Sigma^* \backslash L$$</choice>
+            <choice>Wenn $$L$$ rekursiv aufzählbar ist, dann ist es $$\Sigma^* \backslash L$$ nicht</choice>
+            <choice>Wenn $$L$$ nicht rekursiv aufzählbar ist, ist $$\Sigma^* \backslash L$$ rekursiv aufzählbar</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <!--TODO: Beweis abschlusseigenschaften rek aufz sprachen-->
+    <knowledgeItem type="knowledgeStatement" id="l und l kompl aufz">
+        <topicSingular>Sprache</topicSingular>
+        <topicPlural>Sprachen</topicPlural>
+        <contentItems>
+            <contentItem>Sind sowohl $$L$$ als auch $$\overline L$$ rekursiv aufzählbar, dann ist $$L$$</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>entscheidbar</fillIn>
+            <fillIn>rekursiv</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>unentscheidbar</fillIn>
+            <fillIn>nicht rekursiv aufzählbar</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="rek aufz komplement nicht abgeschlossen">
+        <topicSingular>Sprache</topicSingular>
+        <topicPlural>Sprachen</topicPlural>
+        <contentItems>
+            <contentItem>Wenn $$L$$ rekursiv aufzählbar ist, dann ist $$\overline L$$</contentItem>
+            <contentItemCompletable/>
+            <contentItem>rekursiv aufzählbar</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>nicht unbedingt</fillIn>
+            <fillIn>nicht immer</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>nicht</fillIn>
+            <fillIn>auch</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="Berechenkeitslandschaft">
+        <questions>
+            <question>Welche 4 Familien an Problemen gehören zur Berechenkeitslandschaft?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$L$$ ist entscheidbar und sowohl $$L$$ als auch $$\overline L$$ sind rekursiv aufzählbar</choice>
+            <choice>$$L$$ ist rekursiv aufzählbar, aber $$\overline L$$ ist es nicht</choice>
+            <choice>$$\overline L$$ ist rekursiv aufzählbar, aber $$L$$ ist es nicht</choice>
+            <choice>Sowohl $$L$$ als auch $$\overline L$$ sind nicht rekursiv aufzählbar</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$L$$ ist entscheidbar und sowohl $$L$$ als auch $$\overline L$$ sind unentscheidbar</choice>
+            <choice>$$L$$ ist unentscheidbar und rekursiv aufzählbar, aber $$\overline L$$ ist entscheidbar</choice>
+            <choice>$$L$$ ist entscheidbar, aber $$\overline L$$ ist es nicht</choice>
+            <choice>Sowohl $$L$$ als auch $$\overline L$$ sind rekursiv aufzählbar und unentscheidbar</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="reduktion def">
+        <questions>
+            <question>Was passt zur Definition einer Reduktion von $$L_1$$ zu $$L_2$$</question>
+        </questions>
+        <correctChoices>
+            <choice>Eine Reduktion ist eine berechenbare Funktion $$f: \Sigma^* \rightarrow \Sigma^*$$</choice>
+            <choice>Für alle $$x \in \Sigma^*$$ gilt: $$x \in L_1$$$$\Leftrightarrow$$$$f(x) \in L_2$$</choice>
+            <choice>Reduzierbarkeit von $$L_1$$ auf $$L_2$$ wird $$L_1 \leq L_2$$ notiert</choice>
+            <choice>$$L_1 \leq L_2$$, wenn es eine polynomielle Reduktion von $$L_1$$ auf $$L_2$$ gibt</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Eine Reduktion ist eine beliebige Funktion $$f: \Sigma^* \rightarrow \Sigma^*$$</choice>
+            <choice>Es gibt ein $$x \in \Sigma^*$$ mit $$x \in L_1$$ und $$f(x) \not\in L_2$$</choice>
+            <choice>Reduzierbarkeit von $$L_1$$ auf $$L_2$$ wird $$L_1 \subseteq L_2$$ notiert</choice>
+            <choice>Reduzierbarkeit von $$L_1$$ auf $$L_2$$ wird $$L_1 &lt; L_2$$ notiert</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="reduzierbarkeit">
+        <topicSingular>Beweismethode</topicSingular>
+        <topicPlural>Beweismethoden</topicPlural>
+        <contentItems>
+            <contentItem>$$L_1$$ heisst</contentItem>
+            <contentItemCompletable/>
+            <contentItem>auf $$L_2$$, wenn es eine berechenbare Funktion $$f: \Sigma^* \rightarrow \Sigma^*$$ gibt, so dass $$x \in L_1 \Leftrightarrow f(x) \in L_2$$</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>reduzierbar</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>simulierbar</fillIn>
+            <fillIn>verallgemeinbar</fillIn>
+            <fillIn>abspielbar</fillIn>
+            <fillIn>expandierbar</fillIn>
+            <fillIn>polynomiell reduzierbar</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="reduzierbarkeit2">
+        <topicSingular>Beweismethode</topicSingular>
+        <topicPlural>Beweismethoden</topicPlural>
+        <contentItems>
+            <contentItem>$$L_1$$ heisst reduzierbar auf $$L_2$$, wenn es eine</contentItem>
+            <contentItemCompletable/>
+            <contentItem>Funktion $$f: \Sigma^* \rightarrow \Sigma^*$$ gibt, so dass $$x \in L_1 \Leftrightarrow f(x) \in L_2$$</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>berechenbare</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>lineare</fillIn>
+            <fillIn>stetige</fillIn>
+            <fillIn>differenzierbare</fillIn>
+            <fillIn>unberechenbare</fillIn>
+            <fillIn>polynomiell berechenbare</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="reduktion rek aufz">
+        <topicSingular>Reduktion</topicSingular>
+        <topicPlural>Reduktionen</topicPlural>
+        <contentItems>
+            <contentItem>Ist $$L_1\leq L_2$$ und $$L_2$$ rekursiv aufzählbar, dann ist $$L_1$$</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>rekursiv aufzählbar</fillIn>
+            <fillIn>semi-entscheidbar</fillIn>
+            <fillIn>Turing-erkennbar</fillIn>
+            <fillIn>Turing-akzeptierbar</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>nicht rekursiv aufzählbar</fillIn>
+            <fillIn>unentscheidbar</fillIn>
+            <fillIn>entscheidbar</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="l1 leq l2 leq l3">
+        <questions>
+            <question>Angenommen $$L_1\leq L_2 \leq L_3$$. Was gilt?</question>
+        </questions>
+        <correctChoices>
+            <!--rekursiv aufzählbar-->
+            <choice>Ist $$L_2$$ rekursiv aufzählbar, dann ist es auch $$L_1$$</choice>
+            <choice>Ist $$L_3$$ rekursiv aufzählbar, dann ist es auch $$L_1$$</choice>
+            <choice>Ist $$L_3$$ rekursiv aufzählbar, dann ist es auch $$L_2$$</choice>
+            <!--entscheidbar-->
+            <choice>Ist $$L_2$$ entscheidbar, dann ist es auch $$L_1$$</choice>
+            <choice>Ist $$L_3$$ entscheidbar, dann ist es auch $$L_1$$</choice>
+            <choice>Ist $$L_3$$ entscheidbar, dann ist es auch $$L_2$$</choice>
+            <!--unentscheidbar-->
+            <choice>Ist $$L_1$$ unentscheidbar, dann ist es auch $$L_2$$</choice>
+            <choice>Ist $$L_1$$ unentscheidbar, dann ist es auch $$L_3$$</choice>
+            <choice>Ist $$L_2$$ unentscheidbar, dann ist es auch $$L_3$$</choice>
+            <!--nicht rekursiv aufzählbar-->
+            <choice>Ist $$L_1$$ nicht rekursiv aufzählbar, dann ist auch $$L_2$$ nicht rekursiv aufzählbar</choice>
+            <choice>Ist $$L_1$$ nicht rekursiv aufzählbar, dann ist auch $$L_3$$ nicht rekursiv aufzählbar</choice>
+            <choice>Ist $$L_2$$ nicht rekursiv aufzählbar, dann ist auch $$L_3$$ nicht rekursiv aufzählbar</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <!--rekursiv aufzählbar-->
+            <choice>Ist $$L_1$$ rekursiv aufzählbar, dann ist es auch $$L_2$$</choice>
+            <choice>Ist $$L_1$$ rekursiv aufzählbar, dann ist es auch $$L_3$$</choice>
+            <choice>Ist $$L_2$$ rekursiv aufzählbar, dann ist es auch $$L_3$$</choice>
+            <!--entscheidbar-->
+            <choice>Ist $$L_1$$ entscheidbar, dann ist es auch $$L_2$$</choice>
+            <choice>Ist $$L_1$$ entscheidbar, dann ist es auch $$L_3$$</choice>
+            <choice>Ist $$L_2$$ entscheidbar, dann ist es auch $$L_3$$</choice>
+            <!--unentscheidbar-->
+            <choice>Ist $$L_2$$ unentscheidbar, dann ist es auch $$L_1$$</choice>
+            <choice>Ist $$L_3$$ unentscheidbar, dann ist es auch $$L_1$$</choice>
+            <choice>Ist $$L_3$$ unentscheidbar, dann ist es auch $$L_2$$</choice>
+            <!--nicht rekursiv aufzählbar-->
+            <choice>Ist $$L_2$$ nicht rekursiv aufzählbar, dann ist auch $$L_1$$ nicht rekursiv aufzählbar</choice>
+            <choice>Ist $$L_1$$ nicht rekursiv aufzählbar, dann ist auch $$L_3$$ nicht rekursiv aufzählbar</choice>
+            <choice>Ist $$L_2$$ nicht rekursiv aufzählbar, dann ist auch $$L_3$$ nicht rekursiv aufzählbar</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="totales halteproblem def">
+        <topicSingular>Problem</topicSingular>
+        <topicPlural>Probleme</topicPlural>
+        <contentItems>
+            <contentItem>$$H_{tot}=$$$$\{\langle M \rangle | M \text{ hält auf}$$</contentItem>
+            <contentItemCompletable/>
+            <contentItem>$$\text{Eingabe}\}$$</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>jeder</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>einer</fillIn>
+            <fillIn>keiner</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <!--TODO: Beweis H_tot und kompl sind nicht rek aufz-->
+    <knowledgeItem type="mathUniverse" id="Probleme">
+        <namesSingular>
+            <name>Sprache</name>
+            <name>Problem</name>
+        </namesSingular>
+        <namesPlural>
+            <name>Sprachen</name>
+            <name>Probleme</name>
+        </namesPlural>
+        <mathObjects>
+            <mathObject id="Diagonalsprache">$$D$$</mathObject>
+            <mathObject id="Diagonalsprachenkomplement">$$\overline D$$</mathObject>
+            <mathObject id="Halteproblem">$$H$$</mathObject>
+            <mathObject id="Halteproblem-Komplement">$$\overline H$$</mathObject>
+            <mathObject id="Epsilon-Halteproblem">$$H_\varepsilon$$</mathObject>
+            <mathObject id="Epsilon-Halteproblem-Komplement">$$\overline{H_\varepsilon}$$</mathObject>
+            <mathObject id="Diagonalsprachenkomplement schnitt Epsilon-Halteproblem">$$\overline D \cap H_\varepsilon$$</mathObject>
+            <mathObject id="Diagonalsprachenkomplement vereinigung Epsilon-Halteproblem">$$\overline D \cup H_\varepsilon$$</mathObject>
+            <mathObject id="Epsilon-Halteproblem schnitt Diagonalsprachenkomplement">$$H_\varepsilon \cap \overline D$$</mathObject>
+            <mathObject id="Epsilon-Halteproblem vereinigung Diagonalsprachenkomplement">$$H_\varepsilon \cup \overline D$$</mathObject>
+            <mathObject id="Diagonalsprachenkomplement schnitt Halteproblem">$$\overline D \cap H$$</mathObject>
+            <mathObject id="Diagonalsprachenkomplement vereinigung Halteproblem">$$\overline D \cup H$$</mathObject>
+            <mathObject id="Diagonalsprachenkomplement schnitt Diagonalsprachenkomplement">$$H \cap \overline D$$</mathObject>
+            <mathObject id="Halteproblem vereinigung Diagonalsprachenkomplement">$$H \cup \overline D$$</mathObject>
+        </mathObjects>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeCategory" id="Rekursiv aufzaehlbare Probleme">
+        <universe>Probleme</universe>
+        <questions>
+            <question>Welche Probleme sind rekursiv aufzählbar?</question>
+        </questions>
+        <categoryNamesSingular>
+            <name>rekursiv aufzählbare Sprache</name>
+            <name>rekursiv aufzählbares Problem</name>
+            <name>semi-entscheidbare Sprache</name>
+            <name>semi-entscheidbares Problem</name>
+        </categoryNamesSingular>
+        <categoryNamesPlural>
+            <name>rekursiv aufzählbare Sprachen</name>
+            <name>rekursiv aufzählbare Probleme</name>
+            <name>semi-entscheidbare Sprachen</name>
+            <name>semi-entscheidbare Probleme</name>
+        </categoryNamesPlural>
+        <indicesInCategory>1,2,4,6,7,8,9,10,11,12,13</indicesInCategory>
+        <dualQuestions>
+            <question>Welche Sprachen haben ein rekursiv aufzählbares Komplement?</question>
+        </dualQuestions>
+        <dualCategoryNamesSingular>
+            <name>Problem mit rekursiv aufzählbarem Komplement</name>
+            <name>Sprache mit rekursiv aufzählbarem Komplement</name>
+        </dualCategoryNamesSingular>
+        <dualCategoryNamesPlural>
+            <name>Probleme mit rekursiv aufzählbarem Komplement</name>
+            <name>Sprachen mit rekursiv aufzählbarem Komplement</name>
+        </dualCategoryNamesPlural>
+        <indicesInDualCategory>0,3,5</indicesInDualCategory>
+    </knowledgeItem>
+</knowledge>

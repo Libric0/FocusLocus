@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knowledge>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="k-Band TM Definition">
+        <questions>
+            <question>Was passt zur Definition der $$k$$-Band TM?</question>
+        </questions>
+        <correctChoices>
+            <choice>Sie hat $$k$$ Arbeitsbänder</choice>
+            <choice>Jedes Arbeitsband hat einen unabhängigen Kopf</choice>
+            <choice>Die Zustandsübergangsfunktion entspricht der Form $$\delta :$$$$(Q \backslash \{\overline q \}) \times \Gamma^k$$$$\rightarrow$$$$Q \times \Gamma^k$$$$\times \{L,R,N\}^k$$</choice>
+            <choice>Band 1 ist das Eingabeband</choice>
+            <choice>Band 1 ist das Ausgabeband</choice>
+            <choice>Die Zellen von den Bändern $$2,...,k$$ sind am Anfang leer (gefüllt mit $$B$$)</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Der Kopf ist auf jedem Band an der selben Position</choice>
+            <choice>Die Zustandsübergangsfunktion entspricht der Form $$\delta :$$$$(Q \backslash \{\overline q \}) \times \Gamma^k$$$$\rightarrow$$$$Q \times \Gamma^k$$$$\times \{L,R,N\}$$</choice>
+            <choice>Band $$n$$ ist das Eingabeband</choice>
+            <choice>Band $$n$$ ist das Ausgabeband</choice>
+            <choice>Die Zellen von den Bändern $$2,...,k$$ sind am Anfang leer (gefüllt mit $$0$$)</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="k-Band TM Eingabeband">
+        <topicSingular>$$k$$-Band TM</topicSingular>
+        <topicPlural>$$k$$-Band TMs</topicPlural>
+        <contentItems>
+            <contentItem>Band</contentItem>
+            <contentItemCompletable/>
+            <contentItem>ist das Eingabeband</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$1$$</fillIn>
+            <fillIn>1</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>n</fillIn>
+            <fillIn>$$n$$</fillIn>
+            <fillIn>0</fillIn>
+            <fillIn>$$0$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="k-Band TM Ausgabeband">
+        <topicSingular>$$k$$-Band TM</topicSingular>
+        <topicPlural>$$k$$-Band TMs</topicPlural>
+        <contentItems>
+            <contentItem>Band</contentItem>
+            <contentItemCompletable/>
+            <contentItem>ist das Ausgabeband</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>1</fillIn>
+            <fillIn>eins</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>n</fillIn>
+            <fillIn>$$n$$</fillIn>
+            <fillIn>0</fillIn>
+            <fillIn>$$0$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Initialisierung von k-Band TMs">
+        <topicSingular>$$k$$-Band TM</topicSingular>
+        <topicPlural>$$k$$-Band TMs</topicPlural>
+        <contentItems>
+            <contentItem>Die Zellen der Bänder $$2,...,k$$ enthalten am Anfang ausschließlich</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$B$$</fillIn>
+            <fillIn>B</fillIn>
+            <fillIn>Blanks</fillIn>
+            <fillIn>Blank</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>$$0$$</fillIn>
+            <fillIn>0</fillIn>
+            <fillIn>Nullen</fillIn>
+            <fillIn>1</fillIn>
+            <fillIn>$$1$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="k-Band TMs unabhaengige koepfe">
+        <topicSingular>$$k$$-Band TM</topicSingular>
+        <topicPlural>$$k$$-Band TMs</topicPlural>
+        <contentItems>
+            <contentItem>Die Köpfe bewegen sich bei einer $$k$$-Band TM</contentItem>
+            <contentItemCompletable/>
+            <contentItem>von einander</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>unabhängig</fillIn>
+            <fillIn>frei</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>abhängig</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <!--Simulation von k-Band TM durch 1 band TM-->
+    <knowledgeItem type="knowledgeStatement" id="Satz zur Simulation der k-Band TM">
+        <topicSingular>$$k$$-Band TM</topicSingular>
+        <topicPlural>$$k$$-Band TMs</topicPlural>
+        <contentItems>
+            <contentItem>Eine $$k$$-Band TM mit Zeitbedarf $$t(n)$$ und Platzbedarf $$s(n)$$ kann von einer 1-Band TM mit Zeitbedarf $$O(t(n)^2)$$ und Platzbedarf $$O(s(n))$$</contentItem>
+            <contentItemCompletable/>
+            <contentItem>werden</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>simuliert</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>verifiziert</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Beweis zur Simulation der k-Band TM">
+        <topicSingular>Simulation der $$k$$-Band TM</topicSingular>
+        <topicPlural>Simulationen der $$k$$-Band TMs</topicPlural>
+        <contentItems>
+            <contentItem>Die TM, die eine $$k$$-Band TM simuliert hat</contentItem>
+            <contentItemCompletable/>
+            <contentItem>Spuren</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$2k$$</fillIn>
+            <fillIn>2k</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>k</fillIn>
+            <fillIn>3k</fillIn>
+            <fillIn>$$k$$</fillIn>
+            <fillIn>$$3k$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Beweis zur Simulation der k-Band TM ungerade Spuren">
+        <topicSingular>Simulation der $$k$$-Band TM</topicSingular>
+        <topicPlural>Simulationen der $$k$$-Band TMs</topicPlural>
+        <contentItems>
+            <contentItem>Die ungeraden Spuren $$1,...,2k-1$$ enthalten den</contentItem>
+            <contentItemCompletable/>
+            <contentItem>$$1,...,k$$ von der zu simulierenden $$k$$-Band TM</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Inhalt der Bänder</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Zustand</fillIn>
+            <fillIn>Inhalt der Spuren</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Beweis zur Simulation der k-Band TM gerade Spuren">
+        <topicSingular>Simulation der $$k$$-Band TM</topicSingular>
+        <topicPlural>Simulationen der $$k$$-Band TMs</topicPlural>
+        <contentItems>
+            <contentItem>Auf den geraden Spuren $$2,...,2k$$ sind die</contentItem>
+            <contentItemCompletable/>
+            <contentItem>der zu Simulierenden $$k$$-Band TM mit $$\#$$ markiert</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Kopfpositionen</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Inhalte</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Beweis zur Simulation der k-Band TM gerade Spuren 2">
+        <topicSingular>Simulation der $$k$$-Band TM</topicSingular>
+        <topicPlural>Simulationen der $$k$$-Band TMs</topicPlural>
+        <contentItems>
+            <contentItem>Auf den geraden Spuren $$2,...,2k$$ sind die Kopfpositionen der zu Simulierenden $$k$$-Band TM mit</contentItem>
+            <contentItemCompletable/>
+            <contentItem>markiert</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$\#$$</fillIn>
+            <fillIn>#</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>$$B$$</fillIn>
+            <fillIn>B</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+
+    <!--Universelle TM-->
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="Universelle TM">
+        <questions>
+            <question>Was passt zur Definition der Universellen Turingmaschine</question>
+        </questions>
+        <correctChoices>
+            <choice>Wird $$U$$ notiert</choice>
+            <choice>Erhält als Programm die Kodierung $$\langle M \rangle$$ einer beliebigen TM $$M$$</choice>
+            <choice>Erhält als Eingabe den String $$\langle M \rangle w$$ für eine TM $$M$$ und einem $$w\in \Sigma^*$$</choice>
+            <choice>Sie simuliert bei Eingabe $$\langle M \rangle w$$ das Verhalten von $$M$$ auf $$w$$</choice>
+            <choice>Bei inkorrekter Eingabe gibt $$U$$ eine Fehlermeldung aus</choice>
+            <choice>Die Kodierung $$\langle M \rangle$$ nennen wir die Gödelnummer von $$M$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Wird $$u$$ notiert</choice>
+            <choice>Erhält als Eingabe den String $$ M  w$$ für eine TM $$M$$ und einem $$w\in \Sigma^*$$</choice>
+            <choice>Erhält als Programm die Kodierung $$( M )$$ einer beliebigen TM $$M$$</choice>
+            <choice>Sie simuliert bei Eingabe $$\langle M \rangle$$ das Verhalten von $$M$$ auf einem zufälligem $$w \in \Sigma^*$$</choice>
+            <choice>Die Eingabe muss nicht mit einer Kodierung einer TM anfangen</choice>
+            <choice>Die Kodierung $$\langle M \rangle$$ nennen wir die Gödelzahl von $$M$$</choice>
+            <choice>Die Kodierung $$\langle M \rangle$$ nennen wir das Gödelwort von $$M$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <!--Gödelnummern-->
+    <knowledgeItem type="knowledgeStatement" id="Goedelnummern Praefixfrei">
+        <topicSingular>Gödelnummer</topicSingular>
+        <topicPlural>Gödelnummern</topicPlural>
+        <contentItems>
+            <contentItem>Da keine Gödelnummer Präfix einer anderen sein darf, nennen wir Gödelnummern</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Präfixfrei</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Infixfrei</fillIn>
+            <fillIn>Indexfrei</fillIn>
+            <fillIn>Eindeutig</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="Goedelnummern Definition">
+        <questions>
+            <question>Welche aussagen gelten für Gödelnummern?</question>
+        </questions>
+        <correctChoices>
+            <choice>Gödelnummern fangen mit $$111$$ an</choice>
+            <choice>Gödelnummern hören mit $$111$$ auf</choice>
+            <choice>Gödelnummern haben neben Anfang und Ende nicht den Teilstring $$111$$</choice>
+            <choice>Gödelnummern kodieren genau die Übergangsfunktion $$\delta$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Alle Gödelnummern fangen mit $$11$$ an</choice>
+            <choice>Alle Gödelnummern hören mit $$000$$ auf</choice>
+            <choice>Alle Gödelnummern fangen mit $$\#$$ an</choice>
+            <choice>Gödelnummern haben ausschließlich an Anfang und Ende jeweils den Teilstring $$11$$</choice>
+            <choice>Gödelnummern kodieren das gesamte Tupel $$(Q, \Sigma, \Gamma, B, q_0, \overline q, \delta)$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="Teile einer TM in Normalform">
+        <questions>
+            <question>Was gilt für eine TM in Normalform für Gödelnummern?</question>
+        </questions>
+        <correctChoices>
+            <choice>Startzustand $$q_1$$</choice>
+            <choice>Endzustand $$q_2$$</choice>
+            <choice>$$0\in \Gamma$$</choice>
+            <choice>$$1\in \Gamma$$</choice>
+            <choice>$$B\in \Gamma$$</choice>
+            <choice>$$|Q|\geq 2$$</choice>
+            <choice>$$|\Gamma| = 3$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Startzustand $$q_0$$</choice>
+            <choice>Endzustand $$\overline q$$</choice>
+            <choice>$$\# \in \Gamma$$</choice>
+            <choice>$$|Q| \geq 3$$</choice>
+            <choice>$$|\Gamma| = 4$$</choice>
+            <choice>$$|\Gamma| = 2$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Kodierung von Goedelnummern Alphabet">
+        <topicSingular>Kodierung von Gödelnummern</topicSingular>
+        <topicPlural>Kodierungen von Gödelnummern</topicPlural>
+        <contentItems>
+            <contentItem>Das Alphabet wird als</contentItem>
+            <contentItemCompletable/>
+            <contentItem>$$\phantom{}_i$$ durchnummeriert</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$X$$</fillIn>
+            <fillIn>X</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>D</fillIn>
+            <fillIn>$$D$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Kodierung von Goedelnummern Alphabet 2">
+        <topicSingular>Kodierung von Gödelnummern</topicSingular>
+        <topicPlural>Kodierungen von Gödelnummern</topicPlural>
+        <contentItems>
+            <contentItem>Bei dem Nummerieren des Alphabetes ist $$X_1=$$</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$0$$</fillIn>
+            <fillIn>0</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>1</fillIn>
+            <fillIn>B</fillIn>
+            <fillIn>$$1$$</fillIn>
+            <fillIn>$$B$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Kodierung von Goedelnummern Alphabet 3">
+        <topicSingular>Kodierung von Gödelnummern</topicSingular>
+        <topicPlural>Kodierungen von Gödelnummern</topicPlural>
+        <contentItems>
+            <contentItem>Bei dem Nummerieren des Alphabetes ist $$X_2=$$</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$1$$</fillIn>
+            <fillIn>1</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>0</fillIn>
+            <fillIn>B</fillIn>
+            <fillIn>$$0$$</fillIn>
+            <fillIn>$$B$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Kodierung von Goedelnummern Alphabet 4">
+        <topicSingular>Kodierung von Gödelnummern</topicSingular>
+        <topicPlural>Kodierungen von Gödelnummern</topicPlural>
+        <contentItems>
+            <contentItem>Bei dem Nummerieren des Alphabetes ist $$X_3=$$</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$B$$</fillIn>
+            <fillIn>B</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>1</fillIn>
+            <fillIn>0</fillIn>
+            <fillIn>$$1$$</fillIn>
+            <fillIn>$$0$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Kodierung von Goedelnummern Kopfbewegungen">
+        <topicSingular>Kodierung von Gödelnummern</topicSingular>
+        <topicPlural>Kodierungen von Gödelnummern</topicPlural>
+        <contentItems>
+            <contentItem>Die Kopfbewegungen werden als</contentItem>
+            <contentItemCompletable/>
+            <contentItem>$$\phantom{}_i$$ durchnummeriert</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$D$$</fillIn>
+            <fillIn>D</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>X</fillIn>
+            <fillIn>$$X$$</fillIn>
+            <fillIn>R</fillIn>
+            <fillIn>$$R$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Kodierung von Goedelnummern Kopfbewegungen 2">
+        <topicSingular>Kodierung von Gödelnummern</topicSingular>
+        <topicPlural>Kodierungen von Gödelnummern</topicPlural>
+        <contentItems>
+            <contentItem>Bei dem Nummerieren der Kopfbewegungen is $$D_1=$$</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>L</fillIn>
+            <fillIn>$$L$$</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>R</fillIn>
+            <fillIn>N</fillIn>
+            <fillIn>$$R$$</fillIn>
+            <fillIn>$$N$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Kodierung von Goedelnummern Kopfbewegungen 3">
+        <topicSingular>Kodierung von Gödelnummern</topicSingular>
+        <topicPlural>Kodierungen von Gödelnummern</topicPlural>
+        <contentItems>
+            <contentItem>Bei dem Nummerieren der Kopfbewegungen is $$D_2=$$</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$N$$</fillIn>
+            <fillIn>N</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>R</fillIn>
+            <fillIn>L</fillIn>
+            <fillIn>$$R$$</fillIn>
+            <fillIn>$$L$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Kodierung von Goedelnummern Kopfbewegungen 4">
+        <topicSingular>Kodierung von Gödelnummern</topicSingular>
+        <topicPlural>Kodierungen von Gödelnummern</topicPlural>
+        <contentItems>
+            <contentItem>Bei dem Nummerieren der Kopfbewegungen is $$D_3=$$</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$R$$</fillIn>
+            <fillIn>R</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>L</fillIn>
+            <fillIn>N</fillIn>
+            <fillIn>$$L$$</fillIn>
+            <fillIn>$$N$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="Kodierung von uebergaengen">
+        <topicSingular>Kodierung von Gödelnummern</topicSingular>
+        <topicPlural>Kodierungen von Gödelnummern</topicPlural>
+        <contentItems>
+            <contentItem>Der Übergang $$\delta (q_i, X_j)$$$$=$$$$(q_k,X_l,D_m)$$ wird kodiert durch den Binärstring $$0^i$$</contentItem>
+            <contentItemCompletable/>
+            <contentItem>$$\phantom{}^j10^k10^l10^m$$</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$10$$</fillIn>
+            <fillIn>10</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>00</fillIn>
+            <fillIn>$$00$$</fillIn>
+            <fillIn>0</fillIn>
+            <fillIn>$$0$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="kodierung code t">
+        <topicSingular>Kodierung von Gödelnummern</topicSingular>
+        <topicPlural>Kodierungen von Gödelnummern</topicPlural>
+        <contentItems>
+            <contentItem>Bei einer TM mit $$s$$ Übergangen bezeichnen wir die codierung des $$t$$-ten Übergangs als</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$code(t)$$</fillIn>
+            <fillIn>code(t)</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>$$kodierung(t)$$</fillIn>
+            <fillIn>$$goedelnummer(t)$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="komplette goedelnummer">
+        <topicSingular>Kodierung von Gödelnummern</topicSingular>
+        <topicPlural>Kodierungen von Gödelnummern</topicPlural>
+        <contentItems>
+            <contentItem>Wenn $$M$$ $$s$$ Übergänge hat, und die Kodierung $$\langle M \rangle$$ $$=$$$$111code(1)?code(2)?...code(s)111$$ ist, dann ist $$?=$$</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$11$$</fillIn>
+            <fillIn>11</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>1</fillIn>
+            <fillIn>111</fillIn>
+            <fillIn>$$1$$</fillIn>
+            <fillIn>$$111$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="initialisierung universelle TM">
+        <questions>
+            <question>Welche Aussagen über die Initialisierung von $$U$$ bei Eingabe $$\langle M \rangle w$$ stimmen?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$U$$ überprüft als Erstes, ob die Eingabe mit einer korrekten Gödelnummer anfängt. Wenn nicht, gibt sie eine Fehlermeldung aus</choice>
+            <choice>Als Zweites Kopiert $$U$$ $$\langle M \rangle$$ auf Band 2</choice>
+            <choice>Als Drittes löscht $$U$$ alles außer $$w$$ von Band 1 und stellt den Kopf auf das erste Zeichen von $$w$$</choice>
+            <choice>Sieht man $$|\langle M \rangle |$$ als Konstante, verläuft die Initialisierung in $$O(1)$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$U$$ überprüft als Erstes, ob die Eingabe mit einer korrekten Gödelnummer anfängt. Wenn nicht, verwirft sie</choice>
+            <choice>Als Zweites Kopiert $$U$$ $$w$$ auf Band 2</choice>
+            <choice><choice>Als Drittes löscht $$U$$ alles außer $$w$$ von Band 1 und stellt den Kopf auf Position 0</choice></choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <!-- TODO: Weitere schritte universelle TM-->
+    <knowledgeItem type="knowledgeStatement" id="initialisierung der tm zeitbedarf">
+        <topicSingular>TM</topicSingular>
+        <topicPlural>TMs</topicPlural>
+        <contentItems>
+            <contentItem>Die Initialisierung der Universellen TM erfolgt in</contentItem>
+            <contentItemCompletable/>
+            <contentItem>, wenn wir $$|\langle M \rangle|$$ als Konstante ansehen</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>konstanter Zeit</fillIn>
+            <fillIn>$$O(1)$$</fillIn>
+            <fillIn>O(1)</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>linearer Zeit</fillIn>
+            <fillIn>$$O(n^2)$$</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="initialisierung der tm zeitbedarf 2">
+        <topicSingular>TM</topicSingular>
+        <topicPlural>TMs</topicPlural>
+        <contentItems>
+            <contentItem>Die Initialisierung der Universellen TM erfolgt in $$O(1)$$, wenn wir $$|\langle M \rangle|$$ als </contentItem>
+            <contentItemCompletable/>
+            <contentItem>ansehen</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Konstante</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Eingabelänge</fillIn>
+            <fillIn>0</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="U drei band tm">
+        <questions>
+            <question>Wie ist $$U$$ als 3-Band TM implementiert?</question>
+        </questions>
+        <correctChoices>
+            <choice>Band 1 von $$U$$ simuliert das Band der TM $$M$$</choice>
+            <choice>Band 2 von $$U$$ enthält die Gödelnummer von $$M$$</choice>
+            <choice>Auf Band 3 wird der aktuelle Zustand von $$M$$ gespeichert</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Band 1 von $$U$$ enthält die Gödelnummer von $$U$$</choice>
+            <choice>Im Zustand von $$U$$ wird der Zustand von $$M$$ gespeichert</choice>
+            <choice>Band 2 von $$U$$ speichert den Zustand von $$U$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="laufzeit rechenschritt u">
+        <topicSingular>TM</topicSingular>
+        <topicPlural>TMs</topicPlural>
+        <contentItems>
+            <contentItem>Die Simulation eines Rechenschrittes von $$M$$ auf $$U$$ geschieht in</contentItem>
+            <contentItemCompletable/>
+            <contentItem>, wenn wir $$|\langle M \rangle|$$ als Konstante ansehen</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$O(1)$$</fillIn>
+            <fillIn>O(1)</fillIn>
+            <fillIn>Konstanter Zeit</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>$$O(n)$$</fillIn>
+            <fillIn>O(n)</fillIn>
+            <fillIn>exponentieller Zeit</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="universelle 1 band tm">
+        <topicSingular>TM</topicSingular>
+        <topicPlural>TMs</topicPlural>
+        <contentItems>
+            <contentItem>Wir erhalten eine universelle 1-Band TM mit</contentItem>
+            <contentItemCompletable/>
+            <contentItem>, wenn wir die Gödelnummer und den Zustand mit dem Kopf mitführen</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>konstantem Zeitverlust</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>linearem Zeitverlust</fillIn>
+            <fillIn>quadratischem Zeitverlust</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="universelle 1 band tm2">
+        <topicSingular>TM</topicSingular>
+        <topicPlural>TMs</topicPlural>
+        <contentItems>
+            <contentItem>Wir erhalten eine universelle 1-Band TM mit konstantem Zeitverlust, wenn wir die</contentItem>
+            <contentItemCompletable/>
+            <contentItem>und den Zustand mit dem Kopf mitführen</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Gödelnummer</fillIn>
+            <fillIn>Kodierung von $$M$$</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Konfiguration</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="universelle 1 band tm3">
+        <topicSingular>TM</topicSingular>
+        <topicPlural>TMs</topicPlural>
+        <contentItems>
+            <contentItem>Wir erhalten eine universelle 1-Band TM mit konstantem Zeitverlust, wenn wir die Gödelnummer und den</contentItem>
+            <contentItemCompletable/>
+            <contentItem>mit dem Kopf mitführen</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Zustand</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Lese-Scheibkopf</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="church turing these">
+        <topicSingular>Berechnungsmodell</topicSingular>
+        <topicPlural>Berechnungsmodelle</topicPlural>
+        <contentItems>
+            <contentItem>Die</contentItem>
+            <contentItemCompletable/>
+            <contentItem>besagt, dass die Klasse der TM berechenbaren Funktionen mit der Klasse der intuitiv berechenbaren Funktionen übereinstimmt</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Church-Turing These</fillIn>
+            <fillIn>Church Turing These</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Curch These</fillIn>
+            <fillIn>Turing These</fillIn>
+            <fillIn>Gödel-Turing These</fillIn>
+            <fillIn>Church-Hilbert These</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="church turing these2">
+        <topicSingular>Berechnungsmodell</topicSingular>
+        <topicPlural>Berechnungsmodelle</topicPlural>
+        <contentItems>
+            <contentItem>Die Church-Turing These besagt, dass die Klasse der TM</contentItem>
+            <contentItemCompletable/>
+            <contentItem>Funktionen mit der Klasse der intuitiv berechenbaren Funktionen übereinstimmt</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>berechenbaren</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>unberechenbaren</fillIn>
+            <fillIn>vollständigen</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+</knowledge>

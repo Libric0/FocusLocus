@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knowledge>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="subset sum def">
+        <questions>
+            <question>Was passt zur Definition von $$\text{SUBSET-SUM}$$?</question>
+        </questions>
+        <correctChoices>
+            <choice>Eingabe: Positive ganze Zahlen $$a_1,...,a_n$$ und eine Zahl $$b$$</choice>
+            <choice>Frage: Existiert eine Indexmenge $$I \subseteq \{1,...,n\}$$ mit $$\sum\limits_{i \in I} a_i = b$$?</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Eingabe: Positive ganze Zahlen $$a_1,...,a_n$$</choice>
+            <choice>Frage: Existiert eine Indexmenge $$I \subseteq \{1,...,n\}$$ mit $$\sum\limits_{i \in I} a_i &lt; b$$?</choice>
+            <choice>Frage: Existiert eine Indexmenge $$I \subseteq \{1,...,n\}$$ mit $$\sum\limits_{i \in I} a_i &gt; b$$?</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="was auf subset sum reduziert wird">
+        <topicSingular>polynomielle Reduktion</topicSingular>
+        <topicPlural>polynomielle Reduktionen</topicPlural>
+        <contentItems>
+            <contentItem>Um zu zeigen, dass $$\text{SUBSET-SUM}$$ $$\text{NP}$$-vollständig ist, reduzieren wir</contentItem>
+            <contentItemCompletable/>
+            <contentItem>darauf polynomiell</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$3\text{-SAT}$$</fillIn>
+            <fillIn>3-SAT</fillIn>
+            <fillIn>3 SAT</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>$$\text{SAT}$$</fillIn>
+            <fillIn>SAT</fillIn>
+            <fillIn>$$\text{Ham-Cycle}$$</fillIn>
+            <fillIn>Ham-Cycle</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="reduktion subset sum">
+        <questions>
+            <question>Welche Annahmen wurden für den Beweis $$3\text{-SAT} \leq_p \text{SUBSET-SUM}$$ getroffen?</question>
+        </questions>
+        <correctChoices>
+            <choice>Die Formel hat $$m$$ Klauseln $$c_i$$</choice>
+            <choice>Die Formel hat $$n$$ Variablen $$x_i$$</choice>
+            <choice>Wir benutzen in der Reduktion Dezimalzahlen</choice>
+            <choice>Die Dezimalzahlen haben jeweils $$n+m$$ Ziffern</choice>
+            <choice>$$b = $$$$\underset{n\text{ mal }}{\underbrace{1...1}}\underset{m\text{ mal }}{\underbrace{3...3}}$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Die Formel hat $$n$$ Klauseln $$c_i$$</choice>
+            <choice>Die Formel hat $$m$$ Variablen $$x_i$$</choice>
+            <choice>Wir benutzen in der Reduktion Binärzahlen</choice>
+            <choice>Die Dezimalzahlen haben jeweils $$n$$ Ziffern</choice>
+            <choice>Die Dezimalzahlen haben jeweils $$m$$ Ziffern</choice>
+            <choice>$$b = $$$$\underset{n\text{ mal}}{\underbrace{1...1}}\underset{m\text{ mal}}{\underbrace{2...2}}$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="s plus i s minus i">
+        <questions>
+            <question>Was stimmt für die Mengen aus dem Beweis $$3\text{-SAT} \leq_p \text{SUBSET-SUM}$$?</question>
+        </questions>
+        <correctChoices>
+            <choice>Für jede boolsche Variable $$x_i$$ werden die zwei Mengen $$S^+(i)$$ und $$S^-(i)$$ definiert</choice>
+            <choice>$$S^+(i)=$$$$\{j\in \{1,...,m\}|$$$$\text{klausel }c_j \text{ enthält }$$$$\text{Literal }x_i\}$$</choice>
+            <choice>$$S^-(i)=$$$$\{j\in \{1,...,m\}|$$$$\text{klausel }c_j \text{ enthält }$$$$\text{Literal }\overline{x_i}\}$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Für jede boolsche Variable $$x_i$$ werden die drei Mengen $$S^*(i)$$, $$S^+(i)$$ und $$S^-(i)$$ definiert</choice>
+            <choice>$$S^+(i)=$$$$\{j\in \{1,...,m\}|$$$$\text{klausel }c_j \text{ enthält }$$$$\text{Literal }\overline{x_i}\}$$</choice>
+            <choice>$$S^-(i)=$$$$\{j\in \{1,...,m\}|$$$$\text{klausel }c_j \text{ enthält }$$$$\text{Literal }x_i\}$$</choice>
+            <choice>$$S^-(i)=$$$$\{j\in \{1,...,n\}|$$$$\text{klausel }c_j \text{ enthält }$$$$\text{Literal }\overline{x_i}\}$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="ai zahlen beweis subsetsup np hard">
+        <questions>
+            <question>Wie wurden die Zahlen in dem Beweis $$3\text{-SAT} \leq_p \text{SUBSET-SUM}$$ definiert?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$a_i^+(k)$$ beschreibt die $$k$$-te stelle von $$a_i^+$$</choice>
+            <choice>$$a_i^-(k)$$ beschreibt die $$k$$-te stelle von $$a_i^-$$</choice>
+            <choice>Alle Ziffern sind entweder $$1$$ oder $$0$$</choice>
+            <choice>$$a_i^+(k) = 1$$$$\Leftrightarrow$$$$k = i \lor k = n+j$$ mit $$j \in S^+(i)$$</choice>
+            <choice>$$a_i^-(k) = 1$$$$\Leftrightarrow$$$$k = i \lor k = n+j$$ mit $$j \in S^-(i)$$</choice>
+            <choice>$$a_i^+$$ und $$a_i^-$$ haben beide jeweils $$n+m$$ Ziffern</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$a_i^+(k)$$ beschreibt die $$k+1$$-te Zahl der von $$a_i$$</choice>
+            <choice>Alle Ziffern sind entweder $$1$$ oder $$2$$</choice>
+            <choice>$$a_i^+(k) = 1$$$$\Leftrightarrow$$$$k = i$$</choice>
+            <choice>$$a_i^-(k) = 1$$$$\Leftrightarrow$$$$k = i \lor k = n+j$$ mit $$j \in S^+(i)$$</choice>
+            <choice>$$a_i^+$$ und $$a_i^-$$ haben beide $$n$$ Ziffern</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="dummy variablen subset sum">
+        <topicSingular>polynomielle Reduktion</topicSingular>
+        <topicPlural>polynomielle Reduktionen</topicPlural>
+        <contentItems>
+            <contentItem>Für jede Klausel $$c_j$$ sind die Dummy-Zahlen $$d_i,d_i'$$ genau an der Stelle</contentItem>
+            <contentItemCompletable/>
+            <contentItem>$$1$$ und sonst überall $$0$$</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$n+j$$</fillIn>
+            <fillIn>n+j</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>$$j$$</fillIn>
+            <fillIn>j</fillIn>
+            <fillIn>$$m+j$$</fillIn>
+            <fillIn>m+j</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <!--Partition-->
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="partition def">
+        <questions>
+            <question>Was passt zur Definition von $$\text{PARTITION}$$?</question>
+        </questions>
+        <correctChoices>
+            <choice>Eingabe: Positive ganze Zahlen $$a_1,...,a_n$$ mit $$\sum\limits_{i=1}^n a_i = 2A$$</choice>
+            <choice>Frage: Existiert eine Indexmenge $$I \subseteq \{1,...,n\}$$ mit $$\sum\limits_{i \in I} a_i = A$$?</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Eingabe: Positive ganze Zahlen $$a_1,...,a_n$$ mit $$\sum\limits_{i=1}^n a_i = A$$</choice>
+            <choice>Eingabe: Positive ganze Zahlen $$a_1,...,a_n$$ mit $$\sum\limits_{i=1}^n a_i = 3A$$</choice>
+            <choice>Frage: Existiert eine Indexmenge $$I \subseteq \{1,...,n\}$$ mit $$\sum\limits_{i \in I} a_i = 2A$$?</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <!-- TODO: Reduktion-->
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="Bin Packing definition">
+        <questions>
+            <question>Was passt zur Definition von $$\text{BPP}$$</question>
+        </questions>
+        <correctChoices>
+            <choice>$$\text{BPP}$$ steht für $$\text{Bin Packing Problem}$$</choice>
+            <choice>Eingabe: $$B \in \N$$, $$w_1,...,w_n \in \{1,...,B\}$$ und eine Schranke $$\gamma$$</choice>
+            <choice>Frage: Können Objekte mit den Größen $$w_1,...,w_n$$ in höchstens $$\gamma$$ Kisten der Größe $$B$$ gepackt werden?</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$\text{BPP}$$ steht für $$\text{Bag Packing Problem}$$</choice>
+            <choice>Eingabe: $$B_1,...,B_m \in \N$$, $$w_1,...,w_n \in \{1,...,B\}$$ und eine Schranke $$\gamma$$</choice>
+            <choice>Eingabe: $$B \in \N$$, $$w \in \{1,...,B\}$$ und eine Schranke $$\gamma$$</choice>
+            <choice>Eingabe: $$B \in \N$$ und $$w_1,...,w_n \in \{1,...,B\}$$</choice>
+            <choice>Frage: Können Objekte mit den Größen $$w_1,...,w_n$$ in mindestens $$\gamma$$ Kisten der Größe $$B$$ gepackt werden?</choice>
+            <choice>Frage: Können Objekte mit den Größen $$w_1,...,w_n$$ in genau $$\gamma$$ Kisten der Größe $$B$$ gepackt werden?</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="partition wird auf bin packing reduziert">
+        <topicSingular>polynomielle Reduktion</topicSingular>
+        <topicPlural>polynomielle Reduktionen</topicPlural>
+        <contentItems>
+            <contentItem>Um zu zeigen, dass $$\text{BPP}$$ $$\text{NP}$$-vollständig ist, reduzieren wir</contentItem>
+            <contentItemCompletable/>
+            <contentItem>polynomiell auf $$\text{BPP}$$</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$\text{PARTITION}$$</fillIn>
+            <fillIn>PARTITION</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>$$\text{SUBSET-SUM}$$</fillIn>
+            <fillIn>SUBSET-SUM</fillIn>
+            <fillIn>$$\text{KP}$$</fillIn>
+            <fillIn>KP</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="KP definition">
+        <questions>
+            <question>Was passt zur Definition von $$\text{KP}$$?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$\text{KP}$$ steht für $$\text{KNAPSACK}$$</choice>
+            <choice>Eingabe: Natürliche Zahlen $$w_1,...,w_n $$$$p_1,...,p_n$$$$\overline w$$ und $$\gamma$$</choice>
+            <choice>$$w_i$$ ist das Gewicht (weight) von Object $$i$$</choice>
+            <choice>$$p_i$$ ist der Profit für Object $$i$$</choice>
+            <choice>$$\overline w$$ ist die obere Schranke für das Gewicht</choice>
+            <choice>$$\gamma$$ ist die untere Schranke für den Profit</choice>
+            <choice>Frage: Gibt es eine Teilmenge der Objekte mit Gesamtgewicht höchstens $$\overline w$$ und Gesamtprofit mindestens $$\gamma$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$\text{KP}$$ steht für $$k-\text{PARTITION}$$</choice>
+            <choice>Eingabe: Natürliche Zahlen $$w_1,...,w_n $$$$p_1,...,p_n$$ und $$\overline w$$</choice>
+            <choice>$$w_i$$ ist der Wert von Object $$i$$</choice>
+            <choice>$$p_i$$ ist der Schmerz (pain) für Object $$i$$</choice>
+            <choice>$$\overline w$$ ist die untere Schranke für das Gewicht</choice>
+            <choice>$$\gamma$$ ist die obere Schranke für den Profit</choice>
+            <choice>Frage: Gibt es eine Teilmenge der Objekte mit Gesamtgewicht genau $$\overline w$$ und Gesamtprofit genau $$\gamma$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="subset sum wird auf kp reduziert">
+        <topicSingular>polynomielle Reduktion</topicSingular>
+        <topicPlural>polynomielle Reduktionen</topicPlural>
+        <contentItems>
+            <contentItem>Um zu zeigen, dass $$\text{KP}$$ $$\text{NP}$$-vollständig ist, wird</contentItem>
+            <contentItemCompletable/>
+            <contentItem>auf $$\text{KP}$$ polynomiell reduziert</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$\text{SUBSET-SUM}$$</fillIn>
+            <fillIn>SUBSET-SUM</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>$$\text{PARTITION}$$</fillIn>
+            <fillIn>PARTITION</fillIn>
+            <fillIn>$$\text{BPP}$$</fillIn>
+            <fillIn>BPP</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="kodierungslaenge">
+        <topicSingular>Problem</topicSingular>
+        <topicPlural>Probleme</topicPlural>
+        <contentItems>
+            <contentItem>Polynomiell große Änderungen der</contentItem>
+            <contentItemCompletable/>
+            <contentItem>sind für Polynomielle Reduktionen irrelevant</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Kodierungslänge</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Codegröße</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="wert der zahl n exponentiell zur kodierungsl">
+        <topicSingular>Problem</topicSingular>
+        <topicPlural>Probleme</topicPlural>
+        <contentItems>
+            <contentItem>Der Wert der Binärzahl von $$n$$ hängt</contentItem>
+            <contentItemCompletable/>
+            <contentItem>von seiner Kodierungslänge ab</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>exponentiell</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>polynomiell</fillIn>
+            <fillIn>logarithmish</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="number i">
+        <topicSingular>Kodierungslänge</topicSingular>
+        <topicPlural>Kodierungslängen</topicPlural>
+        <contentItems>
+            <contentItem>Für eine</contentItem>
+            <contentItemCompletable/>
+            <contentItem>$$I$$ eines Entscheidungsproblems, bezeichnet $$\text{Number}(I)$$ die größte in $$I$$ vorkommende Zahl</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>Instanz</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>TM</fillIn>
+            <fillIn>NTM</fillIn>
+            <fillIn>polynomielle Reduktion</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="number i2">
+        <topicSingular>Kodierungslänge</topicSingular>
+        <topicPlural>Kodierungslängen</topicPlural>
+        <contentItems>
+            <contentItem>Für eine Instanz $$I$$ eines Entscheidungsproblems, bezeichnet</contentItem>
+            <contentItemCompletable/>
+            <contentItem>$$(I)$$ die größte in $$I$$ vorkommende Zahl</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>$$\text{Number}$$</fillIn>
+            <fillIn>Number</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>$$\text{Zahl}$$</fillIn>
+            <fillIn>Zahl</fillIn>
+            <fillIn>$$\text{max}$$</fillIn>
+            <fillIn>max</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="number i3">
+        <topicSingular>Kodierungslänge</topicSingular>
+        <topicPlural>Kodierungslängen</topicPlural>
+        <contentItems>
+            <contentItem>Für eine Instanz $$I$$ eines Entscheidungsproblems, bezeichnet $$\text{Number}(I)$$ die</contentItem>
+            <contentItemCompletable/>
+            <contentItem>in $$I$$ vorkommende Zahl</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>größte</fillIn>
+            <fillIn>grösste</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>kleinste</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="pseudopolynomielle zeit def">
+        <topicSingular>Laufzeit</topicSingular>
+        <topicPlural>Laufzeiten</topicPlural>
+        <contentItems>
+            <contentItem>Ein Algorithmus $$A$$ löst ein Problem $$X$$ in</contentItem>
+            <contentItemCompletable/>
+            <contentItem>Zeit, falls die Laufzeit von $$A$$ auf Instanzen $$I$$ von $$X$$ polynomiell in $$|I|$$ und $$\text{Number}(I)$$ beschränkt ist</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>pseudo-polynomieller</fillIn>
+            <fillIn>pseudo polynomieller</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>polynomieller</fillIn>
+            <fillIn>pseudo-exponentieller</fillIn>
+            <fillIn>linearer</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="pseudopolynomielle zeit def2">
+        <topicSingular>Laufzeit</topicSingular>
+        <topicPlural>Laufzeiten</topicPlural>
+        <contentItems>
+            <contentItem>Ein Algorithmus $$A$$ löst ein Problem $$X$$ in pseudo-polynomieller Zeit, falls die Laufzeit von $$A$$ auf Instanzen $$I$$ von $$X$$</contentItem>
+            <contentItemCompletable/>
+            <contentItem>in $$|I|$$ und $$\text{Number}(I)$$ beschränkt ist</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>polynomiell</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>exponentiell</fillIn>
+            <fillIn>linear</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="pseudopolynomielle zeit def3">
+        <topicSingular>Laufzeit</topicSingular>
+        <topicPlural>Laufzeiten</topicPlural>
+        <contentItems>
+            <contentItem>Ein Algorithmus $$A$$ löst ein Problem $$X$$ in pseudo-polynomieller Zeit, falls die Laufzeit von $$A$$ auf Instanzen $$I$$ von $$X$$ polynomiell in $$|I|$$ und $$\text{Number}(I)$$</contentItem>
+            <contentItemCompletable/>
+            <contentItem>ist</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>beschränkt</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>unbeschränkt</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="three partition def">
+        <questions>
+            <question>Was passt zur Definition von $$\text{THREE-PARTITION}$$?</question>
+        </questions>
+        <correctChoices>
+            <choice>Eingabe: Positive ganze Zahlen $$a_1,..,a_n$$,$$b_1,...,b_n$$ und $$c_1,...,c_n$$ mit $$\sum\limits_{i=1}^n (a_i+b_i+c_i) = nS$$</choice>
+            <choice>Frage: Gibt es zwei Permutationen $$\alpha, \beta$$ von $$1,...,n$$, sodass $$\forall 1 \leq i \leq n:$$$$a_{\alpha(i)} + b_{\beta(i)}+c_i =S$$?</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Eingabe: Positive ganze Zahlen $$a_1,..,a_n$$,$$b_1,...,b_n$$ und $$c_1,...,c_n$$ mit $$\sum\limits_{i=1}^n (a_i+b_i+c_i) = S$$</choice>
+            <choice>Eingabe: Positive ganze Zahlen $$a_1,..,a_n$$,$$b_1,...,b_n$$ und $$c_1,...,c_n$$ mit $$\sum\limits_{i=1}^n (a_i+b_i+c_i) = n$$</choice>
+            <choice>Frage: Gibt es eine Permutation $$\alpha$$ von $$1,...,n$$, sodass $$\forall 1 \leq i \leq n:$$$$a_{\alpha(i)} + b_{\alpha(i)}+c_i =S$$?</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="pseudo-poly probleme">
+        <questions>
+            <question>Welche Probleme sind pseudo-polynomiell lösbar?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$\text{SUBSET-SUM}$$</choice>
+            <choice>$$\text{KP}$$</choice>
+            <choice>$$\text{PARTITION}$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$\text{SAT}$$</choice>
+            <choice>$$\text{CLIQUE}$$</choice>
+            <choice>$$\text{Ham-Cycle}$$</choice>
+            <choice>$$\text{TSP}$$</choice>
+            <choice>$$\text{THREE-PARTITION}$$</choice>
+            <choice>$$\text{BPP}$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="stark np schwer def">
+        <topicSingular>Problem</topicSingular>
+        <topicPlural>Probleme</topicPlural>
+        <contentItems>
+            <contentItem>Ein Entscheidungsproblem $$X$$ ist</contentItem>
+            <contentItemCompletable/>
+            <contentItem>wenn es ein Polynom $$q: \N \rightarrow \N$$ gibt, sodass die Restriktion $$X_q$$ auf Instanzen $$I$$ mit $$\text{Number}(I)\leq q(|I|)$$ $$\text{NP}$$-schwer ist</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <!-- TODO: Mache dass ich hier auch TeX verwenden kann-->
+            <fillIn>stark NP-schwer</fillIn>
+            <fillIn>stark-NP-schwer</fillIn>
+            <fillIn>stark NP schwer</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>NP-schwer</fillIn>
+            <fillIn>NP-hart</fillIn>
+            <fillIn>schwach NP-schwer</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="stark np schwer def2">
+        <topicSingular>Problem</topicSingular>
+        <topicPlural>Probleme</topicPlural>
+        <contentItems>
+            <contentItem>Ein Entscheidungsproblem $$X$$ ist stark NP-schwer wenn es ein Polynom $$q: \N \rightarrow \N$$ gibt, sodass die</contentItem>
+            <contentItemCompletable/>
+            <contentItem> $$X_q$$ auf Instanzen $$I$$ mit $$\text{Number}(I)\leq q(|I|)$$ $$\text{NP}$$-schwer ist</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <!-- TODO: Mache dass ich hier auch TeX verwenden kann-->
+            <fillIn>Restriktion</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>Vereinfachung</fillIn>
+            <fillIn>Instanz</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="pseudo-poly probleme">
+        <questions>
+            <question>Welche Probleme sind stark $$\text{NP}$$-schwer?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$\text{SAT}$$</choice>
+            <choice>$$\text{CLIQUE}$$</choice>
+            <choice>$$\text{Ham-Cycle}$$</choice>
+            <choice>$$\text{TSP}$$</choice>
+            <choice>$$\text{THREE-PARTITION}$$</choice>
+            <choice>$$\text{BPP}$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$\text{SUBSET-SUM}$$</choice>
+            <choice>$$\text{KP}$$</choice>
+            <choice>$$\text{PARTITION}$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+</knowledge>

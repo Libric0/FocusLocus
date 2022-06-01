@@ -1,0 +1,84 @@
+{
+    "chooseACourse": "Choose a Course!",
+    "copiedEmailAdressToClipboard": "Copied e-Mail adress to Clipboard!",
+    "courses": "Courses",
+    "user": "User",
+    "stats": "Stats",
+    "help": "Help",
+    "thankYou": "Thank You!",
+    "about": "About",
+    "lrsResponses": "LRS Responses",
+    "correctionCorrectMessage": "Correct! Nice!",
+    "correctionIncorrectMessage": "Hups, something's wrong.",
+    "coursesCouldNotBeLoadedPleaseRestart": "The courses failed to load. Please restart the app",
+    "courseCouldNotBeLoaded": "The course {courseName} could not be loaded. Please restart the app or reimport the course.",
+    "@courseCouldNotBeLoaded": {
+        "placeholders":{
+            "courseName": {
+                "type": "String",
+                "example": "UnbekannterKurs"
+            }
+        }
+    },
+    "close":"Close",
+    "knowledgeCategoryStandardQuestion": "Which are {categoryNamePlural}?",
+    "@knowledgeCategoryStandardQuestion": {
+        "placeholders":{
+            "categoryNamePlural": {
+                "type": "String",
+                "example": "yellow spheres"
+            }
+        }
+    },
+    "ifYouNeedAssistanceOrEncounteredABugWriteAMailTo": "If you need assistance or encountered a bug, write a mail to",
+    "quizFinishedScreenYouDidIt": "You did it!",
+    "quizFinishedScreenCorrect": "Correct",
+    "quizFinishedScreenIncorrect": "Incorrect",
+    "quizFinishedScreenYay": "Yay!",
+    "quizFinishedScreenFinally": "Finally",
+    "quizScreenLoadingCards": "Loading Cards...",
+    "statsScreenNothingDoneYet": "You didn't do anything yet",
+    "statsScreenColumnLabelName": "Name",
+    "statsScreenColumnLabelContent": "Content",
+    "userScreenPseudonym": "Pseudonym",
+    "userScreenCopiedPseudonymToClipboard": "Copied Pseudonym to Clipboard",
+    "userScreenADHD": "ADHD",
+    "userScreenYouDidntStateWhetherYouHaveADHD": "You didn't state whether you have ADHD",
+    "userScreenYouStatedThatYouHaveNeitherADHDNorFocusProblems": "You stated that you have neither ADHD nor focus problems",
+    "userScreenYouStatedThatYouDontHaveADHDButFocusProblems": "You stated that you don't have ADHD but experience focus problems",
+    "userScreenYouStatedThatYouHaveAnADHDDiagnosis": "You stated that you have an ADHD-diagnosis",
+    "change": "change",
+    "doYouHaveADHD": "Do you have ADHD?",
+    "neitherADHDNorFocusProblems": "Neither ADHD nor focus problems",
+    "focusProblemsButNoADHDDiagnosis": "Focus problems, but no ADHD-diagnosis",
+    "adhdDiagnosis": "ADHD-diagnosis",
+    "cancel": "cancel",
+    "userScreenDataCollection": "Data Collection",
+    "userScreenYouCurrentlyConsentToDataCollection": "You currently consent to data collection",
+    "userScreenYouCurrentlyDontConsentToDataCollection": "You currently don't consent to data collection",
+    "userScreenStopSendingData": "Stop sending data",
+    "userScreenStartSendingData": "Start sending data",
+    "userScreenYouCanAlwaysRevokeConsent": "You can always revoke your consent retroactively. In this case all data that you have sent so far will be deleted. To do this, send an e-Mail, possibly with a pseudonymized e-Mail address, with your pseudonym to:",
+    "categoryBomberHelpDialogPlaceABombToBlowUp": "Place a bomb to blow up all geodes that contain objects that are in the category",
+    "categoryBomberHelpDialogPlusShapedExplosionDestroysFive": "The +-shaped explosion destroys up to 5 geodes within its range. Other geodes stay intact",
+    "categoryBomberHelpDialogGeodesThatWereBlownUpCorrectly": "Geodes that were blown up correctly reveal that they contain ore. Others just leave gravel behind",
+    "categorybomberHelpDialogYouDidEverythingCorrectlyIf": "You answered correctly if all you can see are ores or intact geodes",
+    "categoryBomberTooMany": "Too many!",
+    "categoryBomberNotEnough": "Not enough!",
+    "categoryBomberSomethingIsWrong": "Oh, something is wrong here.",
+    "categoryBomberStandardQuestion": "Only blow up {categoryNamePlural}!",
+    "@categoryBomberStandardQuestion": {
+        "placeholders": {
+            "categoryNamePlural": {
+                "type": "String",
+                "example": "yellow balls"
+            }
+        }
+    },
+    "categoryGridButtonChooseAllElementsThatAreInTheCategory": "Choose all elements that are in the category",
+    "categoryGridButtonSelectedElementsAreHighlightedInBlue": "Selected elements are highlighted with a blue border",
+    "categoryGridButtonAsYouTapOnDone": "As you tap on 'done' elements in the category will be displayed in green and those that are not in the category in red. The elements you selected keep their blue border. \nLook at this example:",
+    "trueWord": "true",
+    "falseWord": "false",
+    "done": "Done"
+}

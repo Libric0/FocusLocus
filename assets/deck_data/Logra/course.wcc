@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<course title="BuK" colors="ef476f,ffd166,06d6a0,118ab2" language="en">
+    <deck knowledgePath="02_syntax_predicate_logic.wcd" name="Syntax of Predicate Logic" minToPractice="7">
+        <keyword>$$\Sigma$$</keyword>
+        <keyword>$$\Delta$$</keyword>
+        <keyword>$$(\Sigma,\Delta)$$</keyword>
+        <keyword>$$f \in \Sigma_n$$</keyword>
+        <keyword>$$p \in \Delta_n$$</keyword>
+    </deck>
+</course>

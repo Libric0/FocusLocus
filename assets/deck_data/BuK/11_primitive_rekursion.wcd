@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knowledge>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="primitiv rekursive funktionen def">
+        <questions>
+            <question>Was passt zur Definition von primitiv rekursiven Funktionen?</question>
+        </questions>
+        <correctChoices>
+            <choice>Unterfamilie von der Funktionen $$\N^k \rightarrow \N$$ mit $$k\geq 1$$</choice>
+            <choice>Induktiv definiert</choice>
+            <choice>3 Arten von Basisfunktionen</choice>
+            <choice>2 Operationen</choice>
+            <choice>Alle konstanten Funktionen sind primitiv rekursive Basisfunktionen</choice>
+            <choice>Alle projektionen auf eine der Komponenten sind primitiv rekursive Basisfunktionen</choice>
+            <choice>Die Nachfolgerfunktion $$\text{succ}(n) = n+1$$ ist eine primitiv rekursive Basisfunktion</choice>
+            <choice>Die Projektion $$N^k \rightarrow N$$ auf die $$p$$-te Komponente wird mit $$\pi_{k,p}$$ notiert</choice>
+            <choice>Eine primitiv rekursive Operation ist die Komposition</choice>
+            <choice>Eine primitiv rekursive Operation ist die primitive Rekursion</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>Unterfamilie von der Funktionen $$\N \rightarrow \N$$</choice>
+            <choice>4 Arten von Basisfunktionen</choice>
+            <choice>5 Arten von Basisfunktionen</choice>
+            <choice>2 Arten von Basisfunktionen</choice>
+            <choice>3 Operationen</choice>
+            <choice>Alle linearen Funktionen sind primitiv rekursive Basisfunktionen</choice>
+            <choice>Alle projektionen auf zwei oder mehr der Komponenten sind primitiv rekursive Basisfunktionen</choice>
+            <choice>Die Additionsfunktion $$n+m$$ ist eine primitiv rekursive Basisfunktion</choice>
+            <choice>Die Projektion $$N^k \rightarrow N$$ auf die $$p$$-te Komponente wird mit $$\sigma_{k,p}$$ notiert</choice>
+            <choice>Eine primitiv rekursive Operation ist die Rekursion</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="primitiv rekursive funktionen ber und tot">
+        <topicSingular>Funktion</topicSingular>
+        <topicPlural>Funktionen</topicPlural>
+        <contentItems>
+            <contentItem>Alle primitiv rekursiven Funktionen sind</contentItem>
+            <contentItemCompletable/>
+            <contentItem>und total</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>berechenbar</fillIn>
+            <fillIn>rekursiv</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>unberechenbar</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="komposition primitiv rekursiv">
+        <questions>
+            <question>Wie wurde die Komposition von primitiv rekursiven Funktionen definiert?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$g: \N^k \rightarrow \N$$ ist primitiv rekursiv</choice>
+            <choice>$$h_1,...,h_k: \N^l \rightarrow \N$$ sind primitiv rekursiv</choice>
+            <choice>$$f(x_1,...,x_l)=$$$$g(h_1(x_1,...,x_l),...,h_k(x_1,...,x_l))$$ ist dann auch primitiv rekursiv</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$g: \N^l \rightarrow \N$$ ist primitiv rekursiv</choice>
+            <choice>$$h_1,...,h_l: \N^k \rightarrow \N$$ sind primitiv rekursiv</choice>
+            <choice>$$h_1,...,h_k: \N^k \rightarrow \N$$ sind primitiv rekursiv</choice>
+            <choice>$$h_1,...,h_l: \N^l \rightarrow \N$$ sind primitiv rekursiv</choice>
+            <choice>$$f(x_1,...,x_l)=$$$$g(h_1(x_1,...,x_l),...,h_l(x_1,...,x_l))$$ ist dann auch primitiv rekursiv</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="primitive rekursion op def">
+        <questions>
+            <question>Was passt zur Definition der primitiven rekursion?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$g:\N^k \rightarrow \N$$ ist primitiv rekursiv</choice>
+            <choice>$$h:\N^{k+2} \rightarrow \N$$ ist primitiv rekursiv</choice>
+            <choice>$$f(0,x_1,...,x_k)$$$$=$$$$g(x_1,...,x_k)$$</choice>
+            <choice>$$f:\N^{k+1} \rightarrow \N$$</choice>
+            <choice>$$f(n+1,x_1,...,x_k)=$$$$h(n,f(n,x_1,...,x_k),x_1,...,x_k)$$</choice>
+            <choice>$$f$$ ist dann auch primitiv rekursiv</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$g:\N^{k+1} \rightarrow \N$$ ist primitiv rekursiv</choice>
+            <choice>$$h:\N^{k+1} \rightarrow \N$$ ist primitiv rekursiv</choice>
+            <choice>$$f(1,x_1,...,x_k)$$$$=$$$$g(x_1,...,x_k)$$</choice>
+            <choice>$$f:\N^{k} \rightarrow \N$$</choice>
+            <choice>$$f(n+1,x_1,...,x_k)=$$$$h(n+1,f(n,x_1,...,x_k),x_1,...,x_k)$$</choice>
+            <choice>$$f(n+1,x_1,...,x_k)=$$$$h(n,f(n,x_1,...,x_k))$$</choice>
+            <choice>$$f$$ ist dann nicht berechenbar</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="primitiv rekursive funktionen ber und tot2">
+        <topicSingular>Funktion</topicSingular>
+        <topicPlural>Funktionen</topicPlural>
+        <contentItems>
+            <contentItem>Alle primitiv rekursiven Funktionen sind berechenbar und</contentItem>
+            <contentItemCompletable/>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>total</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>nicht-total</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="primitiv rekursive funktionen beispiele">
+        <questions>
+            <question>Welche Funktionen sind Primitiv rekursiv?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$add(x,y)$$</choice>
+            <choice>$$mult(x,y)$$</choice>
+            <choice>$$pred(x,y)$$</choice>
+            <choice>$$subAux(x,y)$$</choice>
+            <choice>$$binom_2(x)$$</choice>
+            <choice>$$\beta (x,y)$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$A(n,m)$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="beta x y">
+        <questions>
+            <question>Was passt zu $$\beta(x,y)$$</question>
+        </questions>
+        <correctChoices>
+            <choice>$$\beta(x,y)$$$$=$$$$\binom{x+y+1}{2}+x$$</choice>
+            <choice>$$\beta(x,y)$$ ist eine Bijektion zwischen $$\N^2$$ und $$\N$$</choice>
+            <choice>$$\forall (x,y) \in \N^2: x \leq \beta(x,y)$$</choice>
+            <choice>$$\forall (x,y) \in \N^2: y \leq \beta(x,y)$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$\beta(x,y)$$$$=$$$$\binom{x+y}{2}+x$$</choice>
+            <choice>$$\beta(x,y)$$$$=$$$$\binom{x+y+1}{2}+y$$</choice>
+            <choice>$$\beta(x,y)$$ ist eine Ordnung auf $$\N^2$$</choice>
+            <choice>$$\forall (x,y) \in \N^2: x \geq \beta(x,y)$$</choice>
+            <choice>$$\forall (x,y) \in \N^2: y \geq \beta(x,y)$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="prim rek aequivalent zu loop">
+        <topicSingular>Berechnungsmodell</topicSingular>
+        <topicPlural>Berechnungsmodelle</topicPlural>
+        <contentItems>
+            <contentItem>Die primitiv rekursiven Funktionen sind äquivalent zu den</contentItem>
+            <contentItemCompletable/>
+            <contentItem>-berechenbaren Funktionen</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>LOOP</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>TM</fillIn>
+            <fillIn>WHILE</fillIn>
+            <fillIn>RAM</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="prim rek aequivalent zu loop2">
+        <topicSingular>Berechnungsmodell</topicSingular>
+        <topicPlural>Berechnungsmodelle</topicPlural>
+        <contentItems>
+            <contentItem>Die</contentItem>
+            <contentItemCompletable/>
+            <contentItem>Funktionen sind äquivalent zu den LOOP-berechenbaren Funktionen</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>primitiv rekursiven</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>$$\mu$$-rekursiven</fillIn>
+            <fillIn>WHILE-berechenbaren</fillIn>
+            <fillIn>RAM-berechenbaren</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+    <!-- TODO: Beweis-->
+    <!--Mu rekursion-->
+    <knowledgeItem type="knowledgeMultipleChoiceTexText" id="mu rekursion def">
+        <questions>
+            <question>Was passt zur Definition der $$\mu$$-rekursiven Funktionen?</question>
+        </questions>
+        <correctChoices>
+            <choice>$$\min\emptyset = \bot$$</choice>
+            <choice>$$g: \N^{k+1} \rightarrow \N \cup \{\bot\}$$ ist eine partielle oder totale Funktion für $$k\geq 1$$</choice>
+            <choice>$$\mu g: \N^k \rightarrow \N \cup \{\bot\}$$$$=$$$$f$$</choice>
+            <choice>$$f(x_1,...,x_k)$$$$=$$$$\min \{n|g(n,x_1,...,x_k) = 0$$$$\land \forall m&lt; n: g(m,x_1,...,x_k) \neq \bot\}$$</choice>
+        </correctChoices>
+        <incorrectChoices>
+            <choice>$$\min\emptyset = 0$$</choice>
+            <choice>$$g: \N^{k+1} \rightarrow \N$$ ist eine totale Funktion für $$k\geq 1$$</choice>
+            <choice>$$\mu g: \N^k \rightarrow \N$$$$=f$$</choice>
+            <choice>$$f(x_1,...,x_k)$$$$=$$$$\max \{n|g(n,x_1,...,x_k) = 0$$$$\land \forall m&lt; n: g(m,x_1,...,x_k) \neq \bot\}$$</choice>
+        </incorrectChoices>
+    </knowledgeItem>
+    <knowledgeItem type="knowledgeStatement" id="mu rekursive aequivalent while berechenbar">
+        <topicSingular>Berechnungsmodell</topicSingular>
+        <topicPlural>Berechnungsmodelle</topicPlural>
+        <contentItems>
+            <contentItem>Die Menge der $$\mu$$-rekursiven Funktionen fällt mit der Menge der</contentItem>
+            <contentItemCompletable/>
+            <contentItem>-berechenbaren Funktionen zusammen</contentItem>
+        </contentItems>
+        <correctFillIns>
+            <fillIn>WHILE</fillIn>
+            <fillIn>TM</fillIn>
+            <fillIn>RAM</fillIn>
+        </correctFillIns>
+        <incorrectFillIns>
+            <fillIn>LOOP</fillIn>
+        </incorrectFillIns>
+    </knowledgeItem>
+</knowledge>
