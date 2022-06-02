@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:focuslocus/config.dart';
 import 'package:mailto/mailto.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:focuslocus/local_storage/learning_metadata_storage.dart';
@@ -49,8 +50,7 @@ class _HelpScreenState extends State<HelpScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const FittedBox(
-                        child: Text("focuslocus@librico.mozmail.com")),
+                    FittedBox(child: Text(Config.helpEmail)),
                     Expanded(
                       child: Container(),
                     ),

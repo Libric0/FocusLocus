@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:focuslocus/config.dart';
 import 'package:focuslocus/local_storage/adhd_type.dart';
 import 'package:focuslocus/web_communication/lrs_sync.dart';
 import 'package:focuslocus/local_storage/user_storage.dart';
@@ -74,7 +75,7 @@ class _UserScreenState extends State<UserScreen> {
                               await Clipboard.setData(
                                   ClipboardData(text: UserStorage.pseudonym));
                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  duration: Duration(milliseconds: 500),
+                                  duration: const Duration(milliseconds: 500),
                                   content: Text(AppLocalizations.of(context)!
                                       .userScreenCopiedPseudonymToClipboard)));
                             },
@@ -377,7 +378,7 @@ class _UserScreenState extends State<UserScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text("focuslocus@librico.mozmail.com"),
+                            Text(Config.helpEmail),
                             Expanded(
                               child: Container(),
                             ),

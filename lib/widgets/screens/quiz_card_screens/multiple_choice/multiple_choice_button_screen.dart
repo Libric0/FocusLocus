@@ -13,6 +13,7 @@ import 'package:focuslocus/widgets/screens/quiz_card_screens/quiz_card_screen.da
 import 'package:focuslocus/widgets/screens/quiz_card_screens/wrappers/quiz_card_screen_pause_observer_wrapper.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_button.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// The simplest kind of 'select fact' quizcard. The player is presented with
 /// a bunch of buttons and has to choose which of them are facts.
@@ -54,7 +55,9 @@ class MultipleChoiceButtonScreen extends QuizCardScreen {
             color: color,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Wähle die richtigen Aussagen aus.",
+              child: Text(
+                  AppLocalizations.of(context)!
+                      .multipleChoiceButtonSelectAllCorrectStatements,
                   textAlign: TextAlign.center,
                   style: (Theme.of(context).textTheme.headline6 ??
                           const TextStyle())
@@ -68,7 +71,7 @@ class MultipleChoiceButtonScreen extends QuizCardScreen {
               child: Column(
                 children: [
                   SelectableButton(
-                    texTextString: "Aussage",
+                    texTextString: AppLocalizations.of(context)!.statement,
                     hasCorrectStatement: true,
                     revealed: false,
                     selected: true,
@@ -76,7 +79,8 @@ class MultipleChoiceButtonScreen extends QuizCardScreen {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text("Ausgewählte aussagen sind blau hinterlegt"),
+                  Text(AppLocalizations.of(context)!
+                      .multipleChoiceButtonSelectSelectedStatementsAreHighlightedInBlue),
                 ],
               ),
             ),
@@ -87,21 +91,21 @@ class MultipleChoiceButtonScreen extends QuizCardScreen {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  const Text(
-                      "Wenn Du auf 'Fertig' drückst, werden richtige Aussagen grün angezeigt und falsche rot. Du kannst an dem blauen Hintergrund immernoch erkennen, welche du ausgewählt hast und welche nicht. Hier ist ein Beispiel für eine richtige Antwort"),
+                  Text(AppLocalizations.of(context)!
+                      .multipleChoiceButtonSelectAsYouTapOnDone),
                   const SizedBox(
                     height: 20,
                   ),
                   SelectableButton(
                       selected: true,
-                      texTextString: "richtig",
+                      texTextString: AppLocalizations.of(context)!.trueWord,
                       hasCorrectStatement: true,
                       revealed: true),
                   const SizedBox(
                     height: 10,
                   ),
                   SelectableButton(
-                      texTextString: "falsch",
+                      texTextString: AppLocalizations.of(context)!.falseWord,
                       hasCorrectStatement: false,
                       revealed: true),
                 ],
@@ -144,7 +148,8 @@ class _MultipleChoiceButtonScreenState
             QuestionCard(
               question: widget.knowledge.length == 1
                   ? widget.multipleChoice[0].questions[0]
-                  : 'Welche Sätze stimmen?',
+                  : AppLocalizations.of(context)!
+                      .multipleChoiceButtonSelectWhichStatementsAreCorrect,
               color: widget.color,
             ),
             Expanded(
@@ -352,7 +357,7 @@ class _RevealableTruthButtonColumnState
                   height: 60,
                   color: widget.color,
                   shouldStretch: true,
-                  child: const Text('Fertig'),
+                  child: Text(AppLocalizations.of(context)!.done),
                   onPressed: () {
                     setState(() {
                       revealed = true;

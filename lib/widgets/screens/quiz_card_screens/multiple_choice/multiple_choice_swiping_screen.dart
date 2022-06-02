@@ -11,7 +11,7 @@ import 'package:focuslocus/widgets/quiz_card_items/quiz_card_help_dialog.dart';
 import 'package:focuslocus/widgets/screens/quiz_card_screens/wrappers/quiz_card_screen_pause_observer_wrapper.dart';
 import 'package:focuslocus/widgets/quiz_card_items/tex_text.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_card.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../quiz_card_screen.dart';
 
 /// This QuizScreen is another implementation of a Multiple-Choice quiz. In it,
@@ -61,7 +61,8 @@ class MultipleChoiceSwipingScreen extends QuizCardScreen {
           FoloCard(
             color: color,
             child: Text(
-              "Wische richtige Karten nach rechts und falsche nach links!",
+              AppLocalizations.of(context)!
+                  .multipleChoiceSwipingSwipingSwipeCorrectCardsRightAndIncorrectOnesLeft,
               style:
                   (Theme.of(context).textTheme.bodyText1 ?? const TextStyle())
                       .copyWith(color: ColorTransform.textColor(color)),
@@ -73,6 +74,7 @@ class MultipleChoiceSwipingScreen extends QuizCardScreen {
             child: SizedBox(
               height: 450,
               child: Image.asset(
+                  //TODO: Localize images or make them procedural
                   "assets/help_dialogs/multiple_choice_swiping_screen_wahr.png"),
             ),
           ),
@@ -237,7 +239,8 @@ class _MultipleChoiceSwipingScreenState
                                         BorderRadius.all(Radius.circular(20))),
                                 width: double.maxFinite,
                                 child: Text(
-                                  "Richtig gewesen wäre:",
+                                  AppLocalizations.of(context)!
+                                      .multipleChoiceSwipingCorrectWouldHaveBeen,
                                   style:
                                       (Theme.of(context).textTheme.headline5 ??
                                               const TextStyle())
@@ -260,7 +263,8 @@ class _MultipleChoiceSwipingScreenState
                                         BorderRadius.all(Radius.circular(20))),
                                 width: double.maxFinite,
                                 child: Text(
-                                  "Falsch gewesen wäre:",
+                                  AppLocalizations.of(context)!
+                                      .multipleChoiceSwipingIncorrectWouldHaveBeen,
                                   style:
                                       (Theme.of(context).textTheme.headline5 ??
                                               const TextStyle())

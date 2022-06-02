@@ -11,7 +11,7 @@ import 'package:focuslocus/widgets/screens/user_screen.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_button.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_card.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../test_app.dart';
+import '../../test_utility.dart';
 import 'help_screen.dart';
 import 'lrs_responses_screen.dart';
 

@@ -47,7 +47,7 @@ class _StatsScreenState extends State<StatsScreen> {
         backgroundColor: Colors.white,
         foregroundColor: Colors.blue,
         shadowColor: Colors.blue,
-        title: const Text("Stats"),
+        title: Text(AppLocalizations.of(context)!.stats),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {

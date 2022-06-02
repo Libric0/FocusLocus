@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:focuslocus/knowledge/quiz_deck.dart';
 
 /// The representation of a course within an application. It contains a list of

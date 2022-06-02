@@ -75,10 +75,46 @@
             }
         }
     },
-    "categoryGridButtonChooseAllElementsThatAreInTheCategory": "Choose all elements that are in the category",
+    "categoryGridButtonChooseAllElementsThatAreInTheCategory": "Choose all elements that are in the category!",
     "categoryGridButtonSelectedElementsAreHighlightedInBlue": "Selected elements are highlighted with a blue border",
     "categoryGridButtonAsYouTapOnDone": "As you tap on 'done' elements in the category will be displayed in green and those that are not in the category in red. The elements you selected keep their blue border. \nLook at this example:",
     "trueWord": "true",
     "falseWord": "false",
-    "done": "Done"
+    "done": "Done",
+    "multipleChoiceButtonSelectAllCorrectStatements": "Select all correct statements!",
+    "statement": "Statement",
+    "multipleChoiceButtonSelectSelectedStatementsAreHighlightedInBlue": "Selected statements are highlighted in blue",
+    "multipleChoiceButtonSelectAsYouTapOnDone": "As you tap on 'Done' correct statements will be displayed in green and incorrect ones in red. The statements you selected keep their blue border. \nLook at this example:",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "multipleChoiceButtonSelectWhichStatementsAreCorrect": "Which statements are true?",
+    "multipleChoiceSwipingSwipingSwipeCorrectCardsRightAndIncorrectOnesLeft": "Swipe correct cards right and incorrect ones left!",
+    "multipleChoiceSwipingCorrectWouldHaveBeen": "Correct would have been:",
+    "multipleChoiceSwipingIncorrectWouldHaveBeen": "Incorrect would have been:",
+    "statementCompleteSelectionChooseTheRightWordToFillTheGap": "Choose the correct word to fill the gap!",
+    "statementCompleteSelectionTheTextHasAGap": "The text has a gap. You can find buttons for choosing the correct word below. Only one button contains the correct word",
+    "statementCompleteSelecionTheSelectedWordWillBeHighlightedInBlueAndInsertedIntoTheGap": "The selected word will be highlighted in blue and inserted into the gap",
+    "statementCompleteSelectionCorrectFillInWouldHaveBeenCorrect": "\"{correctFillIn}\" would have been correct.",
+    "@statementCompleteSelectionCorrectFillInWouldHaveBeenCorrect": {
+        "placeholders": {
+            "correctFillIn": {
+                "type": "String",
+                "example": "Example"
+            }
+        }
+    },
+    "statementCompleteSelectionWhichOneFits": "Which one fits?",
+    "statementCompleteTypingFillTheGapWithTheRightWord": "Fill the gap with the right word!",
+    "statementCompleteTypingTapOnTheGap": "Tap on the gap",
+    "statementCompleteTypingEnterTheWordAndSubmitYourAnswer": "Enter the word and submit your answer",
+    "statementCompleteTypingFillTheGap": "Fill the gap!",
+    "statementCompleteTypingCorrectFillInWouldHaveBeenCorrect": "\"{correctFillIn}\" would have been correct.",
+    "@statementCompleteTypingCorrectFillInWouldHaveBeenCorrect": {
+        "placeholders": {
+            "correctFillIn": {
+                "type": "String",
+                "example": "Example"
+            }
+        }
+    }
 }

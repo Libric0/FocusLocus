@@ -12,6 +12,7 @@ import 'package:focuslocus/widgets/screens/quiz_card_screens/wrappers/playtime_c
 import 'package:focuslocus/widgets/screens/quiz_card_screens/wrappers/quiz_card_screen_pause_observer_wrapper.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_button.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../quiz_card_screen.dart';
 
 /// The quiz-card-type in which the user has to select a word from a list
@@ -52,7 +53,8 @@ class StatementCompleteSelectionScreen extends QuizCardScreen {
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Text(
-              "Wähle das richtige Wort aus, um die Lücke zu füllen!",
+              AppLocalizations.of(context)!
+                  .statementCompleteSelectionChooseTheRightWordToFillTheGap,
               style:
                   (Theme.of(context).textTheme.headline6 ?? const TextStyle())
                       .copyWith(color: ColorTransform.textColor(color)),
@@ -65,9 +67,10 @@ class StatementCompleteSelectionScreen extends QuizCardScreen {
             padding: const EdgeInsets.all(8),
             child: Column(
               children: [
-                const Text(
-                    "In dem Text befindet sich eine Lücke. Darunter sind Knöpfe zum Auswählen. Nur einer der Knöpfe enthält eine korrekte Antwort"),
+                Text(AppLocalizations.of(context)!
+                    .statementCompleteSelectionTheTextHasAGap),
                 Image.asset(
+                    //TODO: Localize screenshots or make procedural examples
                     "assets/help_dialogs/statement_complete_selection_screen_unselected.png")
               ],
             ),
@@ -79,9 +82,10 @@ class StatementCompleteSelectionScreen extends QuizCardScreen {
             padding: const EdgeInsets.all(8),
             child: Column(
               children: [
-                const Text(
-                    "Das ausgewählte Wort wird blau Hinterlegt und in die Lücke eingefügt"),
+                Text(AppLocalizations.of(context)!
+                    .statementCompleteSelecionTheSelectedWordWillBeHighlightedInBlueAndInsertedIntoTheGap),
                 Image.asset(
+                    //TODO: Localize screenshots or make procedural examples
                     "assets/help_dialogs/statement_complete_selection_screen_selected.png")
               ],
             ),
@@ -118,7 +122,9 @@ class _StatementCompleteSelectionScreenState
         },
         child: CorrectionWrapper(
           quizCardID: widget.knowledge[0].id,
-          incorrectMessage: "Richtig wäre \"$correctFillIn\"",
+          incorrectMessage: AppLocalizations.of(context)!
+              .statementCompleteSelectionCorrectFillInWouldHaveBeenCorrect(
+                  correctFillIn),
           onComplete: widget.onComplete,
           errors: errors,
           playtime: playtime,
@@ -126,7 +132,8 @@ class _StatementCompleteSelectionScreenState
           child: Column(
             children: [
               QuestionCard(
-                question: "Welches Wort passt?",
+                question: AppLocalizations.of(context)!
+                    .statementCompleteSelectionWhichOneFits,
                 color: widget.color,
               ),
               // The sentence
@@ -192,7 +199,7 @@ class _StatementCompleteSelectionScreenState
                         width: double.infinity,
                         color: widget.color,
                         child: TexText(
-                          rawString: "Fertig",
+                          rawString: AppLocalizations.of(context)!.done,
                           style: const TextStyle(
                             color: Colors.white,
                           ),

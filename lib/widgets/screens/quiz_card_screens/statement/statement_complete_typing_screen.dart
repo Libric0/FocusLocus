@@ -14,6 +14,7 @@ import 'package:focuslocus/widgets/screens/quiz_card_screens/quiz_card_screen.da
 import 'package:focuslocus/widgets/screens/quiz_card_screens/wrappers/quiz_card_screen_pause_observer_wrapper.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_button.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// The most cognitively straining kind of Statement Screen: The user gets a statement and
 /// fills in the missing word using their keyboard
@@ -51,7 +52,8 @@ class StatementCompleteTypingScreen extends QuizCardScreen {
                   child: Padding(
                     padding: const EdgeInsets.all(8),
                     child: Text(
-                      "Fülle die Lücke mit dem richtigen Wort aus",
+                      AppLocalizations.of(context)!
+                          .statementCompleteTypingFillTheGapWithTheRightWord,
                       textAlign: TextAlign.center,
                       style: (Theme.of(context).textTheme.headline6 ??
                               const TextStyle())
@@ -64,8 +66,10 @@ class StatementCompleteTypingScreen extends QuizCardScreen {
                     padding: const EdgeInsets.all(8),
                     child: Column(
                       children: [
-                        const Text("Tippe die Lücke an"),
+                        Text(AppLocalizations.of(context)!
+                            .statementCompleteTypingTapOnTheGap),
                         Image.asset(
+                            //TODO: translate screenshots or make them procedural
                             "assets/help_dialogs/statement_complete_typing_screen_empty.png")
                       ],
                     ),
@@ -76,9 +80,10 @@ class StatementCompleteTypingScreen extends QuizCardScreen {
                     padding: const EdgeInsets.all(8),
                     child: Column(
                       children: [
-                        const Text(
-                            "Gib nun das Wort ein und Tippe auf Enter oder 'Fertig'"),
+                        Text(AppLocalizations.of(context)!
+                            .statementCompleteTypingEnterTheWordAndSubmitYourAnswer),
                         Image.asset(
+                            //TODO: localize screenshots or make them procedural
                             "assets/help_dialogs/statement_complete_typing_screen_full.png")
                       ],
                     ),
@@ -194,7 +199,8 @@ class _StatementCompleteTypingScreenState
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               QuestionCard(
-                question: "Vervollständige die Aussage!",
+                question: AppLocalizations.of(context)!
+                    .statementCompleteTypingFillTheGap,
                 color: widget.color,
               ),
               // This makes sure that the user cannot input an answer after submitting
@@ -227,7 +233,7 @@ class _StatementCompleteTypingScreenState
                         width: double.infinity,
                         color: widget.color,
                         child: TexText(
-                          rawString: "Fertig",
+                          rawString: AppLocalizations.of(context)!.done,
                           style: const TextStyle(color: Colors.white),
                         ),
                         onPressed: () {

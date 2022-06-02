@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:focuslocus/local_storage/user_storage.dart';
-import 'package:focuslocus/test_app.dart';
+import 'package:focuslocus/test_utility.dart';
 import 'package:focuslocus/widgets/screens/welcome_screen.dart';
 
 import 'screens/course_selection.dart';
