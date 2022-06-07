@@ -116,5 +116,42 @@
                 "example": "Example"
             }
         }
-    }
+    },
+    "welcomeScreenHi": "Hi!",
+    "welcomeScreenThankYouForDownLoadingFocusLocus": "Thank you for downloading FocusLocus!",
+    "welcomeScreenTheStudy": "The Study",
+    "welcomeScreenTheAppCanDoMoreThanJustHelpYouStudy": "The App can do more than just help you study: It was programmed to find out whether and in what ways people with ADHD learn differently than their peers. You can help by sharing anonymous data about your learning behavior",
+    "welcomeScreenThisIsYourPseudonym": "This is your pseudonym",
+    "welcomeScreenOnlyYouKnowThatItIsYours": "Only you know that it is yours",
+    "welcomeScreenYouCanFindItUnderTheMenuEntryUser": "You can find it under the menu entry \"User\"",
+    "welcomeScreenYourData": "Your Data",
+    "welcomeScreenWhatIsSavedUnderYourPseudonym": "What is saved under your pseudonym",
+    "welcomeScreenWhetherYouHaveADHD": "Whether you have ADHD",
+    "welcomeScreenWhenYouOpenedTheApp": "When you opened the app",
+    "welcomeScreenPerCardType": "Per card-type",
+    "welcomeScreenHowOftenYouPlayedIt": "How often you played it",
+    "welcomeScreenHowManyYouGotRight": "How many you got right",
+    "welcomeScreenHowManyYouGotWrong": "How many you got wrong",
+    "welcomeScreenHowManyErrorsOfCommissionOccured": "How many errors of comission occured",
+    "welcomeScreenHowManyErrorsOfOmissionOccured": "How many errors of omission occured",
+    "welcomeScreenHowMuchTimeYouSpentOnIt": "How much time you spent on it",
+    "welcomeScreenHowOftenItWasDisplayed": "How often it was displayed",
+    "welcomeScreenTheDataIsSavedInPlace": "The data is saved in {place}.",
+    "@welcomeScreenTheDataIsSavedInPlace": {
+        "placeholders": {
+            "place": {
+                "type":"String",
+                "example": "my learning record store"
+            }
+        }
+    },
+    "welcomeScreenConsent": "Consent",
+    "welcomeScreenNowYouKnowEverything": "Now you know everything.",
+    "welcomeScreenMayICollectYourData": "May I collect your data?",
+    "welcomeScreenYouCanViewAndChangeThisUnderTheMenuEntryUser": "You can always view and change this under the menu-entry \"User\"",
+    "welcomeScreenOfCourse": "Of course!",
+    "welcomeScreenNoLetMeStudy": "No, let me study!",
+    "welcomeScreenADHDState": "Your ADHD state",
+    "welcomeScreenThanks": "Thanks!",
+    "welcomeScreenNowYouJustHaveToTellMe": "Now you just have to tell me:"
 }

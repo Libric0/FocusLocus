@@ -1,3 +1,13 @@
+// Copyright (C) 2022 Fredrik Konrad <fredrik.konrad@posteo.net>
+//
+// This file is part of FocusLocus.
+//
+// FocusLocus is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+//
+// FocusLocus is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along with FocusLocus. If not, see <https://www.gnu.org/licenses/>.
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,7 +30,6 @@ import 'package:focuslocus/web_communication/lrs_sync.dart';
 import 'package:focuslocus/local_storage/quiz_card_metadata_storage_model.dart';
 import 'package:focuslocus/widgets/screens/help_screen.dart';
 import 'package:focuslocus/widgets/main_app.dart';
-import 'package:focuslocus/widgets/screens/special_thanks_screen.dart';
 import 'package:focuslocus/widgets/screens/stats_screen.dart';
 import 'package:focuslocus/widgets/screens/user_screen.dart';
 
@@ -238,16 +247,6 @@ class _MyAppState extends State<MyApp> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const HelpScreen()));
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.favorite_outline),
-                title: Text(AppLocalizations.of(context)!.thankYou),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SpecialThanksScreen()));
                 },
               ),
               ListTile(

@@ -1,10 +1,22 @@
+// Copyright (C) 2022 Fredrik Konrad <fredrik.konrad@posteo.net>
+//
+// This file is part of FocusLocus.
+//
+// FocusLocus is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+//
+// FocusLocus is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along with FocusLocus. If not, see <https://www.gnu.org/licenses/>.
+
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:focuslocus/config.dart';
 import 'package:focuslocus/local_storage/adhd_type.dart';
 import 'package:focuslocus/web_communication/lrs_sync.dart';
 import 'package:focuslocus/local_storage/user_storage.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_button.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// The screen that shows a welcome message and asks for consent from the user
 class WelcomeScreen extends StatefulWidget {
@@ -40,7 +52,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           children: [
             _WelcomeCard(
               welcomeCardPageController: pageController,
-              headline: "Hi!",
+              headline: AppLocalizations.of(context)!.welcomeScreenHi,
               listSize: listSize,
               position: 0,
               controller: pageScrollControllers[0],
@@ -49,7 +61,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   height: 200,
                 ),
                 Text(
-                  "Danke, dass du FocusLocus gedownloaded hast!",
+                  AppLocalizations.of(context)!
+                      .welcomeScreenThankYouForDownLoadingFocusLocus,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline5 ??
                       const TextStyle(),
@@ -59,19 +72,21 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             _WelcomeCard(
               welcomeCardPageController: pageController,
               listSize: listSize,
-              headline: "Die Studie",
+              headline: AppLocalizations.of(context)!.welcomeScreenTheStudy,
               position: 1,
               controller: pageScrollControllers[1],
               children: [
                 Text(
-                  "Die App kann aber mehr als Dir bei BuK helfen: Ich habe sie programmiert, um herauszufinden, ob und wie Menschen mit ADHS anders lernen als Andere. Dafür würde ich gerne anonymisierte Daten sammeln",
+                  AppLocalizations.of(context)!
+                      .welcomeScreenTheAppCanDoMoreThanJustHelpYouStudy,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline5 ??
                       const TextStyle(),
                 ),
                 const Divider(),
                 Text(
-                  "Das ist dein Pseudonym",
+                  AppLocalizations.of(context)!
+                      .welcomeScreenThisIsYourPseudonym,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline5 ??
                       const TextStyle(),
@@ -86,12 +101,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: Text(UserStorage.pseudonym),
                 ),
                 Text(
-                  "Nur du weißt, dass es deins ist",
+                  AppLocalizations.of(context)!
+                      .welcomeScreenOnlyYouKnowThatItIsYours,
                   style: Theme.of(context).textTheme.caption,
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  "Ist in dem Menüpunkt \"Nutzer\" auffindbar",
+                  AppLocalizations.of(context)!
+                      .welcomeScreenYouCanFindItUnderTheMenuEntryUser,
                   style: Theme.of(context).textTheme.caption,
                   textAlign: TextAlign.center,
                 ),
@@ -101,25 +118,34 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               welcomeCardPageController: pageController,
               listSize: listSize,
               position: 2,
-              headline: "Deine Daten",
+              headline: AppLocalizations.of(context)!.welcomeScreenYourData,
               headlineColor: Colors.red,
               controller: pageScrollControllers[2],
               children: [
-                const Text(
-                  "Was unter deinem Pseudonym gespeichert wird",
+                Text(
+                  AppLocalizations.of(context)!
+                      .welcomeScreenWhatIsSavedUnderYourPseudonym,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.red),
+                  style: const TextStyle(color: Colors.red),
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  "- Ob du ADHS hast",
+                  AppLocalizations.of(context)!.welcomeScreenWhetherYouHaveADHD,
                   textAlign: TextAlign.left,
                   style: Theme.of(context).textTheme.headline5 ??
                       const TextStyle(),
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  "- Pro Kartentyp",
+                  AppLocalizations.of(context)!
+                      .welcomeScreenWhenYouOpenedTheApp,
+                  textAlign: TextAlign.left,
+                  style: Theme.of(context).textTheme.headline5 ??
+                      const TextStyle(),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  AppLocalizations.of(context)!.welcomeScreenPerCardType,
                   textAlign: TextAlign.left,
                   style: Theme.of(context).textTheme.headline5 ??
                       const TextStyle(),
@@ -127,7 +153,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0),
                   child: Text(
-                    "- Wie oft du sie gespielt hast",
+                    AppLocalizations.of(context)!
+                        .welcomeScreenHowOftenYouPlayedIt,
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6 ??
                         const TextStyle(),
@@ -136,7 +163,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0),
                   child: Text(
-                    "- Wie viele du richtig hast",
+                    AppLocalizations.of(context)!
+                        .welcomeScreenHowManyYouGotRight,
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6 ??
                         const TextStyle(),
@@ -145,7 +173,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0),
                   child: Text(
-                    "- Wie viele du falsch hast",
+                    AppLocalizations.of(context)!
+                        .welcomeScreenHowManyYouGotWrong,
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6 ??
                         const TextStyle(),
@@ -154,7 +183,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0),
                   child: Text(
-                    "- Wie viele Omissionsfehler du hast",
+                    AppLocalizations.of(context)!
+                        .welcomeScreenHowManyErrorsOfOmissionOccured,
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6 ??
                         const TextStyle(),
@@ -163,7 +193,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0),
                   child: Text(
-                    "- Wie viele Commissionsfehler du hast",
+                    AppLocalizations.of(context)!
+                        .welcomeScreenHowManyErrorsOfCommissionOccured,
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6 ??
                         const TextStyle(),
@@ -172,7 +203,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0),
                   child: Text(
-                    "- Wie lange du daran saßt (Sekunden)",
+                    AppLocalizations.of(context)!
+                        .welcomeScreenHowMuchTimeYouSpentOnIt,
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6 ??
                         const TextStyle(),
@@ -181,7 +213,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0),
                   child: Text(
-                    "- Wie oft du sie dir Anzeigen lassen hast",
+                    AppLocalizations.of(context)!
+                        .welcomeScreenHowOftenItWasDisplayed,
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6 ??
                         const TextStyle(),
@@ -190,8 +223,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                  "Gespeichert werden sie im Learning Record Store des i9",
+                Text(
+                  AppLocalizations.of(context)!
+                      .welcomeScreenTheDataIsSavedInPlace(
+                          Config.learningRecordStoreName),
                   textAlign: TextAlign.center,
                 )
               ],
@@ -200,14 +235,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               welcomeCardPageController: pageController,
               listSize: listSize,
               position: 3,
-              headline: "Zustimmung",
+              headline: AppLocalizations.of(context)!.welcomeScreenConsent,
               controller: pageScrollControllers[3],
               children: [
                 const SizedBox(
                   height: 20,
                 ),
                 Text(
-                  "Jetzt weisst du alles.",
+                  AppLocalizations.of(context)!
+                      .welcomeScreenNowYouKnowEverything,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline5 ??
                       const TextStyle(),
@@ -216,13 +252,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   height: 20,
                 ),
                 Text(
-                  "Darf ich deine Daten Sammeln?",
+                  AppLocalizations.of(context)!
+                      .welcomeScreenMayICollectYourData,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline5 ??
                       const TextStyle(),
                 ),
                 Text(
-                  "Du kannst die Zustimmung immer unter dem Menüpunkt \"Nutzer\" einsehen und via eMail ändern",
+                  AppLocalizations.of(context)!
+                      .welcomeScreenYouCanViewAndChangeThisUnderTheMenuEntryUser,
                   style:
                       Theme.of(context).textTheme.caption ?? const TextStyle(),
                   textAlign: TextAlign.center,
@@ -231,7 +269,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   height: 250,
                 ),
                 FoloButton(
-                  child: const Text("Ja, klar!"),
+                  child:
+                      Text(AppLocalizations.of(context)!.welcomeScreenOfCourse),
                   onPressed: () {
                     UserStorage.hasConsent = true;
                     hiddenCardController.nextPage(
@@ -244,7 +283,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   height: 20,
                 ),
                 FoloButton(
-                  child: const Text("Nein, lass mich lernen!"),
+                  child: Text(
+                      AppLocalizations.of(context)!.welcomeScreenNoLetMeStudy),
                   onPressed: () {
                     UserStorage.hasConsent = false;
                     UserStorage.hasSeenWelcomeScreen = true;
@@ -260,12 +300,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         _WelcomeCard(
           listSize: 5,
           position: 4,
-          headline: "ADHS-Zustand",
+          headline: AppLocalizations.of(context)!.welcomeScreenADHDState,
           headlineColor: Colors.green,
           controller: pageScrollControllers[4],
           children: [
             Text(
-              "Danke!",
+              AppLocalizations.of(context)!.welcomeScreenThanks,
               style: Theme.of(context).textTheme.headline4,
               textAlign: TextAlign.center,
             ),
@@ -273,12 +313,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               height: 20,
             ),
             Text(
-              "Jetzt muss ich nur noch wissen:",
+              AppLocalizations.of(context)!.welcomeScreenNowYouJustHaveToTellMe,
               style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.center,
             ),
             Text(
-              "Hast du ADHS?",
+              AppLocalizations.of(context)!.doYouHaveADHD,
               style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.center,
             ),
@@ -287,8 +327,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
             FoloButton(
               height: 100,
-              child: const Text(
-                "Weder ADHS noch Konzentrationsprobleme",
+              child: Text(
+                AppLocalizations.of(context)!.neitherADHDNorFocusProblems,
                 textAlign: TextAlign.center,
               ),
               onPressed: () {
@@ -304,8 +344,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
             FoloButton(
               height: 100,
-              child: const Text(
-                "Kozentrationsprobleme, aber keine ADHS Diagnose",
+              child: Text(
+                AppLocalizations.of(context)!.focusProblemsButNoADHDDiagnosis,
                 textAlign: TextAlign.center,
               ),
               onPressed: () {
@@ -320,8 +360,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
             FoloButton(
               height: 100,
-              child: const Text(
-                "ADHS Diagnose",
+              child: Text(
+                AppLocalizations.of(context)!.adhdDiagnosis,
                 textAlign: TextAlign.center,
               ),
               onPressed: () {
