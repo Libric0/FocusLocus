@@ -153,5 +153,11 @@
     "welcomeScreenNoLetMeStudy": "No, let me study!",
     "welcomeScreenADHDState": "Your ADHD state",
     "welcomeScreenThanks": "Thanks!",
-    "welcomeScreenNowYouJustHaveToTellMe": "Now you just have to tell me:"
+    "welcomeScreenNowYouJustHaveToTellMe": "Now you just have to tell me:",
+    "stringReplacementMultipleChoiceButtons": "Multiple-Choice Buttons",
+    "stringReplacementMultipleChoiceSwiping": "Multiple-Choice Swiping",
+    "stringReplacementCategoryBomber": "Category Bomber",
+    "stringReplacementCategoryButtons": "Category Buttons",
+    "stringReplacementStatementCompleteSelection": "Statement-Complete Selection",
+    "stringReplacementStatementCompleteTyping": "Statement-Complete Typing"
 }

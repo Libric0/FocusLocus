@@ -40,8 +40,8 @@ class _StatsScreenState extends State<StatsScreen> {
             child: LimitedBox(
               maxWidth: 180,
               child: Text(
-                StringReplacements
-                    .internalCardTypeNameToPrettyString[cardType]!,
+                StringReplacements.internalCardTypeNameToPrettyString(
+                    cardType, context),
                 style: TextStyle(color: ColorTransform.textColor(Colors.blue)),
                 overflow: TextOverflow.ellipsis,
               ),
@@ -71,9 +71,11 @@ class _StatsScreenState extends State<StatsScreen> {
               items: cardTypeMenuItems,
               onChanged: (String? cardTypeName) {
                 if (cardTypeName != null) {
-                  setState(() {
-                    selectedTypeIndex = cardTypes.indexOf(cardTypeName);
-                  });
+                  setState(
+                    () {
+                      selectedTypeIndex = cardTypes.indexOf(cardTypeName);
+                    },
+                  );
                 }
               },
             ),
@@ -85,9 +87,10 @@ class _StatsScreenState extends State<StatsScreen> {
       body: cardTypes.isEmpty
           ? Center(
               child: Text(
-              AppLocalizations.of(context)!.statsScreenNothingDoneYet,
-              textAlign: TextAlign.center,
-            ))
+                AppLocalizations.of(context)!.statsScreenNothingDoneYet,
+                textAlign: TextAlign.center,
+              ),
+            )
           : Center(
               child: FoloCard(
                 color: Colors.blue,
@@ -103,25 +106,28 @@ class _StatsScreenState extends State<StatsScreen> {
                       ),
                     ),
                     DataColumn(
-                        label: Text(
-                      AppLocalizations.of(context)!
-                          .statsScreenColumnLabelContent,
-                      style: TextStyle(
-                        color: ColorTransform.textColor(Colors.blue),
+                      label: Text(
+                        AppLocalizations.of(context)!
+                            .statsScreenColumnLabelContent,
+                        style: TextStyle(
+                          color: ColorTransform.textColor(Colors.blue),
+                        ),
                       ),
-                    ))
+                    )
                   ],
                   rows: [
                     for (QuizCardMetadataType type
                         in QuizCardMetadataType.values)
                       DataRow(
                         cells: [
-                          DataCell(Text(
-                            type.name,
-                            style: TextStyle(
-                              color: ColorTransform.textColor(Colors.blue),
+                          DataCell(
+                            Text(
+                              type.name,
+                              style: TextStyle(
+                                color: ColorTransform.textColor(Colors.blue),
+                              ),
                             ),
-                          )),
+                          ),
                           DataCell(
                             Text(
                               LearningMetadataStorage.get(

@@ -55,7 +55,6 @@ class CourseMetadataStorage {
     CourseMetadataStorageModel? course = _courseStorageBox!.get(courseID);
 
     if (course != null) {
-      print(course.currentDeck);
       return course.currentDeck;
     } else {
       _courseStorageBox!.put(courseID, CourseMetadataStorageModel());
