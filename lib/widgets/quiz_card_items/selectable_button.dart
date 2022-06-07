@@ -10,6 +10,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:focuslocus/util/color_transform.dart';
+import 'package:focuslocus/util/perception_adjusted_colors.dart';
 import 'package:focuslocus/widgets/quiz_card_items/tex_text.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_button.dart';
 
@@ -64,17 +65,19 @@ class _SelectableButtonState extends State<SelectableButton> {
       // and
       if (widget.hasCorrectStatement) {
         textColor = selected
-            ? ColorTransform.withSaturation(Colors.green, .7)
-            : ColorTransform.withSaturation(Colors.green, .3);
+            ? PerceptionAdjustedColors.good
+            : ColorTransform.withSaturation(PerceptionAdjustedColors.good, .7);
       } else {
         textColor = selected
-            ? Colors.red
-            : ColorTransform.withSaturation(Colors.red, .5);
+            ? PerceptionAdjustedColors.bad
+            : ColorTransform.withSaturation(PerceptionAdjustedColors.bad, .5);
       }
     }
     return FoloButton(
-      borderColor:
-          selected ? ColorTransform.withSaturation(Colors.blue, 0.7) : null,
+      borderColor: selected
+          ? ColorTransform.withSaturation(
+              PerceptionAdjustedColors.selected, 0.7)
+          : null,
       onPressed: () {
         setState(() {
           selected = !selected;

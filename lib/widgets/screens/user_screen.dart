@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:focuslocus/config.dart';
 import 'package:focuslocus/local_storage/adhd_type.dart';
+import 'package:focuslocus/util/perception_adjusted_colors.dart';
 import 'package:focuslocus/web_communication/lrs_sync.dart';
 import 'package:focuslocus/local_storage/user_storage.dart';
 import 'package:focuslocus/util/color_transform.dart';
@@ -107,120 +108,132 @@ class _UserScreenState extends State<UserScreen> {
                         .copyWith(color: ColorTransform.textColor(Colors.blue)),
                   ),
                   const Divider(),
-                  Text(
-                    UserStorage.adhdType == null
-                        ? AppLocalizations.of(context)!
-                            .userScreenYouDidntStateWhetherYouHaveADHD
-                        : UserStorage.adhdType == ADHDType.adhd
-                            ? AppLocalizations.of(context)!
-                                .userScreenYouStatedThatYouHaveAnADHDDiagnosis
-                            : UserStorage.adhdType ==
-                                    ADHDType.noAdhdButFocusProblems
-                                ? AppLocalizations.of(context)!
-                                    .userScreenYouStatedThatYouDontHaveADHDButFocusProblems
-                                : AppLocalizations.of(context)!
-                                    .userScreenYouStatedThatYouHaveNeitherADHDNorFocusProblems,
-                    style: Theme.of(context).textTheme.headline5,
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          UserStorage.adhdType == null
+                              ? AppLocalizations.of(context)!
+                                  .userScreenYouDidntStateWhetherYouHaveADHD
+                              : UserStorage.adhdType == ADHDType.adhd
+                                  ? AppLocalizations.of(context)!
+                                      .userScreenYouStatedThatYouHaveAnADHDDiagnosis
+                                  : UserStorage.adhdType ==
+                                          ADHDType.noAdhdButFocusProblems
+                                      ? AppLocalizations.of(context)!
+                                          .userScreenYouStatedThatYouDontHaveADHDButFocusProblems
+                                      : AppLocalizations.of(context)!
+                                          .userScreenYouStatedThatYouHaveNeitherADHDNorFocusProblems,
+                          style: Theme.of(context).textTheme.headline5,
+                          textAlign: TextAlign.center,
+                        ),
+                        FoloButton(
+                            child: Text(AppLocalizations.of(context)!.change),
+                            shouldStretch: true,
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return SimpleDialog(
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(25))),
+                                      contentPadding: const EdgeInsets.all(12),
+                                      children: [
+                                        Text(
+                                          AppLocalizations.of(context)!
+                                              .doYouHaveADHD,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline5,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        const SizedBox(
+                                          height: 40,
+                                        ),
+                                        FoloButton(
+                                          child: Text(
+                                            AppLocalizations.of(context)!
+                                                .neitherADHDNorFocusProblems,
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!
+                                                .copyWith(color: Colors.white),
+                                          ),
+                                          onPressed: () {
+                                            LrsSync.sendADHDType(
+                                                ADHDType.noFocusProblems);
+                                            setState(() {
+                                              UserStorage.adhdType =
+                                                  ADHDType.noFocusProblems;
+                                              Navigator.of(context).pop();
+                                            });
+                                          },
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        FoloButton(
+                                          child: Text(
+                                            AppLocalizations.of(context)!
+                                                .focusProblemsButNoADHDDiagnosis,
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!
+                                                .copyWith(color: Colors.white),
+                                          ),
+                                          onPressed: () {
+                                            LrsSync.sendADHDType(ADHDType
+                                                .noAdhdButFocusProblems);
+                                            setState(() {
+                                              UserStorage.adhdType = ADHDType
+                                                  .noAdhdButFocusProblems;
+                                              Navigator.of(context).pop();
+                                            });
+                                          },
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        FoloButton(
+                                          height: 100,
+                                          child: Text(
+                                            AppLocalizations.of(context)!
+                                                .adhdDiagnosis,
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!
+                                                .copyWith(color: Colors.white),
+                                          ),
+                                          onPressed: () {
+                                            LrsSync.sendADHDType(ADHDType.adhd);
+                                            setState(() {
+                                              UserStorage.adhdType =
+                                                  ADHDType.adhd;
+                                              Navigator.of(context).pop();
+                                            });
+                                          },
+                                        ),
+                                        const SizedBox(height: 10),
+                                        FoloButton(
+                                            child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .cancel),
+                                            color: PerceptionAdjustedColors.bad,
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            }),
+                                      ],
+                                    );
+                                  });
+                            }),
+                      ],
+                    ),
                   ),
-                  FoloButton(
-                      child: Text(AppLocalizations.of(context)!.change),
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return SimpleDialog(
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(25))),
-                                contentPadding: const EdgeInsets.all(12),
-                                children: [
-                                  Text(
-                                    AppLocalizations.of(context)!.doYouHaveADHD,
-                                    style:
-                                        Theme.of(context).textTheme.headline5,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  const SizedBox(
-                                    height: 40,
-                                  ),
-                                  FoloButton(
-                                    child: Text(
-                                      AppLocalizations.of(context)!
-                                          .neitherADHDNorFocusProblems,
-                                      textAlign: TextAlign.center,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1!
-                                          .copyWith(color: Colors.white),
-                                    ),
-                                    onPressed: () {
-                                      LrsSync.sendADHDType(
-                                          ADHDType.noFocusProblems);
-                                      setState(() {
-                                        UserStorage.adhdType =
-                                            ADHDType.noFocusProblems;
-                                        Navigator.of(context).pop();
-                                      });
-                                    },
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  FoloButton(
-                                    child: Text(
-                                      AppLocalizations.of(context)!
-                                          .focusProblemsButNoADHDDiagnosis,
-                                      textAlign: TextAlign.center,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1!
-                                          .copyWith(color: Colors.white),
-                                    ),
-                                    onPressed: () {
-                                      LrsSync.sendADHDType(
-                                          ADHDType.noAdhdButFocusProblems);
-                                      setState(() {
-                                        UserStorage.adhdType =
-                                            ADHDType.noAdhdButFocusProblems;
-                                        Navigator.of(context).pop();
-                                      });
-                                    },
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  FoloButton(
-                                    height: 100,
-                                    child: Text(
-                                      AppLocalizations.of(context)!
-                                          .adhdDiagnosis,
-                                      textAlign: TextAlign.center,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1!
-                                          .copyWith(color: Colors.white),
-                                    ),
-                                    onPressed: () {
-                                      LrsSync.sendADHDType(ADHDType.adhd);
-                                      setState(() {
-                                        UserStorage.adhdType = ADHDType.adhd;
-                                        Navigator.of(context).pop();
-                                      });
-                                    },
-                                  ),
-                                  const SizedBox(height: 10),
-                                  FoloButton(
-                                      child: Text(
-                                          AppLocalizations.of(context)!.cancel),
-                                      color: Colors.red,
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      }),
-                                ],
-                              );
-                            });
-                      })
                 ],
               ),
             ),
@@ -247,8 +260,8 @@ class _UserScreenState extends State<UserScreen> {
                         .copyWith(
                             color: ColorTransform.textColor(
                                 UserStorage.hasConsent
-                                    ? Colors.green
-                                    : Colors.red)),
+                                    ? PerceptionAdjustedColors.good
+                                    : PerceptionAdjustedColors.bad)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -265,8 +278,8 @@ class _UserScreenState extends State<UserScreen> {
                                       .userScreenStartSendingData),
                             ),
                             color: UserStorage.hasConsent
-                                ? Colors.red
-                                : Colors.green,
+                                ? PerceptionAdjustedColors.bad
+                                : PerceptionAdjustedColors.good,
                             onPressed: () {
                               if (UserStorage.adhdType == null &&
                                   // This expression evaluates to true only if
@@ -368,7 +381,8 @@ class _UserScreenState extends State<UserScreen> {
                                               child: Text(
                                                   AppLocalizations.of(context)!
                                                       .cancel),
-                                              color: Colors.red,
+                                              color:
+                                                  PerceptionAdjustedColors.bad,
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                                 UserStorage.hasConsent = true;
@@ -401,9 +415,7 @@ class _UserScreenState extends State<UserScreen> {
                             IconButton(
                                 onPressed: () {
                                   launch(Mailto(
-                                              to: [
-                                        "focuslocus@librico.mozmail.com"
-                                      ],
+                                              to: [Config.helpEmail],
                                               subject:
                                                   "[FocusLocus] Data Deletion",
                                               body: "Mein Pseudonym is: \"" +
@@ -412,9 +424,8 @@ class _UserScreenState extends State<UserScreen> {
                                           .toString())
                                       .onError((error, stackTrace) {
                                     // When the user's operating system does not support opening mailto links
-                                    Clipboard.setData(const ClipboardData(
-                                        text:
-                                            "focoslocus@librico.mozmail.com"));
+                                    Clipboard.setData(
+                                        ClipboardData(text: Config.helpEmail));
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         SnackBar(
                                             content: Text(AppLocalizations.of(
@@ -432,6 +443,234 @@ class _UserScreenState extends State<UserScreen> {
                 ],
               ),
             ),
+            FoloCard(
+              color: Colors.blue,
+              child: Column(
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!
+                        .userScreenColorPerceptionHeadline,
+                    style: (Theme.of(context).textTheme.headline5 ??
+                            const TextStyle())
+                        .copyWith(color: ColorTransform.textColor(Colors.blue)),
+                  ),
+                  const Divider(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          UserStorage.colorPerception == "noColorBlindness"
+                              ? AppLocalizations.of(context)!
+                                  .userScreenColorPerceptionYouStatedThatYouDontHaveAnyColorBlindness
+                              : UserStorage.colorPerception == "protanopia"
+                                  ? AppLocalizations.of(context)!
+                                      .userScreenColorPerceptionYouStatedThatYouHaveProtanopia
+                                  : UserStorage.colorPerception ==
+                                          "deuteranopia"
+                                      ? AppLocalizations.of(context)!
+                                          .userScreenColorPerceptionYouStatedThatYouHaveDeuteranopia
+                                      : UserStorage.colorPerception ==
+                                              "tritanopia"
+                                          ? AppLocalizations.of(context)!
+                                              .userScreenColorPerceptionYouStatedThatYouHaveTritanopia
+                                          : UserStorage.colorPerception ==
+                                                  "achromatopsia"
+                                              ? AppLocalizations.of(context)!
+                                                  .userScreenColorPerceptionYouStatedThatYouHaveAchromatopsia
+                                              : AppLocalizations.of(context)!
+                                                  .userScreenColorPerceptionYouDidntSpecifyAnyKindOfColorBlindness,
+                          style: (Theme.of(context).textTheme.headline5 ??
+                              const TextStyle()),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        FoloButton(
+                            shouldStretch: true,
+                            child: Text(AppLocalizations.of(context)!.change),
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return SimpleDialog(
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(25))),
+                                      contentPadding: const EdgeInsets.all(12),
+                                      children: [
+                                        Text(
+                                          AppLocalizations.of(context)!
+                                              .doYouHaveADHD,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline5,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        const SizedBox(
+                                          height: 40,
+                                        ),
+                                        FoloButton(
+                                          child: Text(
+                                            "No color-blindness",
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!
+                                                .copyWith(color: Colors.white),
+                                          ),
+                                          onPressed: () {
+                                            setState(() {
+                                              UserStorage.colorPerception =
+                                                  "noColorBlindness";
+                                              Navigator.of(context).pop();
+                                            });
+                                          },
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        FoloButton(
+                                          child: Text(
+                                            "Protanopia",
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!
+                                                .copyWith(color: Colors.white),
+                                          ),
+                                          onPressed: () {
+                                            setState(() {
+                                              UserStorage.colorPerception =
+                                                  "protanopia";
+                                              Navigator.of(context).pop();
+                                            });
+                                          },
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        FoloButton(
+                                          child: Text(
+                                            "Deuteranopia",
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!
+                                                .copyWith(color: Colors.white),
+                                          ),
+                                          onPressed: () {
+                                            setState(() {
+                                              UserStorage.colorPerception =
+                                                  "deuteranopia";
+                                              Navigator.of(context).pop();
+                                            });
+                                          },
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        FoloButton(
+                                          child: Text(
+                                            "Tritanopia",
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!
+                                                .copyWith(color: Colors.white),
+                                          ),
+                                          onPressed: () {
+                                            setState(() {
+                                              UserStorage.colorPerception =
+                                                  "tritanopia";
+                                              Navigator.of(context).pop();
+                                            });
+                                          },
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        FoloButton(
+                                          child: Text(
+                                            "Achromatopsia",
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!
+                                                .copyWith(color: Colors.white),
+                                          ),
+                                          onPressed: () {
+                                            setState(() {
+                                              UserStorage.colorPerception =
+                                                  "achromatopsia";
+                                              Navigator.of(context).pop();
+                                            });
+                                          },
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            }),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text("Preview",
+                            style: (Theme.of(context).textTheme.headline5 ??
+                                const TextStyle())),
+                        Container(
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.only(left: 12, right: 12),
+                          decoration: BoxDecoration(
+                              color: PerceptionAdjustedColors.good,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20))),
+                          width: double.maxFinite,
+                          child: Text("Good or Correct",
+                              style: (Theme.of(context).textTheme.headline5 ??
+                                      const TextStyle())
+                                  .copyWith(color: Colors.white)),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.only(left: 12, right: 12),
+                          decoration: BoxDecoration(
+                              color: PerceptionAdjustedColors.bad,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20))),
+                          width: double.maxFinite,
+                          child: Text("Bad or Incorrect",
+                              style: (Theme.of(context).textTheme.headline5 ??
+                                      const TextStyle())
+                                  .copyWith(color: Colors.white)),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.only(left: 12, right: 12),
+                          decoration: BoxDecoration(
+                              color: PerceptionAdjustedColors.selected,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20))),
+                          width: double.maxFinite,
+                          child: Text("Selected",
+                              style: (Theme.of(context).textTheme.headline5 ??
+                                      const TextStyle())
+                                  .copyWith(color: Colors.white)),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),

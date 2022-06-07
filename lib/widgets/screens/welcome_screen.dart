@@ -12,6 +12,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:focuslocus/config.dart';
 import 'package:focuslocus/local_storage/adhd_type.dart';
+import 'package:focuslocus/util/perception_adjusted_colors.dart';
 import 'package:focuslocus/web_communication/lrs_sync.dart';
 import 'package:focuslocus/local_storage/user_storage.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_button.dart';
@@ -119,33 +120,36 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               listSize: listSize,
               position: 2,
               headline: AppLocalizations.of(context)!.welcomeScreenYourData,
-              headlineColor: Colors.red,
+              headlineColor: PerceptionAdjustedColors.bad,
               controller: pageScrollControllers[2],
               children: [
                 Text(
                   AppLocalizations.of(context)!
                       .welcomeScreenWhatIsSavedUnderYourPseudonym,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.red),
+                  style: TextStyle(color: PerceptionAdjustedColors.bad),
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  AppLocalizations.of(context)!.welcomeScreenWhetherYouHaveADHD,
+                  "- " +
+                      AppLocalizations.of(context)!
+                          .welcomeScreenWhetherYouHaveADHD,
                   textAlign: TextAlign.left,
                   style: Theme.of(context).textTheme.headline5 ??
                       const TextStyle(),
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  AppLocalizations.of(context)!
-                      .welcomeScreenWhenYouOpenedTheApp,
+                  "- " +
+                      AppLocalizations.of(context)!
+                          .welcomeScreenWhenYouOpenedTheApp,
                   textAlign: TextAlign.left,
                   style: Theme.of(context).textTheme.headline5 ??
                       const TextStyle(),
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  AppLocalizations.of(context)!.welcomeScreenPerCardType,
+                  "- " + AppLocalizations.of(context)!.welcomeScreenPerCardType,
                   textAlign: TextAlign.left,
                   style: Theme.of(context).textTheme.headline5 ??
                       const TextStyle(),
@@ -153,8 +157,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0),
                   child: Text(
-                    AppLocalizations.of(context)!
-                        .welcomeScreenHowOftenYouPlayedIt,
+                    "- " +
+                        AppLocalizations.of(context)!
+                            .welcomeScreenHowOftenYouPlayedIt,
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6 ??
                         const TextStyle(),
@@ -163,8 +168,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0),
                   child: Text(
-                    AppLocalizations.of(context)!
-                        .welcomeScreenHowManyYouGotRight,
+                    "- " +
+                        AppLocalizations.of(context)!
+                            .welcomeScreenHowManyYouGotRight,
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6 ??
                         const TextStyle(),
@@ -173,8 +179,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0),
                   child: Text(
-                    AppLocalizations.of(context)!
-                        .welcomeScreenHowManyYouGotWrong,
+                    "- " +
+                        AppLocalizations.of(context)!
+                            .welcomeScreenHowManyYouGotWrong,
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6 ??
                         const TextStyle(),
@@ -183,8 +190,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0),
                   child: Text(
-                    AppLocalizations.of(context)!
-                        .welcomeScreenHowManyErrorsOfOmissionOccured,
+                    "- " +
+                        AppLocalizations.of(context)!
+                            .welcomeScreenHowManyErrorsOfOmissionOccured,
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6 ??
                         const TextStyle(),
@@ -193,8 +201,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0),
                   child: Text(
-                    AppLocalizations.of(context)!
-                        .welcomeScreenHowManyErrorsOfCommissionOccured,
+                    "- " +
+                        AppLocalizations.of(context)!
+                            .welcomeScreenHowManyErrorsOfCommissionOccured,
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6 ??
                         const TextStyle(),
@@ -203,8 +212,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0),
                   child: Text(
-                    AppLocalizations.of(context)!
-                        .welcomeScreenHowMuchTimeYouSpentOnIt,
+                    "- " +
+                        AppLocalizations.of(context)!
+                            .welcomeScreenHowMuchTimeYouSpentOnIt,
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6 ??
                         const TextStyle(),
@@ -213,8 +223,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0),
                   child: Text(
-                    AppLocalizations.of(context)!
-                        .welcomeScreenHowOftenItWasDisplayed,
+                    "- " +
+                        AppLocalizations.of(context)!
+                            .welcomeScreenHowOftenItWasDisplayed,
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6 ??
                         const TextStyle(),
@@ -277,7 +288,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         duration: const Duration(milliseconds: 200),
                         curve: Curves.linear);
                   },
-                  color: Colors.green,
+                  color: PerceptionAdjustedColors.good,
                 ),
                 const SizedBox(
                   height: 20,
@@ -291,7 +302,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     UserStorage.adhdType = null;
                     widget.closeCallBack();
                   },
-                  color: Colors.red,
+                  color: PerceptionAdjustedColors.bad,
                 )
               ],
             ),
@@ -301,7 +312,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           listSize: 5,
           position: 4,
           headline: AppLocalizations.of(context)!.welcomeScreenADHDState,
-          headlineColor: Colors.green,
+          headlineColor: PerceptionAdjustedColors.good,
           controller: pageScrollControllers[4],
           children: [
             Text(

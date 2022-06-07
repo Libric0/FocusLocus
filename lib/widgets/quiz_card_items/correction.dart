@@ -11,6 +11,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:focuslocus/config.dart';
+import 'package:focuslocus/util/perception_adjusted_colors.dart';
 import 'package:mailto/mailto.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:focuslocus/util/style_constants.dart';
@@ -65,8 +66,8 @@ class Correction extends StatelessWidget {
             decoration: BoxDecoration(
               boxShadow: const [StyleConstants.cardBoxShadow],
               color: errors + commissionErrors + omissionErrors == 0
-                  ? Colors.green
-                  : Colors.red,
+                  ? PerceptionAdjustedColors.good
+                  : PerceptionAdjustedColors.bad,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(25),
                 topRight: Radius.circular(25),
@@ -150,8 +151,8 @@ class Correction extends StatelessWidget {
                       Icons.fast_forward,
                       size: 40,
                       color: errors + commissionErrors + omissionErrors == 0
-                          ? Colors.green
-                          : Colors.red,
+                          ? PerceptionAdjustedColors.good
+                          : PerceptionAdjustedColors.bad,
                     ),
                     onPressed: () {
                       onComplete(

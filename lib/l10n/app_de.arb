@@ -1,17 +1,17 @@
 {
-    "chooseACourse": "Choose a Course!",
-    "copiedEmailAdressToClipboard": "Copied e-Mail adress to Clipboard!",
+    "chooseACourse": "Such dir einen Kurs aus!",
+    "copiedEmailAdressToClipboard": "e-Mail Adresse kopiert!",
     "courses": "Kurse",
-    "user": "User",
-    "stats": "Stats",
-    "help": "Help",
-    "thankYou": "Thank You!",
-    "about": "About",
+    "user": "Nutzer",
+    "stats": "Statistiken",
+    "help": "Hilfe",
+    "thankYou": "Danke",
+    "about": "Über",
     "lrsResponses": "LRS Responses",
-    "correctionCorrectMessage": "Correct! Nice!",
-    "correctionIncorrectMessage": "Ups, da ist was schief gelaufen.",
-    "coursesCouldNotBeLoadedPleaseRestart": "The courses failed to load. Please restart the app",
-    "courseCouldNotBeLoaded": "The course {courseName} could not be loaded. Please restart the app or reimport the course.",
+    "correctionCorrectMessage": "Richtig! Nice!",
+    "correctionIncorrectMessage": "Oh, da lief was schief.",
+    "coursesCouldNotBeLoadedPleaseRestart": "Der Kurs konnte nicht geladen werden. Starte am besten die App neu.",
+    "courseCouldNotBeLoaded": "Der Kurs {courseName} konnte nicht geladen werden. Starte am besten die App neu, oder importiere den Kurs nocheinmal.",
     "@courseCouldNotBeLoaded": {
         "placeholders":{
             "courseName": {
@@ -20,15 +20,160 @@
             }
         }
     },
-    "close":"Close",
-    "knowledgeCategoryStandardQuestion": "Which are {categoryNamePlural}?",
+    "close":"Schließen",
+    "knowledgeCategoryStandardQuestion": "Welche sind {categoryNamePlural}?",
     "@knowledgeCategoryStandardQuestion": {
         "placeholders":{
             "categoryNamePlural": {
                 "type": "String",
-                "example": "blue"
+                "example": "yellow spheres"
             }
         }
     },
-    "ifYouNeedAssistanceOrEncounteredABugWriteAMailTo": "If you need assistance or encountered a bug, write a mail to"
+    "ifYouNeedAssistanceOrEncounteredABugWriteAMailTo": "Falls du unterstützung brauchst oder einen Fehler gefunden hast, schreibe bitte eine Mail an:",
+    "quizFinishedScreenYouDidIt": "Du hast es geschafft!",
+    "quizFinishedScreenCorrect": "Richtig",
+    "quizFinishedScreenIncorrect": "Falsch",
+    "quizFinishedScreenYay": "Wuh!",
+    "quizFinishedScreenFinally": "Endlich.",
+    "quizScreenLoadingCards": "Karten werden geladen...",
+    "statsScreenNothingDoneYet": "Du hast noch nichts gemacht",
+    "statsScreenColumnLabelName": "Name",
+    "statsScreenColumnLabelContent": "Inhalt",
+    "userScreenPseudonym": "Pseudonym",
+    "userScreenCopiedPseudonymToClipboard": "Pseudonym kopiert!",
+    "userScreenADHD": "ADHS",
+    "userScreenYouDidntStateWhetherYouHaveADHD": "Du hast nicht angegeben, ob du ADHS hast",
+    "userScreenYouStatedThatYouHaveNeitherADHDNorFocusProblems": "Du hast angegeben, dass du weder ADHS noch Konzentrationsprobleme hast",
+    "userScreenYouStatedThatYouDontHaveADHDButFocusProblems": "Du hast angegeben, dass du Konzentrationsprobleme hast, aber kein ADHS",
+    "userScreenYouStatedThatYouHaveAnADHDDiagnosis": "Du hast angegeben, dass du eine ADHS Diagnose hast",
+    "change": "ändern",
+    "doYouHaveADHD": "Hast du ADHS?",
+    "neitherADHDNorFocusProblems": "Weder ADHS noch Konzentrationsprobleme",
+    "focusProblemsButNoADHDDiagnosis": "Konzentrationsprobleme, aber keine ADHS diagnose",
+    "adhdDiagnosis": "ADHS Diagnose",
+    "cancel": "Abbrechen",
+    "userScreenDataCollection": "Datenerfassung",
+    "userScreenYouCurrentlyConsentToDataCollection": "Du stimmst momentan der Datenerfassung zu",
+    "userScreenYouCurrentlyDontConsentToDataCollection": "Du lehnst momentan die Datenerfassung ab",
+    "userScreenStopSendingData": "Keine Daten mehr senden",
+    "userScreenStartSendingData": "Daten senden",
+    "userScreenYouCanAlwaysRevokeConsent": "Du kannst jederzeit deine Zustimmung retrospektiv zurückziegen. In dem Fall werden alle bisher gespeicherten Daten gelöscht. Um dies zu tun, sende eine e-Mail mit deinem Pseudonym an:",
+    "userScreenColorPerceptionHeadline": "Farbwahrnehmung",
+    "userScreenColorPerceptionYouStatedThatYouDontHaveAnyColorBlindness": "Du hast angegeben, dass du keine Farbenblindheit hast",
+    "userScreenColorPerceptionYouStatedThatYouHaveProtanopia": "Du hast angegeben, dass du Protanopie hast",
+    "userScreenColorPerceptionYouStatedThatYouHaveDeuteranopia": "Du hast angegeben, dass du Deuteranopie hast",
+    "userScreenColorPerceptionYouStatedThatYouHaveTritanopia": "Du hast angegeben, dass du Tritanopie hast",
+    "userScreenColorPerceptionYouStatedThatYouHaveAchromatopsia": "Du hast angegeben, dass du Achromatopsie hast",
+    "userScreenColorPerceptionYouDidntSpecifyAnyKindOfColorBlindness": "Du hast keine Farbenblindheit angegeben",
+    "userScreenColorPerceptionNoColorBlindness": "Keine Farbenblindheit",
+    "userScreenColorPerceptionProtanopia": "Protanopie",
+    "userScreenColorPerceptionDeuteranopia": "Deuteranopie",
+    "userScreenColorPerceptionTritanopia": "Tritanopie",
+    "userScreenColorPerceptionAchromatopsia": "Achromatopsie",
+    "userScreenColorPerceptionPreview": "Vorschau",
+    "userScreenColorPerceptionGoodOrCorrect": "Gut oder Richtig",
+    "userScreenColorPerceptionBadOrIncorrect": "Schlecht oder Falsch",
+    "userScreenColorPerceptionSelected": "Ausgewählt",
+    "categoryBomberHelpDialogPlaceABombToBlowUp": "Platziere eine Bombe um alle Geoden, die Objekte aus der Kategorie enthalten, zu zerstören!",
+    "categoryBomberHelpDialogPlusShapedExplosionDestroysFive": "Die +-Förmige explosion zerstört bis zu 5 Geoden in seinem Umkreis. Die anderen bleiben intakt",
+    "categoryBomberHelpDialogGeodesThatWereBlownUpCorrectly": "Geoden, die richtigiger Weise gesprengt wurden enthalten Erz. Die Anderen hinterlassen nur Geröll",
+    "categorybomberHelpDialogYouDidEverythingCorrectlyIf": "Du hast alles richtig gemacht, wenn nur Erze und intakte Steine, die kein Erz enthalten, übrig bleiben.",
+    "categoryBomberTooMany": "Zu viele!",
+    "categoryBomberNotEnough": "Zu wenige!",
+    "categoryBomberSomethingIsWrong": "Oh, hier ist was falsch.",
+    "categoryBomberStandardQuestion": "Sprenge nur {categoryNamePlural}!",
+    "@categoryBomberStandardQuestion": {
+        "placeholders": {
+            "categoryNamePlural": {
+                "type": "String",
+                "example": "yellow balls"
+            }
+        }
+    },
+    "categoryGridButtonChooseAllElementsThatAreInTheCategory": "Wähle alle Objekte aus, die in der Kategorie sind!",
+    "categoryGridButtonSelectedElementsAreHighlightedInBlue": "Ausgewählte Objekte sind mit einem blauen Rand markiert",
+    "categoryGridButtonAsYouTapOnDone": "Wenn du auf 'fertig' tippst, werden alle Objekte in der Kategorie grün angezeigt. Alle anderen sind dann rot. Ausgewählte Elemente behalten den blauen Rand. \nGuck dir dieses Beispiel an:",
+    "trueWord": "wahr",
+    "falseWord": "falsch",
+    "done": "Fertig",
+    "multipleChoiceButtonSelectAllCorrectStatements": "Wähle alle korrekten Aussagen aus!",
+    "statement": "Aussage",
+    "multipleChoiceButtonSelectSelectedStatementsAreHighlightedInBlue": "Ausgewählte Aussagen werden mit einem blauen Rand markiert",
+    "multipleChoiceButtonSelectAsYouTapOnDone": "Wenn du auf 'Fertig' drückst, werden alle korrekten Aussagen grün angezeigt. Die falschen Aussagen sind dann rot. Ausgewählte Aussagen behalten den blauen Rand. \nGuck dir dieses Beispiel an:",
+    "correct": "Korrekt",
+    "incorrect": "Falsch",
+    "multipleChoiceButtonSelectWhichStatementsAreCorrect": "Welche Aussagen sind Korrekt?",
+    "multipleChoiceSwipingSwipingSwipeCorrectCardsRightAndIncorrectOnesLeft": "Wische richtige Aussagen nach rechts und falsche nach Links!",
+    "multipleChoiceSwipingCorrectWouldHaveBeen": "Richtig wäre:",
+    "multipleChoiceSwipingIncorrectWouldHaveBeen": "Falsch wäre:",
+    "statementCompleteSelectionChooseTheRightWordToFillTheGap": "Wähle das richtige Wort um die Lücke zu füllen!",
+    "statementCompleteSelectionTheTextHasAGap": "Der Text hat eine Lücke. Darunter findest du Knöpfe um das richtige Wort auszuwählen. Nur einer der Knöpfe hat eine richtige Antwort",
+    "statementCompleteSelecionTheSelectedWordWillBeHighlightedInBlueAndInsertedIntoTheGap": "Das ausgewählte wort wird in blau markiert und in die Lücke eingefügt",
+    "statementCompleteSelectionCorrectFillInWouldHaveBeenCorrect": "\"{correctFillIn}\" wäre richtig.",
+    "@statementCompleteSelectionCorrectFillInWouldHaveBeenCorrect": {
+        "placeholders": {
+            "correctFillIn": {
+                "type": "String",
+                "example": "Beispiel"
+            }
+        }
+    },
+    "statementCompleteSelectionWhichOneFits": "Welches Wort passt?",
+    "statementCompleteTypingFillTheGapWithTheRightWord": "Fülle die Lücke mit dem richtigen Wort!",
+    "statementCompleteTypingTapOnTheGap": "Tippe auf die Lücke",
+    "statementCompleteTypingEnterTheWordAndSubmitYourAnswer": "Gib das richtige wort ein und tippe dann auf 'Enter'",
+    "statementCompleteTypingFillTheGap": "Fülle die Lücke!",
+    "statementCompleteTypingCorrectFillInWouldHaveBeenCorrect": "\"{correctFillIn}\" wäre richtig.",
+    "@statementCompleteTypingCorrectFillInWouldHaveBeenCorrect": {
+        "placeholders": {
+            "correctFillIn": {
+                "type": "String",
+                "example": "Beispiel"
+            }
+        }
+    },
+    "welcomeScreenHi": "Hi!",
+    "welcomeScreenThankYouForDownLoadingFocusLocus": "Danke, dass du FocusLocus heruntergeladen hast!",
+    "welcomeScreenTheStudy": "Die Studie",
+    "welcomeScreenTheAppCanDoMoreThanJustHelpYouStudy": "Die App kann mehr als dir beim lernen zu helfen: Sie wurde programmiert um herauszufinden ob und in wie fern Menschen mit ADHS anders lernen als andere. Du kannst dabei helfen, wenn du anonymisierte Daten teilst",
+    "welcomeScreenThisIsYourPseudonym": "Dies ist dein Pseudonym",
+    "welcomeScreenOnlyYouKnowThatItIsYours": "Nur du weisst, dass es deins ist",
+    "welcomeScreenYouCanFindItUnderTheMenuEntryUser": "Du kannst ihn under dem Menüpunkt \"Nutzer\" einsehen",
+    "welcomeScreenYourData": "Deine Daten",
+    "welcomeScreenWhatIsSavedUnderYourPseudonym": "Was unter deinem Pseudonym gespeichert wird",
+    "welcomeScreenWhetherYouHaveADHD": "Ob du ADHS hast",
+    "welcomeScreenWhenYouOpenedTheApp": "Wann du die App geöffnet hast",
+    "welcomeScreenPerCardType": "Pro Kartentyp",
+    "welcomeScreenHowOftenYouPlayedIt": "Wie oft du ihn gespielt hast",
+    "welcomeScreenHowManyYouGotRight": "Wie oft du richtig geantwortet hast",
+    "welcomeScreenHowManyYouGotWrong": "Wie oft du falsch geantwortet hast",
+    "welcomeScreenHowManyErrorsOfCommissionOccured": "Wie viele Kommissionsfehler passiert sind",
+    "welcomeScreenHowManyErrorsOfOmissionOccured": "Wie viele Omissionsfehler passiert sind",
+    "welcomeScreenHowMuchTimeYouSpentOnIt": "Wie lange du gebraucht hast",
+    "welcomeScreenHowOftenItWasDisplayed": "Wie oft der Kartentyp angezeigt wurde",
+    "welcomeScreenTheDataIsSavedInPlace": "Deine daten werden hier gespeichert: {place}",
+    "@welcomeScreenTheDataIsSavedInPlace": {
+        "placeholders": {
+            "place": {
+                "type":"String",
+                "example": "my learning record store"
+            }
+        }
+    },
+    "welcomeScreenConsent": "Zustimmung",
+    "welcomeScreenNowYouKnowEverything": "Jetzt weisst du alles.",
+    "welcomeScreenMayICollectYourData": "Darf ich deine Daten sammeln?",
+    "welcomeScreenYouCanViewAndChangeThisUnderTheMenuEntryUser": "Du kannst deine Zustimmung unter dem Menüpunkt \"Nutzer\" stets einsehen und ändern.",
+    "welcomeScreenOfCourse": "Na klar!",
+    "welcomeScreenNoLetMeStudy": "Nein, lass mich lernen!",
+    "welcomeScreenADHDState": "Dein ADHS Zustand",
+    "welcomeScreenThanks": "Danke!",
+    "welcomeScreenNowYouJustHaveToTellMe": "Jetzt musst du mir noch verraten:",
+    "stringReplacementMultipleChoiceButtons": "Multiple-Choice Knöpfe",
+    "stringReplacementMultipleChoiceSwiping": "Multiple-Choice Wischen",
+    "stringReplacementCategoryBomber": "Categorie Bomber",
+    "stringReplacementCategoryButtons": "Categorie Knöpfe",
+    "stringReplacementStatementCompleteSelection": "Aussagen-Vervollständigung Knöpfe",
+    "stringReplacementStatementCompleteTyping": "Aussagen-Vervollständigung Tippen"
 }

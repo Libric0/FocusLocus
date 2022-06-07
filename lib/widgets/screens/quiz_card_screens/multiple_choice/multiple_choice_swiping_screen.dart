@@ -12,6 +12,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:focuslocus/util/perception_adjusted_colors.dart';
 import 'package:tcard/tcard.dart';
 import 'package:focuslocus/knowledge/knowledge_multiple_choice.dart';
 import 'package:focuslocus/util/color_transform.dart';
@@ -133,9 +134,9 @@ class _MultipleChoiceSwipingScreenState
             children: [
               Container(
                 margin: const EdgeInsets.fromLTRB(0, 12, 0, 12),
-                decoration: const BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                    color: PerceptionAdjustedColors.bad,
+                    borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(8),
                       bottomRight: Radius.circular(8),
                     )),
@@ -147,9 +148,9 @@ class _MultipleChoiceSwipingScreenState
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(0, 12, 0, 12),
-                decoration: const BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                    color: PerceptionAdjustedColors.good,
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(8),
                       bottomLeft: Radius.circular(8),
                     )),
@@ -243,10 +244,10 @@ class _MultipleChoiceSwipingScreenState
                               Container(
                                 padding:
                                     const EdgeInsets.only(left: 12, right: 12),
-                                decoration: const BoxDecoration(
-                                    color: Colors.green,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20))),
+                                decoration: BoxDecoration(
+                                    color: PerceptionAdjustedColors.good,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(20))),
                                 width: double.maxFinite,
                                 child: Text(
                                   AppLocalizations.of(context)!
@@ -267,10 +268,10 @@ class _MultipleChoiceSwipingScreenState
                               Container(
                                 padding:
                                     const EdgeInsets.only(left: 12, right: 12),
-                                decoration: const BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20))),
+                                decoration: BoxDecoration(
+                                    color: PerceptionAdjustedColors.bad,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(20))),
                                 width: double.maxFinite,
                                 child: Text(
                                   AppLocalizations.of(context)!

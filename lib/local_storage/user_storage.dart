@@ -116,4 +116,13 @@ class UserStorage {
   static set lastCourse(String? courseID) {
     _actorStorageBox!.put("lastCourse", courseID);
   }
+
+  /// Changes the color perception type
+  static set colorPerception(String perceptionType) {
+    _actorStorageBox!.put("colorPerception", perceptionType);
+  }
+
+  /// Retrieves the color perception type
+  static String get colorPerception =>
+      _actorStorageBox!.get("colorPerception") ?? "noColorBlindness";
 }

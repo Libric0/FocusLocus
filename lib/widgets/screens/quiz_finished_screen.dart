@@ -9,6 +9,7 @@
 // You should have received a copy of the GNU General Public License along with FocusLocus. If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:focuslocus/util/perception_adjusted_colors.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_button.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_card.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -69,8 +70,8 @@ class QuizFinishedScreen extends StatelessWidget {
                             height: 100,
                             child: CircularProgressIndicator(
                               value: value,
-                              backgroundColor: Colors.red,
-                              color: Colors.green,
+                              backgroundColor: PerceptionAdjustedColors.bad,
+                              color: PerceptionAdjustedColors.good,
                               strokeWidth: 5,
                             ),
                           ),
@@ -89,9 +90,10 @@ class QuizFinishedScreen extends StatelessWidget {
                     margin: const EdgeInsets.all(8),
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     width: double.infinity,
-                    decoration: const BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    decoration: BoxDecoration(
+                        color: PerceptionAdjustedColors.good,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(15))),
                     child: Center(
                       child: Text(
                         AppLocalizations.of(context)!
@@ -107,9 +109,10 @@ class QuizFinishedScreen extends StatelessWidget {
                     margin: const EdgeInsets.all(8),
                     width: double.infinity,
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    decoration: const BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    decoration: BoxDecoration(
+                        color: PerceptionAdjustedColors.bad,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(15))),
                     child: Center(
                       child: Text(
                         AppLocalizations.of(context)!
