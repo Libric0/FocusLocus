@@ -1,0 +1,134 @@
+{
+	"wcc":{
+		"prefix": "wcc",
+		"body": [
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+			"<course title=\"$1\" colors=\"$2\" language=\"$3\">",
+			"\t$0",
+			"</course>"
+		],
+		"description": "(Use in .wcc files) The root-node of a course.wcc file. You have to fill in the course name, the colors that the decks will be tinted in, and the language you want this course to be displayed in."
+	},
+	
+	"wccdeck":{
+		"prefix": "deck",
+		"body": [
+			"<deck knowledgePath=\"$1\" name=\"$2\" minToPractice=\"$3\">",
+			"\t$0",
+    		"</deck>"
+		],
+		"description": "(Use in .wcc files) Information about each deck that is contained within the course. The knowledgepath is the filename relative to the deck's folder. The name will be displayed in the Course Overview. minToPractice is any integer number and is the recommended ammount of times this deck should be practiced. It should be based on the number and types of cards, but you can set your own goals."
+	},
+	"wccKeyword":{
+		"prefix": "keyword",
+		"body": "<keyword>$0</keyword>$1",
+		"description": "A keyword that will be shown within the decks screen as a kind of orientation."
+	},
+	"wcd":{
+		"prefix": "wcd",
+		"body": ["<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+			"<knowledge>",
+			"\t$0",
+			"</knowledge>"
+		],
+		"description": "(Use in .wcd files) The root-node of a .wcd file. The knowledge element represents a list of knowledge items."
+	},
+
+	"wcdMultipleChoiceTexText":{
+		"prefix": ["multipleChoiceTexText"],
+		"body": ["<knowledgeItem type=\"knowledgeMultipleChoiceTexText\" id=\"$1\">",
+        	"\t<questions>",
+            	"\t\t<question>$2</question>$3",
+        	"\t</questions>",
+        	"\t<correctChoices>",
+            "\t\t<choice>$4</choice>$5",
+        	"\t</correctChoices>",
+        	"\t<incorrectChoices>",
+            	"\t\t<choice>$6</choice>$7",
+        	"\t</incorrectChoices>",
+    	"</knowledgeItem>$0"],
+		"description": "(Use in .wcd files) A multiple choice question that has correct and incorrect answers. The id has to be completely unique."
+	},
+	"wcdQuestion":{
+		"prefix": ["question", "<question>"],
+		"body": "<question>$1</question>$0",
+		"description": "(Use in .wcd files) The question that is asked for a given knowledge item"
+	},
+	"wcdMultipleChoiceChoice":{
+		"prefix": ["choice", "<choice>"],
+		"body": "<choice>$1</choice>$0",
+		"description": "(Use in .wcd files) A choice for a multiple choice question. Can be either a correct or incorrect one",
+	},
+	"wcdStatement":{
+		"prefix": ["statement"],
+		"body": ["<knowledgeItem type=\"knowledgeStatement\" id=\"$1\">",
+        		"\t<topicSingular>$2</topicSingular>",
+        		"\t<topicPlural>$3</topicPlural>",
+        		"\t<contentItems>",
+            		"\t\t<contentItem>$4</contentItem>$5",
+            		"\t\t<contentItemCompletable/>",
+            		"\t\t<contentItem>$6</contentItem>$7",
+        		"\t</contentItems>",
+        		"\t<correctFillIns>",
+            		"\t\t<fillIn>$8</fillIn>$9",
+        		"\t</correctFillIns>",
+        		"\t<incorrectFillIns>",
+            		"\t<fillIn>$10</fillIn>$11",
+        		"\t</incorrectFillIns>",
+    		"</knowledgeItem>"
+		],
+		"description": "(Use in .wcd files) A statement that has one word missing. The contentItems are the the context, the contentItemCompletable is the part of the statement that should be filled in. The first correct fillIn will always be the correct choice in exercises in which the user has to choose from a list of choices, the others are used to match different but correct user inputs. If a fillin only consists of math (meaning it starts and ends with $$, e.g. $$1+1=2$$) it is advisable to include the same fillin as plain text (e.g. 1+1=2). FocusLocus will then accept the plain text input, but it will only display the math input as a possible solution."
+	},
+	"wcdStatementContentItem":{
+		"prefix":["contentItem", "<contentItem>"],
+		"body": "<contentItem>$1</contentItem>$0",
+		"description": "(Use in .wcd files) A content item of a statement. Usually the given contentItems (before and after) suffice."
+	},
+	"wcdStatementFillIn":{
+		"prefix": ["fillIn", "<fillIn>"],
+		"body": "<fillIn>$1</fillIn>$0",
+		"description": "(Use in .wcd files) The content that may be filled into the gap of the knowledgeStatement item."
+	},
+	"wcdMathUniverse":{
+		"prefix": ["universe", "mathUniverse"],
+		"body": ["<knowledgeItem type=\"mathUniverse\" id=\"$1\">",
+        		"\t<namesSingular>",
+            		"\t\t<name>$2</name>$3",
+        		"\t</namesSingular>",
+        		"\t<namesPlural>",
+            		"\t\t<name>$4</name>$5",
+        		"\t</namesPlural>",
+        		"\t<mathObjects>",
+            		"\t\t<mathObject id=\"$6\">$7</mathObject>$8",
+        		"\t</mathObjects>",
+    			"</knowledgeItem>"
+		],
+		"description": "(Use in .wcd files) A set of mathItems that builds the foundation for set-based Knowledge items. Most prominently, categories, which are subsets of Universes."
+	},
+	"wcdMathObject":{
+		"prefix": "mathObject",
+		"body": "<mathObject id=\"$1\">$2</mathObject>$0",
+		"description": "(Use in .wcd files) A mathObject, which is just an item in a math Universe"
+	},
+	"wcdMathObjectTex":{
+		"prefix": "texMathObject",
+		"body": "<mathObject id=\"$1\">$$$1$$</mathObject>$0",
+		"description": "(Use in .wcd files) A mathObject, which is just an item in a math Universe. This is a quick macro to have the id be whatever is put into the "
+	},
+	"wcdCategory":{
+		"prefix": "category",
+		"body": ["<knowledgeItem type=\"knowledgeCategory\" id=\"$1\">",
+        		"\t<universe>$2</universe>",
+    			"\t<questions>",
+            		"\t\t<question>$3</question>",
+        		"\t</questions>",
+        		"\t<categoryNamesSingular>",
+            		"\t\t<name>$4</name>",
+        		"\t</categoryNamesSingular>",
+        		"\t<categoryNamesPlural>",
+            		"\t\t<name>$5</name>",
+        		"\t</categoryNamesPlural>",
+        		"\t<indicesInCategory>$6</indicesInCategory>",
+    		"</knowledgeItem>"]
+	}
+}
