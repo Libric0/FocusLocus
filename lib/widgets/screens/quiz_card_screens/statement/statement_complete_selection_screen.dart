@@ -109,7 +109,7 @@ class StatementCompleteSelectionScreen extends QuizCardScreen {
 class _StatementCompleteSelectionScreenState
     extends State<StatementCompleteSelectionScreen> {
   String correctFillIn = "";
-  String beforeSelectable = "", selectable = "", afterSelectable = "";
+  String beforeSelectable = "", selectable = " ", afterSelectable = "";
   bool firstBuild = true;
   int playtime = 0;
   int errors = 0;
@@ -252,7 +252,7 @@ class _StatementCompleteSelectionScreenState
     if (buttonSelected[index] != true) {
       Future.delayed(const Duration(milliseconds: 50))
           .whenComplete(() => setState(() {
-                selectable = !buttonSelected[index] ? buttonText[index] : "";
+                selectable = !buttonSelected[index] ? buttonText[index] : " ";
                 // Now all buttons are deselected except the one with the given index
                 buttonSelected = [for (int i = 0; i < 5; i++) i == index];
               }));
@@ -260,7 +260,7 @@ class _StatementCompleteSelectionScreenState
       buttonSelected[index] = false;
       Future.delayed(const Duration(milliseconds: 50))
           .whenComplete(() => setState(() {
-                selectable = "";
+                selectable = " ";
               }));
     }
   }

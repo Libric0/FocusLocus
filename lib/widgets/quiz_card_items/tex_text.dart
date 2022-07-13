@@ -10,6 +10,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
+import 'package:petitparser/petitparser.dart';
 import 'dart:math';
 
 class TexText extends StatelessWidget {
@@ -33,9 +34,15 @@ class TexText extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(text: "", children: getWidgets(context)),
-      textAlign: TextAlign.center,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        for (List<InlineSpan> line in getLines(context))
+          RichText(
+            text: TextSpan(text: "", children: line),
+            textAlign: TextAlign.center,
+          ),
+      ],
     );
   }
 
@@ -51,58 +58,67 @@ class TexText extends StatelessWidget {
     return ret;
   }
 
-  List<InlineSpan> getWidgets(context) {
+  /// Generates a list of Text-Lines that should be displayed. Can either
+  /// Contain text, math or a widget
+  List<List<InlineSpan>> getLines(context) {
     TextStyle actualTextStyle = (Theme.of(context).textTheme.bodyText1 ??
             const TextStyle(fontFamily: 'OpenDyslexic'))
         .merge(style);
 
-    List<InlineSpan> ret = [];
-
+    List<List<InlineSpan>> ret = [];
+    List<InlineSpan> currentLine = [];
     for (var contentItem in content) {
       if (contentItem is String) {
-        List<String> subStrings = processRawString(contentItem);
-        for (String substring in subStrings) {
-          // Empty String
-          if (substring == "") {
-            continue;
-          }
-          // Math
-          if (substring.startsWith("\$\$") &&
-              substring.endsWith("\$\$") &&
-              substring.length >= 5) {
-            ret.add(
-              WidgetSpan(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      bottom: (actualTextStyle.fontSize ?? 10) * 0.25),
-                  // Really bad hack to properly align math with other kinds of text
-                  child: Math.tex(
-                    "\\phantom{|}" +
-                        substring.substring(2, substring.length - 2) +
-                        "\\phantom{|}",
-                    options: MathOptions(
-                        fontSize: (actualTextStyle.fontSize ?? 20) * 1.1,
-                        color: actualTextStyle.color ?? Colors.black),
+        List<String> lineStrings = contentItem.split("\n");
+        for (int i = 0; i < lineStrings.length; i++) {
+          String lineString = lineStrings[i].trim();
+          List<String> subStrings = processRawString(lineString);
+          for (String substring in subStrings) {
+            // Empty String
+            if (substring == "") {
+              continue;
+            }
+            // Math
+            if (substring.startsWith("\$\$") &&
+                substring.endsWith("\$\$") &&
+                substring.length >= 5) {
+              currentLine.add(
+                WidgetSpan(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        bottom: (actualTextStyle.fontSize ?? 10) * 0.25,
+                        top: (actualTextStyle.fontSize ?? 10) * 0.25),
+
+                    // Really bad hack to properly align math with other kinds of text
+                    child: Math.tex(
+                      "\\phantom{|}" +
+                          substring.substring(2, substring.length - 2) +
+                          "\\phantom{|}",
+                      options: MathOptions(
+                          fontSize: (actualTextStyle.fontSize ?? 20) * 1.1,
+                          color: actualTextStyle.color ?? Colors.black),
+                    ),
                   ),
                 ),
-              ),
-            );
-          }
-          //Text
-          else {
-            ret.add(
-              WidgetSpan(
-                child: Text(
-                  substring,
-                  strutStyle: StrutStyle.disabled,
-                  style: actualTextStyle,
+              );
+            }
+            //Text
+            else {
+              currentLine.add(
+                WidgetSpan(
+                  child: Text(substring,
+                      strutStyle: StrutStyle.disabled, style: actualTextStyle),
                 ),
-              ),
-            );
+              );
+            }
+          }
+          if (i < lineStrings.length - 1) {
+            ret.add(currentLine);
+            currentLine = [];
           }
         }
       } else if (contentItem is Widget) {
-        ret.add(WidgetSpan(child: contentItem));
+        currentLine.add(WidgetSpan(child: contentItem));
       } else {
         throw Exception("The content of the " +
             runtimeType.toString() +
@@ -110,7 +126,7 @@ class TexText extends StatelessWidget {
             content.toString());
       }
     }
-    print(content);
+    ret.add(currentLine);
     return ret;
   }
 
@@ -128,15 +144,15 @@ class TexText extends StatelessWidget {
       // So either this was \$ in String (for currentDollars = 1), or \$ in Tex (for
       // currentDollars = 3), meaning a Tex-string didnt begin or end. We ignore this
       // Dollar.
-      if (rawString[i] != '\$' && currentDollars.isOdd) {
-        currentDollars--;
+      if (rawString[i] != '\$') {
+        currentDollars -= currentDollars % 2;
       }
       if (currentDollars == 0 && rawString[i] == ' ') {
         ret.add(currentPart);
         currentPart = '';
         continue;
       }
-      // Here we read a dollar sign and split if needed
+      // Here we read a dollar sign and split if needed.
       if (rawString[i] == '\$') {
         // In the case that we are outside of math, we want to split the string into
         // words, so it wraps around neatly.
@@ -171,5 +187,3 @@ class TexText extends StatelessWidget {
     return ret;
   }
 }
-
-class FillIn {}

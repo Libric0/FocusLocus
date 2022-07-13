@@ -42,11 +42,11 @@ class QuizCourse {
       required this.id,
       required this.language,
       this.decksUnlocked = 0,
-      String? name,
+      String? title,
       String? abbreviation}) {
     // Making sure the course has a name, at worst its id
-    if (name != null) {
-      this.name = name;
+    if (title != null) {
+      this.name = title;
     } else {
       this.name = id;
     }

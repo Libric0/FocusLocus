@@ -35,7 +35,7 @@ class CourseIO {
   /// Looks up all places where courses can exist and retrives a list of all course IDs
   static Future<List<String>> getAllCourseIDs() async {
     return Future<List<String>>(
-      () => ['BuK', 'Logra'],
+      () => ['BuK', 'Logra', 'KnowledgeRepresentation'],
     );
   }
 
@@ -67,6 +67,8 @@ class CourseIO {
           courseColors: parseCourseColors(colorsAttribute),
           courseName: courseID);
     }
+    String titleAttribute =
+        courseXML.rootElement.getAttribute("title") ?? courseID;
 
     String? languageAttribute = courseXML.rootElement.getAttribute("language");
     languageAttribute ??= "en";
@@ -76,7 +78,8 @@ class CourseIO {
         decks: decks,
         id: courseID,
         decksUnlocked: decksUnlocked,
-        language: languageAttribute);
+        language: languageAttribute,
+        title: titleAttribute);
   }
 
   /// Parses the colorscheme of a course given as its color attribute of the form

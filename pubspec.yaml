@@ -50,6 +50,7 @@ dependencies:
   mailto: ^2.0.0
   url_launcher: ^6.0.18
   intl: ^0.17.0
+  petitparser: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +85,7 @@ flutter:
     - assets/
     - assets/deck_data/BuK/
     - assets/deck_data/Logra/
+    - assets/deck_data/KnowledgeRepresentation/
     - assets/textures/
     - assets/help_dialogs/
     - assets/icon/

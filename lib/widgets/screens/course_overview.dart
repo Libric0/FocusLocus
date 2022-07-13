@@ -57,7 +57,7 @@ class _CourseOverviewState extends State<CourseOverview> {
         // The animated top bar
         DeckScreenTopBar(
           deckColor: currentDeckColor,
-          courseName: widget.course.id,
+          courseName: widget.course.name,
         ),
         Expanded(
           child: Stack(

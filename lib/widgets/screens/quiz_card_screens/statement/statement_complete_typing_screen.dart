@@ -115,16 +115,48 @@ class _StatementCompleteTypingScreenState
       stringBeforeTextField = "",
       stringAfterTextField = "";
   List<String> correctFillInsLowerCase = [];
+  int textFieldWidth = 0;
 
   @override
   Widget build(BuildContext context) {
-    int textFieldWidth = 0;
     //calculating the length of the longest correct word.
     List<int> lengths =
         widget.statements[0].correctFillIns.map<int>((e) => e.length).toList();
     for (int length in lengths) {
       textFieldWidth = max(length, textFieldWidth);
     }
+    textField = TextField(
+      readOnly: revealed,
+      autofocus: false,
+      autocorrect: false,
+      decoration: InputDecoration(
+        focusColor: widget.color,
+        hoverColor: widget.color,
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: widget.color, width: 3),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(15),
+          ),
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: widget.color, width: 3),
+          gapPadding: 0,
+          borderRadius: const BorderRadius.all(
+            Radius.circular(15),
+          ),
+        ),
+        isDense: true,
+      ),
+      onChanged: (text) {
+        textFieldContent = text;
+      },
+      onSubmitted: (submittedFillIn) {
+        correct(submittedFillIn);
+        setState(() {
+          revealed = true;
+        });
+      },
+    );
     // First everything that occurs before the textfiels
     if (firstBuild) {
       int currentString = 0;
@@ -137,37 +169,6 @@ class _StatementCompleteTypingScreenState
 
       stringBeforeTextField = stringBeforeTextField.trim();
       // Now the textfield itself (the blank)
-      textField = TextField(
-        readOnly: revealed,
-        autofocus: false,
-        autocorrect: false,
-        decoration: InputDecoration(
-          focusColor: widget.color,
-          hoverColor: widget.color,
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: widget.color, width: 3),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(15),
-            ),
-          ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(color: widget.color, width: 3),
-            gapPadding: 0,
-            borderRadius: const BorderRadius.all(
-              Radius.circular(15),
-            ),
-          ),
-        ),
-        onChanged: (text) {
-          textFieldContent = text;
-        },
-        onSubmitted: (submittedFillIn) {
-          correct(submittedFillIn);
-          setState(() {
-            revealed = true;
-          });
-        },
-      );
 
       // Now the trailing end. CurrentString is now at the "", so we increase it
       currentString++;
@@ -215,7 +216,7 @@ class _StatementCompleteTypingScreenState
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                       child: SizedBox(
-                        width: textFieldWidth * 12,
+                        width: max(textFieldWidth * 12, 80),
                         child: textField,
                       ),
                     ),
