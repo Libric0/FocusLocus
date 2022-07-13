@@ -10,63 +10,113 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
+import 'dart:math';
 
 class TexText extends StatelessWidget {
-  final String rawString;
-  late final List<String> strings;
+  final List content;
   final TextStyle? style;
 
-  TexText({
+  const TexText._({
     Key? key,
-    required this.rawString,
+    required this.content,
     this.style = const TextStyle(
         color: Colors.black, fontFamily: 'OpenDyslexic', fontSize: 20),
-  }) : super(key: key) {
-    strings = processRawString();
+  }) : super(key: key);
+
+  factory TexText({Key? key, required String rawString, TextStyle? style}) {
+    return TexText._(key: key, content: [rawString], style: style);
   }
 
+  factory TexText.withWidgets(
+      {Key? key, required List content, TextStyle? style}) {
+    return TexText._(key: key, content: content, style: style);
+  }
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Wrap(
-        children: getWidgets(context),
-        alignment: WrapAlignment.center,
-        crossAxisAlignment: WrapCrossAlignment.center,
-      ),
+    return RichText(
+      text: TextSpan(text: "", children: getWidgets(context)),
+      textAlign: TextAlign.center,
     );
   }
 
-  int get length => rawString.length;
+  int get length {
+    int ret = 0;
+    for (var contentItem in content) {
+      try {
+        ret += int.parse(contentItem.length.toString());
+      } catch (e) {
+        ret++;
+      }
+    }
+    return ret;
+  }
 
-  List<Widget> getWidgets(context) {
+  List<InlineSpan> getWidgets(context) {
     TextStyle actualTextStyle = (Theme.of(context).textTheme.bodyText1 ??
             const TextStyle(fontFamily: 'OpenDyslexic'))
         .merge(style);
-    return [
-      for (String string in strings)
-        Padding(
-          padding: const EdgeInsets.only(left: 4, right: 4),
-          child: string.startsWith("\$\$") &&
-                  string.endsWith("\$\$") &&
-                  string.length >= 5
-              ? Math.tex(
-                  string.substring(2, string.length - 2),
-                  options: MathOptions(
-                      fontSize: actualTextStyle.fontSize,
-                      color: actualTextStyle.color ?? Colors.black),
-                )
-              : Text(
-                  string,
+
+    List<InlineSpan> ret = [];
+
+    for (var contentItem in content) {
+      if (contentItem is String) {
+        List<String> subStrings = processRawString(contentItem);
+        for (String substring in subStrings) {
+          // Empty String
+          if (substring == "") {
+            continue;
+          }
+          // Math
+          if (substring.startsWith("\$\$") &&
+              substring.endsWith("\$\$") &&
+              substring.length >= 5) {
+            ret.add(
+              WidgetSpan(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: (actualTextStyle.fontSize ?? 10) * 0.25),
+                  // Really bad hack to properly align math with other kinds of text
+                  child: Math.tex(
+                    "\\phantom{|}" +
+                        substring.substring(2, substring.length - 2) +
+                        "\\phantom{|}",
+                    options: MathOptions(
+                        fontSize: (actualTextStyle.fontSize ?? 20) * 1.1,
+                        color: actualTextStyle.color ?? Colors.black),
+                  ),
+                ),
+              ),
+            );
+          }
+          //Text
+          else {
+            ret.add(
+              WidgetSpan(
+                child: Text(
+                  substring,
+                  strutStyle: StrutStyle.disabled,
                   style: actualTextStyle,
                 ),
-        )
-    ];
+              ),
+            );
+          }
+        }
+      } else if (contentItem is Widget) {
+        ret.add(WidgetSpan(child: contentItem));
+      } else {
+        throw Exception("The content of the " +
+            runtimeType.toString() +
+            "contains something that is neither String nor widget. Remove that item.\nContent: " +
+            content.toString());
+      }
+    }
+    print(content);
+    return ret;
   }
 
   /// Takes the raw string and turns it into a list of strings that can be
   /// processed further
-  List<String> processRawString() {
+  List<String> processRawString(String rawString) {
     // First we split by looking for 2 dollar signs. "Word $$math$$" would be
     // converted to ["Word", "$$math$$]
     List<String> ret = [];
@@ -82,8 +132,9 @@ class TexText extends StatelessWidget {
         currentDollars--;
       }
       if (currentDollars == 0 && rawString[i] == ' ') {
-        ret.add(currentPart.substring(0, currentPart.length - 1));
+        ret.add(currentPart);
         currentPart = '';
+        continue;
       }
       // Here we read a dollar sign and split if needed
       if (rawString[i] == '\$') {
@@ -120,3 +171,5 @@ class TexText extends StatelessWidget {
     return ret;
   }
 }
+
+class FillIn {}

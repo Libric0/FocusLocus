@@ -21,7 +21,7 @@
 	},
 	"wccKeyword":{
 		"prefix": "keyword",
-		"body": "<keyword>$0</keyword>$1",
+		"body": "<keyword>$1</keyword>$0",
 		"description": "A keyword that will be shown within the decks screen as a kind of orientation."
 	},
 	"wcd":{
@@ -73,7 +73,7 @@
             		"\t\t<fillIn>$8</fillIn>$9",
         		"\t</correctFillIns>",
         		"\t<incorrectFillIns>",
-            		"\t<fillIn>$10</fillIn>$11",
+            		"\t\t<fillIn>$10</fillIn>$11",
         		"\t</incorrectFillIns>",
     		"</knowledgeItem>"
 		],

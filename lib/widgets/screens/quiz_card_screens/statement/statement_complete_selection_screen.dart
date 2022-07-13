@@ -334,43 +334,39 @@ class _SentenceWithSelection extends StatelessWidget {
   Widget build(BuildContext context) {
     // a wrap of words that have the content before the selectable item
     // then an animated blank field and then the rest of the content
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      // Text before the selectable item, not as a wrap but as individual widgets
-      children: TexText(
-        rawString: beforeSelectable,
-      ).getWidgets(context)
-        ..add(
-          // The animated blank field
-          AnimatedContainer(
-            decoration: BoxDecoration(
-              gradient: selectable == ""
-                  ? const LinearGradient(
-                      colors: [
-                        Color.fromARGB(255, 240, 240, 240),
-                        Color.fromARGB(255, 240, 240, 240),
-                        Color.fromARGB(255, 240, 240, 240),
-                        Color.fromARGB(255, 230, 230, 230)
-                      ],
-                      transform: GradientRotation(pi / 2),
-                    )
-                  : null,
-              borderRadius: const BorderRadius.all(
-                Radius.circular(15),
-              ),
-              border: Border.all(width: 3, color: color),
+    return TexText.withWidgets(content: [
+      beforeSelectable.trim(), // The animated blank field
+      Padding(
+        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+        child: AnimatedContainer(
+          decoration: BoxDecoration(
+            gradient: selectable == ""
+                ? const LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 240, 240, 240),
+                      Color.fromARGB(255, 240, 240, 240),
+                      Color.fromARGB(255, 240, 240, 240),
+                      Color.fromARGB(255, 230, 230, 230)
+                    ],
+                    transform: GradientRotation(pi / 2),
+                  )
+                : null,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(15),
             ),
-            duration: const Duration(milliseconds: 200),
-            constraints: const BoxConstraints(minWidth: 60),
+            border: Border.all(width: 3, color: color),
+          ),
+          duration: const Duration(milliseconds: 200),
+          constraints: const BoxConstraints(minWidth: 60),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
             child: TexText(
               rawString: selectable,
             ),
           ),
-        )
-        ..addAll(TexText(
-          //The text after the blank
-          rawString: afterSelectable,
-        ).getWidgets(context)),
-    );
+        ),
+      ),
+      afterSelectable.trim(),
+    ]);
   }
 }

@@ -111,14 +111,23 @@ class _StatementCompleteTypingScreenState
   bool firstBuild = true;
   List<Widget> widgets = [];
   TextField textField = const TextField();
-  String textFieldContent = "";
+  String textFieldContent = "",
+      stringBeforeTextField = "",
+      stringAfterTextField = "";
   List<String> correctFillInsLowerCase = [];
+
   @override
   Widget build(BuildContext context) {
+    int textFieldWidth = 0;
+    //calculating the length of the longest correct word.
+    List<int> lengths =
+        widget.statements[0].correctFillIns.map<int>((e) => e.length).toList();
+    for (int length in lengths) {
+      textFieldWidth = max(length, textFieldWidth);
+    }
     // First everything that occurs before the textfiels
     if (firstBuild) {
       int currentString = 0;
-      String stringBeforeTextField = "";
       while (currentString < widget.statements[0].contentItems.length &&
           widget.statements[0].contentItems[currentString] != "") {
         stringBeforeTextField +=
@@ -127,9 +136,6 @@ class _StatementCompleteTypingScreenState
       }
 
       stringBeforeTextField = stringBeforeTextField.trim();
-      if (stringBeforeTextField != "") {
-        widgets = TexText(rawString: stringBeforeTextField).getWidgets(context);
-      }
       // Now the textfield itself (the blank)
       textField = TextField(
         readOnly: revealed,
@@ -163,29 +169,14 @@ class _StatementCompleteTypingScreenState
         },
       );
 
-      //calculating the length of the longest correct word.
-      List<int> lengths = widget.statements[0].correctFillIns
-          .map<int>((e) => e.length)
-          .toList();
-      int maxLength = 0;
-      for (int length in lengths) {
-        maxLength = max(length, maxLength);
-      }
-      widgets.add(SizedBox(width: max(maxLength * 20, 60), child: textField));
-
       // Now the trailing end. CurrentString is now at the "", so we increase it
       currentString++;
-      String stringAfterTextField = "";
       while (currentString < widget.statements[0].contentItems.length) {
         stringAfterTextField +=
             widget.statements[0].contentItems[currentString] + "";
         currentString++;
       }
       stringAfterTextField = stringAfterTextField.trim();
-      if (stringAfterTextField != "") {
-        widgets.addAll(
-            TexText(rawString: stringAfterTextField).getWidgets(context));
-      }
 
       firstBuild = false;
     }
@@ -219,10 +210,17 @@ class _StatementCompleteTypingScreenState
                 child: FoloCard(
                   color: widget.color,
                   // The actual sentence with the blank
-                  child: Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: widgets,
-                  ),
+                  child: TexText.withWidgets(content: [
+                    stringBeforeTextField,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                      child: SizedBox(
+                        width: textFieldWidth * 12,
+                        child: textField,
+                      ),
+                    ),
+                    stringAfterTextField
+                  ]),
                 ),
               ),
               Expanded(
