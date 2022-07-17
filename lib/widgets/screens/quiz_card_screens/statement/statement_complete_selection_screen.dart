@@ -291,12 +291,12 @@ class _StatementCompleteSelectionScreenState
 
     //Getting rid of all non-latex-math-strings
     incorrectFillIns = incorrectFillIns
-        .where((element) => !incorrectFillIns.contains("\$\$$element\$\$"))
+        .where((element) => !incorrectFillIns.contains("\\(element\\)"))
         .toList();
-    //Getting rid of all elements that also exist as $$\text{element}$$
+    //Getting rid of all elements that also exist as \(\text{element}\)
     incorrectFillIns = incorrectFillIns
         .where(
-            (element) => !incorrectFillIns.contains("\$\$\\text{$element}\$\$"))
+            (element) => !incorrectFillIns.contains("\\(\\\\text{$element}\\)"))
         .toList();
     Random random = Random(DateTime.now().hashCode);
     incorrectFillIns.shuffle(random);

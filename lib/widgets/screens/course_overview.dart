@@ -36,7 +36,9 @@ class _CourseOverviewState extends State<CourseOverview> {
   List<DeckScreen> deckScreens = [];
   @override
   void initState() {
-    selectedDeck = widget.selectedDeck;
+    selectedDeck = widget.selectedDeck < widget.course.decks.length
+        ? widget.selectedDeck
+        : 0;
     pageController = PageController(
       initialPage: selectedDeck.toInt(),
     );

@@ -35,7 +35,7 @@ class CourseIO {
   /// Looks up all places where courses can exist and retrives a list of all course IDs
   static Future<List<String>> getAllCourseIDs() async {
     return Future<List<String>>(
-      () => ['BuK', 'Logra', 'KnowledgeRepresentation'],
+      () => ['BuK', 'Logra', 'KnowledgeRepresentation', 'Effi'],
     );
   }
 

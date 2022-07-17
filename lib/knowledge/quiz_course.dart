@@ -46,9 +46,9 @@ class QuizCourse {
       String? abbreviation}) {
     // Making sure the course has a name, at worst its id
     if (title != null) {
-      this.name = title;
+      name = title;
     } else {
-      this.name = id;
+      name = id;
     }
 
     // Making sure the course has an abbreviation, at worst its id. Both cropped to 6 letters

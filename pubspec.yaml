@@ -85,6 +85,7 @@ flutter:
     - assets/
     - assets/deck_data/BuK/
     - assets/deck_data/Logra/
+    - assets/deck_data/Effi/
     - assets/deck_data/KnowledgeRepresentation/
     - assets/textures/
     - assets/help_dialogs/

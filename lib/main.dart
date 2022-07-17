@@ -47,9 +47,9 @@ void main() async {
             shadowColor: Colors.blue),
         fontFamily: 'Sans Serif',
         textTheme: const TextTheme(
-          bodyText1: TextStyle(fontSize: 22),
+          bodyText1: TextStyle(fontSize: 18),
           button: TextStyle(
-            fontSize: 25,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
           headline6: TextStyle(

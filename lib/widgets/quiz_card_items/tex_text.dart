@@ -77,7 +77,6 @@ class TexText extends StatelessWidget {
     List<InlineSpan> currentLine = [];
     for (var contentItem in content) {
       if (contentItem is String) {
-        print("\"" + contentItem + "\"");
         List<String> lineStrings = contentItem.split("\n");
         for (int i = 0; i < lineStrings.length; i++) {
           String lineString = lineStrings[i];
@@ -86,7 +85,6 @@ class TexText extends StatelessWidget {
           if (lineString == "") {
             continue;
           }
-          print("\"" + lineString + "\"");
           //Text
           currentLine.add(
             TextSpan(text: lineString, style: actualTextStyle),
@@ -98,7 +96,6 @@ class TexText extends StatelessWidget {
           }
         }
       } else if (contentItem is List) {
-        print("\"" + contentItem[1] + "\"");
         // Math
         if (contentItem.first == "\\(" &&
             contentItem.last == "\\)" &&
