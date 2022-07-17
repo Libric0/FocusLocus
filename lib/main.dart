@@ -45,7 +45,7 @@ void main() async {
             color: Colors.white,
             foregroundColor: Colors.blue,
             shadowColor: Colors.blue),
-        fontFamily: 'OpenDyslexic',
+        fontFamily: 'Sans Serif',
         textTheme: const TextTheme(
           bodyText1: TextStyle(fontSize: 22),
           button: TextStyle(

@@ -359,7 +359,7 @@ class _SentenceWithSelection extends StatelessWidget {
           duration: const Duration(milliseconds: 200),
           constraints: const BoxConstraints(minWidth: 60),
           child: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+            padding: const EdgeInsets.all(8),
             child: TexText(
               rawString: selectable,
             ),
