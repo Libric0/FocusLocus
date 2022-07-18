@@ -96,18 +96,21 @@ class _SelectableButtonState extends State<SelectableButton> {
       // due to the constructer assertions, the texTextString is null iff the
       // child is not null, so one of those cases is always met, and we are null
       // safe
-      child: widget.child ??
-          (widget.oneLine
-              ? FittedBox(
-                  child: TexText(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: widget.child ??
+            (widget.oneLine
+                ? FittedBox(
+                    child: TexText(
+                      rawString: widget.texTextString!,
+                      style: TextStyle(color: textColor),
+                    ),
+                  )
+                : TexText(
                     rawString: widget.texTextString!,
                     style: TextStyle(color: textColor),
-                  ),
-                )
-              : TexText(
-                  rawString: widget.texTextString!,
-                  style: TextStyle(color: textColor),
-                )),
+                  )),
+      ),
     );
   }
 }

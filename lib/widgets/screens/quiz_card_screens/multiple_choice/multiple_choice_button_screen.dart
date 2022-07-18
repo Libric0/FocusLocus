@@ -308,11 +308,7 @@ class _RevealableTruthButtonColumnState
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 0, 0, 8.0),
                               child: SelectableButton(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child:
-                                      TexText(rawString: widget.chosenItems[i]),
-                                ),
+                                texTextString: widget.chosenItems[i],
                                 hasCorrectStatement: widget
                                     .multipleChoiceTexText.correctChoices
                                     .contains(widget.chosenItems[i]),
