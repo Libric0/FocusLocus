@@ -106,8 +106,14 @@ List<dynamic> resultToString(List list) {
 
 List<dynamic> parse(String input) {
   Parser texTextParser = TexTextDefinition().build();
-  Result res = texTextParser.parse(input);
-  return (removeFailures(res.value));
+  try {
+    Result res = texTextParser.parse(input);
+    return (removeFailures(res.value));
+  } catch (e) {
+    return [
+      ["`", "ParserError: ${e.toString()}\nOn Text: $input", "`"]
+    ];
+  }
 }
 
 List<dynamic> removeFailures(List list) {

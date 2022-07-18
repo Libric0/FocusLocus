@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:focuslocus/knowledge/knowledge_multiple_choice.dart';
 import 'package:focuslocus/util/color_transform.dart';
 import 'package:focuslocus/widgets/quiz_card_items/quiz_card_help_dialog.dart';
+import 'package:focuslocus/widgets/quiz_card_items/tex_text.dart';
 import 'package:focuslocus/widgets/screens/quiz_card_screens/wrappers/correction_wrapper.dart';
 import 'package:focuslocus/widgets/quiz_card_items/question_card.dart';
 import 'package:focuslocus/widgets/quiz_card_items/selectable_button.dart';
@@ -307,7 +308,11 @@ class _RevealableTruthButtonColumnState
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 0, 0, 8.0),
                               child: SelectableButton(
-                                texTextString: widget.chosenItems[i],
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child:
+                                      TexText(rawString: widget.chosenItems[i]),
+                                ),
                                 hasCorrectStatement: widget
                                     .multipleChoiceTexText.correctChoices
                                     .contains(widget.chosenItems[i]),
