@@ -47,9 +47,12 @@ class TexText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         for (List<InlineSpan> line in getLines(context))
-          RichText(
-            text: TextSpan(children: line),
-            textAlign: TextAlign.center,
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: RichText(
+              text: TextSpan(children: line),
+              textAlign: TextAlign.center,
+            ),
           ),
       ],
     );
@@ -71,7 +74,7 @@ class TexText extends StatelessWidget {
   /// Contain (formatted) text, math or a widget
   List<List<InlineSpan>> getLines(context) {
     TextStyle actualTextStyle = (Theme.of(context).textTheme.bodyText1 ??
-            const TextStyle(fontFamily: 'Sans-Serif'))
+            const TextStyle(fontFamily: 'Sans-Serif', height: 1.2))
         .merge(style);
     List<List<InlineSpan>> ret = [];
     List<InlineSpan> currentLine = [];
@@ -102,11 +105,15 @@ class TexText extends StatelessWidget {
             contentItem.length == 3) {
           currentLine.add(
             WidgetSpan(
-              child: Math.tex(
-                contentItem[1],
-                options: MathOptions(
-                    fontSize: (actualTextStyle.fontSize ?? 20) * 1.1,
-                    color: actualTextStyle.color ?? Colors.black),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 0.1, bottom: 0.1),
+                child: Math.tex(
+                  contentItem[1],
+                  options: MathOptions(
+                      fontSize: (actualTextStyle.fontSize ?? 20) * 1.1,
+                      color: actualTextStyle.color ?? Colors.black,
+                      style: MathStyle.text),
+                ),
               ),
             ),
           );
