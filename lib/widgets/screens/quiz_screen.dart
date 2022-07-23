@@ -122,7 +122,6 @@ class _BuiltQuizScreenState extends State<_BuiltQuizScreen> {
   int numberScreens = 0;
   int currentScreen = 0;
   bool firstBuild = true;
-  bool allowedToExit = false;
   PageController exercisePageController = PageController();
   PageController quizScreenPageController = PageController();
   List<QuizCardScreen> scheduledCardScreens = [];
@@ -138,101 +137,98 @@ class _BuiltQuizScreenState extends State<_BuiltQuizScreen> {
       scheduleCard(scheduledCardScreens[0]);
       firstBuild = false;
     }
-    return WillPopScope(
-      onWillPop: () async => allowedToExit,
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: ColorTransform.scaffoldBackgroundColor(widget.color),
-        body: SafeArea(
-          child: Column(
-            children: [
-              if (!finished)
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(
-                          //width: 48,
-                          ),
-                      TweenAnimationBuilder(
-                          tween: Tween<double>(
-                              begin: 0,
-                              // The numberscreens is one more than should be shown,
-                              // because we always have the currentScreen at the end
-                              // due to a discrepancy with flutter: If one makes a mistake
-                              // only on the last screen, the pageView can only scroll
-                              // to the rescheduled version of it, if it already existed
-                              // before the errornous solution was corrected. Therefore
-                              // the current Screen is always added to end of the list
-                              // before playing it and removed after the correct solution
-                              // was inserted. Thus, the number of screens is always
-                              // one higher than should be shown.
-                              end: (currentScreen.toDouble()) /
-                                  (numberScreens.toDouble() - 1)),
-                          duration: const Duration(milliseconds: 200),
-                          curve: Curves.bounceInOut,
-                          builder: (context, double value, _) {
-                            return Flexible(
-                              //maxWidth: MediaQuery.of(context).size.width - 64,
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    right: 8.0, left: 4.0),
-                                child: FoloProgressIndicator(
-                                  color: widget.color,
-                                  value: value,
-                                  backgroundColor:
-                                      ColorTransform.widgetBackgroundColor(
-                                          widget.color),
-                                ),
-                              ),
-                            );
-                          }),
-                      SizedBox(
-                        width: 48,
-                        height: 48,
-                        child: IconButton(
-                            onPressed: () {
-                              scheduledCardScreens[currentScreen]
-                                  .showHelpDialog(context);
-                            },
-                            icon: Icon(
-                              Icons.help_outline,
-                              color: widget.color,
-                              size: 40,
-                            )),
-                      )
-                    ],
-                  ),
-                ),
-              Expanded(
-                child: PageView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: quizScreenPageController,
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: ColorTransform.scaffoldBackgroundColor(widget.color),
+      body: SafeArea(
+        child: Column(
+          children: [
+            if (!finished)
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    PageView(
-                      controller: exercisePageController,
-                      children: scheduledCardScreens,
-                      physics: const NeverScrollableScrollPhysics(),
-                    ),
-                    QuizFinishedScreen(
-                      onFinish: () {
-                        if (widget.decks.length == 1) {
-                          widget.decks[0].timesPracticed++;
-                        }
-                        widget.onFinish();
-                      },
-                      color: widget.color,
-                      correct: correct,
-                      incorrect: incorrect,
+                    const SizedBox(
+                        //width: 48,
+                        ),
+                    TweenAnimationBuilder(
+                        tween: Tween<double>(
+                            begin: 0,
+                            // The numberscreens is one more than should be shown,
+                            // because we always have the currentScreen at the end
+                            // due to a discrepancy with flutter: If one makes a mistake
+                            // only on the last screen, the pageView can only scroll
+                            // to the rescheduled version of it, if it already existed
+                            // before the errornous solution was corrected. Therefore
+                            // the current Screen is always added to end of the list
+                            // before playing it and removed after the correct solution
+                            // was inserted. Thus, the number of screens is always
+                            // one higher than should be shown.
+                            end: (currentScreen.toDouble()) /
+                                (numberScreens.toDouble() - 1)),
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.bounceInOut,
+                        builder: (context, double value, _) {
+                          return Flexible(
+                            //maxWidth: MediaQuery.of(context).size.width - 64,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 8.0, left: 4.0),
+                              child: FoloProgressIndicator(
+                                color: widget.color,
+                                value: value,
+                                backgroundColor:
+                                    ColorTransform.widgetBackgroundColor(
+                                        widget.color),
+                              ),
+                            ),
+                          );
+                        }),
+                    SizedBox(
+                      width: 48,
+                      height: 48,
+                      child: IconButton(
+                          onPressed: () {
+                            scheduledCardScreens[currentScreen]
+                                .showHelpDialog(context);
+                          },
+                          icon: Icon(
+                            Icons.help_outline,
+                            color: widget.color,
+                            size: 40,
+                          )),
                     )
                   ],
                 ),
               ),
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          ),
+            Expanded(
+              child: PageView(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: quizScreenPageController,
+                children: [
+                  PageView(
+                    controller: exercisePageController,
+                    children: scheduledCardScreens,
+                    physics: const NeverScrollableScrollPhysics(),
+                  ),
+                  QuizFinishedScreen(
+                    onFinish: () {
+                      if (widget.decks.length == 1) {
+                        widget.decks[0].timesPracticed++;
+                      }
+                      widget.onFinish();
+                    },
+                    color: widget.color,
+                    correct: correct,
+                    incorrect: incorrect,
+                  )
+                ],
+              ),
+            ),
+          ],
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
         ),
       ),
     );
@@ -279,8 +275,6 @@ class _BuiltQuizScreenState extends State<_BuiltQuizScreen> {
           curve: Curves.linear,
         );
         currentScreen++;
-        // Now the willpopscope should allow the user to exit the quiz
-        allowedToExit = true;
       }
     });
   }
