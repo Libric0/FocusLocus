@@ -49,4 +49,10 @@ abstract class KnowledgeItem {
               required int playtime})
           onComplete,
       BuildContext context);
+
+  /// Returns this object as a string
+  @override
+  String toString() {
+    return "{$runtimeType, id: $id}";
+  }
 }

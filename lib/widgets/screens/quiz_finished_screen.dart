@@ -50,6 +50,7 @@ class QuizFinishedScreen extends StatelessWidget {
             AppLocalizations.of(context)!.quizFinishedScreenYouDidIt,
             style: (Theme.of(context).textTheme.headline3 ?? const TextStyle())
                 .copyWith(color: color),
+            textAlign: TextAlign.center,
           ),
           TweenAnimationBuilder(
             tween: Tween<double>(
@@ -88,7 +89,8 @@ class QuizFinishedScreen extends StatelessWidget {
                   ),
                   Container(
                     margin: const EdgeInsets.all(8),
-                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    padding: const EdgeInsets.only(
+                        left: 10, right: 10, top: 4, bottom: 4),
                     width: double.infinity,
                     decoration: BoxDecoration(
                         color: PerceptionAdjustedColors.good,
@@ -108,7 +110,8 @@ class QuizFinishedScreen extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.all(8),
                     width: double.infinity,
-                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    padding: const EdgeInsets.only(
+                        left: 10, right: 10, top: 4, bottom: 4),
                     decoration: BoxDecoration(
                         color: PerceptionAdjustedColors.bad,
                         borderRadius:
@@ -129,6 +132,7 @@ class QuizFinishedScreen extends StatelessWidget {
             ),
           ),
           FoloButton(
+            height: 60,
             shouldStretch: true,
             color: color,
             child: incorrect < 3
