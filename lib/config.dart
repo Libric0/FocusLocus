@@ -9,6 +9,6 @@
 // You should have received a copy of the GNU General Public License along with FocusLocus. If not, see <https://www.gnu.org/licenses/>.
 
 class Config {
-  static String helpEmail = "john.doe@mail.com";
+  static String helpEmail = "focuslocus@librico.mozmail.com";
   static String learningRecordStoreName = "my learning record store";
 }
