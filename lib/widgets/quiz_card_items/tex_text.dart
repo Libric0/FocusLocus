@@ -110,9 +110,10 @@ class TexText extends StatelessWidget {
                 child: Math.tex(
                   contentItem[1],
                   options: MathOptions(
-                      fontSize: (actualTextStyle.fontSize ?? 20) * 1.1,
-                      color: actualTextStyle.color ?? Colors.black,
-                      style: MathStyle.text),
+                    fontSize: (actualTextStyle.fontSize ?? 20) * 1.1,
+                    color: actualTextStyle.color ?? Colors.black,
+                    style: MathStyle.text,
+                  ),
                 ),
               ),
             ),

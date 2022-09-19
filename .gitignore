@@ -48,3 +48,4 @@ app.*.map.json
 # Personal Deck Data
 /assets/deck_data/
 .vscode/launch.json
+.vscode/launch.json
