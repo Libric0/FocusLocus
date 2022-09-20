@@ -12,9 +12,9 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:focuslocus/knowledge/multiple_choice.dart';
 import 'package:focuslocus/util/perception_adjusted_colors.dart';
 import 'package:tcard/tcard.dart';
-import 'package:focuslocus/knowledge/knowledge_multiple_choice.dart';
 import 'package:focuslocus/util/color_transform.dart';
 import 'package:focuslocus/widgets/quiz_card_items/question_card.dart';
 import 'package:focuslocus/widgets/quiz_card_items/correction.dart';
@@ -37,7 +37,7 @@ import '../quiz_card_screen.dart';
 /// - The feedback within those cards is less immediate. Does that make a
 /// difference for motivation (E.g. ask participants how much they like the card)
 class MultipleChoiceSwipingScreen extends QuizCardScreen {
-  final List<KnowledgeMultipleChoiceTexText> multipleChoice;
+  final List<MultipleChoice> multipleChoice;
   const MultipleChoiceSwipingScreen({
     required void Function({
       int errors,
@@ -173,7 +173,7 @@ class _MultipleChoiceSwipingScreenState
                   onForward: (index, info) {
                     bool answeredYes = SwipDirection.Right == info.direction;
                     if (answeredYes ==
-                        widget.multipleChoice[0].correctChoices
+                        widget.multipleChoice[0].correct
                             .contains(chosenItems[index - 1])) {
                     } else {
                       if (answeredYes) {
@@ -323,13 +323,12 @@ class _MultipleChoiceSwipingScreenState
   }
 
   /// Chooses at most 5 statements from a QuizMultipleChoiceTexText item.
-  List<String> chooseKnowledgeItems(
-      KnowledgeMultipleChoiceTexText multipleChoiceTexText) {
+  List<String> chooseKnowledgeItems(MultipleChoice multipleChoice) {
     Random random = Random(DateTime.now().hashCode);
     List<String> strings = [];
     strings
-      ..addAll(multipleChoiceTexText.correctChoices)
-      ..addAll(multipleChoiceTexText.incorrectChoices)
+      ..addAll(multipleChoice.correct)
+      ..addAll(multipleChoice.incorrect)
       ..shuffle(random);
     if (strings.length > 5) {
       strings = strings.sublist(0, 5);

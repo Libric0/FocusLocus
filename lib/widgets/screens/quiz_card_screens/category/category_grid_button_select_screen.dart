@@ -11,6 +11,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:focuslocus/knowledge/category.dart';
 import 'package:focuslocus/knowledge/knowledge_category.dart';
 import 'package:focuslocus/util/color_transform.dart';
 import 'package:focuslocus/widgets/quiz_card_items/quiz_card_help_dialog.dart';
@@ -28,7 +29,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 /// The standard Category QuizCard. A user is confronted with a 3x3 grid of
 /// TruthButtons and selects which objects are contained in the category.
 class CategoryGridButtonSelect extends QuizCardScreen {
-  final List<KnowledgeCategory> categories;
+  final List<Category> categories;
   const CategoryGridButtonSelect(
       {required Color color,
       required this.categories,
@@ -250,28 +251,19 @@ class _CategoryGridButtonSelectState extends State<CategoryGridButtonSelect> {
 
   /// Chooses items from the universe of the category and marks them as correct or incorrect
   void chooseItems() {
-    List<List<int>> chosenItemsIndices = [
+    chosenItems = [
       for (int x = 0; x < 3; x++)
         [
           for (int y = 0; y < 3; y++)
-            random.nextInt(widget.categories[0].universe.size)
+            widget.categories[0].universe
+                .elementAt(random.nextInt(widget.categories[0].universe.length))
         ]
     ];
     correct = [
       for (int x = 0; x < 3; x++)
         [
           for (int y = 0; y < 3; y++)
-            widget.categories[0].indicesInCategory
-                .contains(chosenItemsIndices[x][y])
-        ]
-    ];
-
-    chosenItems = [
-      for (int x = 0; x < 3; x++)
-        [
-          for (int y = 0; y < 3; y++)
-            widget.categories[0].universe
-                .texTextRawStringAt(chosenItemsIndices[x][y])
+            widget.categories[0].inCategory.contains(chosenItems[x][y])
         ]
     ];
   }

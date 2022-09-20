@@ -10,6 +10,7 @@
 
 import 'dart:math';
 
+import 'package:focuslocus/knowledge/statement.dart';
 import 'package:focuslocus/widgets/quiz_card_items/tex_text.dart';
 import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 
@@ -29,7 +30,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 /// The most cognitively straining kind of Statement Screen: The user gets a statement and
 /// fills in the missing word using their keyboard
 class StatementCompleteTypingScreen extends QuizCardScreen {
-  final List<KnowledgeStatement> statements;
+  final List<Statement> statements;
 
   const StatementCompleteTypingScreen({
     required this.statements,
@@ -105,80 +106,30 @@ class StatementCompleteTypingScreen extends QuizCardScreen {
 
 class _StatementCompleteTypingScreenState
     extends State<StatementCompleteTypingScreen> {
+  int variant = 0;
   int playtime = 0;
   int errors = 0;
   bool revealed = false;
   bool firstBuild = true;
-  List<Widget> widgets = [];
   TextField textField = const TextField();
-  String textFieldContent = "",
-      stringBeforeTextField = "",
-      stringAfterTextField = "";
+  String textFieldContent = "", beforeCompletable = "", afterCompletable = "";
   List<String> correctFillInsLowerCase = [];
   int textFieldWidth = 0;
 
   @override
   Widget build(BuildContext context) {
-    //calculating the length of the longest correct word.
-    List<int> lengths =
-        widget.statements[0].correctFillIns.map<int>((e) => e.length).toList();
-    for (int length in lengths) {
-      textFieldWidth = max(length, textFieldWidth);
-    }
-    textField = TextField(
-      readOnly: revealed,
-      autofocus: false,
-      autocorrect: false,
-      decoration: InputDecoration(
-        focusColor: widget.color,
-        hoverColor: widget.color,
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: widget.color, width: 3),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(15),
-          ),
-        ),
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: widget.color, width: 3),
-          gapPadding: 0,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(15),
-          ),
-        ),
-        isDense: true,
-      ),
-      onChanged: (text) {
-        textFieldContent = text;
-      },
-      onSubmitted: (submittedFillIn) {
-        correct(submittedFillIn);
-        setState(() {
-          revealed = true;
-        });
-      },
-    );
     // First everything that occurs before the textfiels
     if (firstBuild) {
-      int currentString = 0;
-      while (currentString < widget.statements[0].contentItems.length &&
-          widget.statements[0].contentItems[currentString] != "") {
-        stringBeforeTextField +=
-            widget.statements[0].contentItems[currentString] + "";
-        currentString++;
+      Random random = Random(DateTime.now().hashCode);
+      variant = random.nextInt(widget.statements[0].completables.length);
+      initStrings(random);
+      //calculating the length of the longest correct word.
+      List<int> lengths = widget.statements[0].completables[variant].correct
+          .map<int>((e) => e.content.length)
+          .toList();
+      for (int length in lengths) {
+        textFieldWidth = max(length, textFieldWidth);
       }
-
-      stringBeforeTextField = stringBeforeTextField.trim();
-      // Now the textfield itself (the blank)
-
-      // Now the trailing end. CurrentString is now at the "", so we increase it
-      currentString++;
-      while (currentString < widget.statements[0].contentItems.length) {
-        stringAfterTextField +=
-            widget.statements[0].contentItems[currentString] + "";
-        currentString++;
-      }
-      stringAfterTextField = stringAfterTextField.trim();
-
       firstBuild = false;
     }
 
@@ -186,8 +137,11 @@ class _StatementCompleteTypingScreenState
       cardType: widget.cardType,
       child: CorrectionWrapper(
         quizCardID: widget.knowledge[0].id,
-        incorrectMessage:
-            "Richtig wäre \"" + widget.statements[0].correctFillIns[0] + "\"",
+        incorrectMessage: "Richtig wäre \"" +
+            widget.statements[0].completables[variant].correct
+                .firstWhere((element) => element.visible)
+                .content +
+            "\"",
         onComplete: widget.onComplete,
         errors: errors,
         playtime: playtime,
@@ -212,15 +166,48 @@ class _StatementCompleteTypingScreenState
                   color: widget.color,
                   // The actual sentence with the blank
                   child: TexText.withWidgets(content: [
-                    stringBeforeTextField,
+                    beforeCompletable,
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                       child: SizedBox(
                         width: max(textFieldWidth * 12, 80),
-                        child: textField,
+                        child: TextField(
+                          readOnly: revealed,
+                          autofocus: false,
+                          autocorrect: false,
+                          decoration: InputDecoration(
+                            focusColor: widget.color,
+                            hoverColor: widget.color,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: widget.color, width: 3),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(15),
+                              ),
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: widget.color, width: 3),
+                              gapPadding: 0,
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(15),
+                              ),
+                            ),
+                            isDense: true,
+                          ),
+                          onChanged: (text) {
+                            textFieldContent = text;
+                          },
+                          onSubmitted: (submittedFillIn) {
+                            correct(submittedFillIn);
+                            setState(() {
+                              revealed = true;
+                            });
+                          },
+                        ),
                       ),
                     ),
-                    stringAfterTextField
+                    afterCompletable
                   ]),
                 ),
               ),
@@ -263,6 +250,51 @@ class _StatementCompleteTypingScreenState
     );
   }
 
+  /// Constructs the Strings beforeSelectable and AfterSelectable
+  void initStrings(Random random) {
+    int completableIndex = 0;
+    print("Variant: $variant");
+    for (dynamic contentItem in widget.statements[0].content) {
+      print("Before: $beforeCompletable");
+      print("After: $afterCompletable");
+      if (contentItem is String) {
+        if (completableIndex <= variant) {
+          beforeCompletable += " " + contentItem;
+        } else {
+          afterCompletable += " " + contentItem;
+        }
+      } else if (contentItem is Completable) {
+        if (completableIndex == variant) {
+          completableIndex++;
+          continue;
+        } else {
+          List visibleFillIns =
+              contentItem.correct.where((element) => element.visible).toList();
+          if (completableIndex < variant) {
+            // If none are marked as visible, we default to the first correct one
+            if (visibleFillIns.isNotEmpty) {
+              beforeCompletable +=
+                  " " + visibleFillIns[random.nextInt(visibleFillIns.length)];
+            } else {
+              beforeCompletable += " " + contentItem.correct[0].content;
+            }
+          } else {
+            // completableIndex > variant
+            if (visibleFillIns.isNotEmpty) {
+              afterCompletable +=
+                  " " + visibleFillIns[random.nextInt(visibleFillIns.length)];
+            } else {
+              afterCompletable += " " + contentItem.correct[0].content;
+            }
+          }
+          completableIndex++;
+        }
+      }
+    }
+    beforeCompletable = beforeCompletable.trim();
+    afterCompletable = afterCompletable.trim();
+  }
+
   /// Compares the submitted string with the correct/incorrect fillins, while
   /// ignoring minor spelling mistakes. If the levenstein distance ratio between
   /// a correct string and the submitted string fall under 90, this is seen as
@@ -270,27 +302,8 @@ class _StatementCompleteTypingScreenState
   /// between the input and an incorrect answer, this will be seen as incorrect
   /// too.
   void correct(String submittedFillIn) {
-    List<String> correctFillInsLowercase = widget.statements[0].correctFillIns
-        .map((e) => e.toLowerCase())
-        .toList();
-    List<String> incorrectFillInsLowercase = widget
-        .statements[0].incorrectFillIns
-        .map((e) => e.toLowerCase())
-        .toList();
-    int highestRatioCorrect = 0;
-    submittedFillIn = submittedFillIn.toLowerCase();
-    for (String correctFillIn in correctFillInsLowercase) {
-      highestRatioCorrect =
-          max(highestRatioCorrect, ratio(correctFillIn, submittedFillIn));
-    }
-
-    int highestRatioIncorrect = 0;
-    for (String incorrectFillIn in incorrectFillInsLowercase) {
-      highestRatioIncorrect =
-          max(highestRatioIncorrect, ratio(incorrectFillIn, submittedFillIn));
-    }
-    if (highestRatioIncorrect >= highestRatioCorrect ||
-        highestRatioCorrect < 90) {
+    if (!widget.statements[0].completables[variant]
+        .fitsInput(submittedFillIn)) {
       errors = 1;
     }
   }

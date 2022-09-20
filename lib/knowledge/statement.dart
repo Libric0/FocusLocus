@@ -14,6 +14,8 @@ import 'package:flutter/material.dart';
 
 import 'package:focuslocus/knowledge/knowledge_item.dart';
 import 'package:focuslocus/widgets/screens/quiz_card_screens/quiz_card_screen.dart';
+import 'package:focuslocus/widgets/screens/quiz_card_screens/statement/statement_complete_selection_screen.dart';
+import 'package:focuslocus/widgets/screens/quiz_card_screens/statement/statement_complete_typing_screen.dart';
 import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 
 class Statement extends KnowledgeItem {
@@ -26,7 +28,7 @@ class Statement extends KnowledgeItem {
     DateTime? due,
     DateTime? lastPracticed,
   }) : super(
-            id: id,
+            id: "S." + id,
             lastInterval: lastInterval,
             due: due,
             lastPracticed: lastPracticed);
@@ -88,8 +90,15 @@ class Statement extends KnowledgeItem {
               required int playtime})
           onComplete,
       BuildContext context) {
-    // TODO: implement getRandomScreen
-    throw UnimplementedError();
+    Random random = Random();
+    return random.nextBool()
+        ? StatementCompleteSelectionScreen(
+            statements: [this],
+            onComplete: onComplete,
+            color: color,
+          )
+        : StatementCompleteTypingScreen(
+            statements: [this], color: color, onComplete: onComplete);
   }
 
   @override
@@ -108,10 +117,10 @@ class Statement extends KnowledgeItem {
 class Completable {
   /// All correct FillIns for this Completable. The user is supposed to enter
   /// one of those. At least one has to be provided and visible.
-  final List<_FillIn> correct;
+  final List<FillIn> correct;
 
   /// All incorrect FillIns. Can be empty.
-  final List<_FillIn> incorrect;
+  final List<FillIn> incorrect;
 
   /// The weight of this completable. If the weight is higher, it is more likely
   /// that this completable is chosen for an exercise. May be used if one keyword
@@ -131,7 +140,7 @@ class Completable {
   /// - The list of correct FillIns is empty
   /// - The variable `"correct"` or `"incorrect"` has a type different from a list or string
   factory Completable.fromJSON(Map<String, dynamic> jsonObject) {
-    List<_FillIn> correct = [];
+    List<FillIn> correct = [];
 
     // Checking if the correct FillIns list has a valid value
     if (jsonObject["correct"] is! List) {
@@ -140,7 +149,7 @@ class Completable {
             "List of correct fillIns is missing for the completable ${jsonObject.toString()}");
       } else if (jsonObject["correct"] is String) {
         // Only a string
-        correct.add(_FillIn.fromJSON(jsonObject["correct"]));
+        correct.add(FillIn.fromJSON(jsonObject["correct"]));
       } else {
         throw Exception(
             "\"correct\" variable is not a list for completable ${jsonObject.toString()}");
@@ -151,15 +160,15 @@ class Completable {
     } else {
       // Generating List of correct FillIns
       for (dynamic fillIn in jsonObject["correct"]) {
-        correct.add(_FillIn.fromJSON(fillIn));
+        correct.add(FillIn.fromJSON(fillIn));
       }
     }
 
-    List<_FillIn> incorrect = [];
+    List<FillIn> incorrect = [];
     // Checking if the incorrect FillIns list or string has a valid value.
     // Empty Lists, strings and null are allowed
     if (jsonObject["incorrect"] is String) {
-      incorrect.add(_FillIn.fromJSON(jsonObject["incorrect"]));
+      incorrect.add(FillIn.fromJSON(jsonObject["incorrect"]));
     } else {
       if (jsonObject["incorrect"] is! List && jsonObject["incorrect"] != null) {
         throw Exception(
@@ -169,7 +178,7 @@ class Completable {
       if (jsonObject["incorrect"] is List) {
         // Generating List of incorrect FillIns
         for (dynamic fillIn in jsonObject["incorrect"]) {
-          incorrect.add(_FillIn.fromJSON(fillIn));
+          incorrect.add(FillIn.fromJSON(fillIn));
         }
       }
     }
@@ -197,14 +206,14 @@ class Completable {
   bool fitsInput(String userInput) {
     // Finding the best ratio for correctFillIns
     int highestRatioCorrect = 0;
-    for (_FillIn currentFillIn in correct) {
+    for (FillIn currentFillIn in correct) {
       highestRatioCorrect =
           max(highestRatioCorrect, currentFillIn.equalityRatio(userInput));
     }
 
     // Finding the best ratio for incorrectFillIns
     int highestRatioIncorrect = 0;
-    for (_FillIn currentFillIn in incorrect) {
+    for (FillIn currentFillIn in incorrect) {
       highestRatioIncorrect =
           max(highestRatioIncorrect, currentFillIn.equalityRatio(userInput));
     }
@@ -229,13 +238,13 @@ class Completable {
 }
 
 @immutable
-class _FillIn {
+class FillIn {
   /// The type of the FillIn. This determines how the fillIn's function will
   /// behave. For example, code will be displayed in a monospace font, and math
   /// will use a mathField instead of a textField for typing.
   ///
   /// `_FillInType.text` by default
-  final _FillInType type;
+  final FillInType type;
 
   /// Whether the FillIn is visible or not. If it is visible, it can be shown
   /// as a possible choice when the user is to pick the correct FillIn.
@@ -260,9 +269,9 @@ class _FillIn {
   /// provided
   final String content;
 
-  const _FillIn({
+  const FillIn({
     required this.content,
-    this.type = _FillInType.text,
+    this.type = FillInType.text,
     this.visible = true,
     this.caseSensitive = false,
   });
@@ -271,25 +280,25 @@ class _FillIn {
   ///
   /// If the jsonObject is a string, it returns a text-fillIn that is visible
   /// and not case-sensitive
-  factory _FillIn.fromJSON(dynamic jsonObject) {
+  factory FillIn.fromJSON(dynamic jsonObject) {
     // Strings
     if (jsonObject is String) {
-      return _FillIn(content: jsonObject);
+      return FillIn(content: jsonObject);
     }
 
     String content = jsonObject["content"];
     // Type
-    _FillInType type = _FillInType.text;
+    FillInType type = FillInType.text;
     try {
       switch (jsonObject[type]) {
         case "math":
           {
-            type = _FillInType.math;
+            type = FillInType.math;
             break;
           }
         case "code":
           {
-            type = _FillInType.code;
+            type = FillInType.code;
             break;
           }
       }
@@ -325,7 +334,7 @@ class _FillIn {
       // and we still resort to the default
     }
 
-    return _FillIn(
+    return FillIn(
       content: content,
       caseSensitive: caseSensitive,
       type: type,
@@ -346,4 +355,4 @@ class _FillIn {
   }
 }
 
-enum _FillInType { text, math, code }
+enum FillInType { text, math, code }

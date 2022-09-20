@@ -11,12 +11,11 @@
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_math_fork/flutter_math.dart';
-import 'package:focuslocus/knowledge/knowledge_category.dart';
+import 'package:focuslocus/knowledge/category.dart';
 import 'package:focuslocus/knowledge/knowledge_item.dart';
-import 'package:focuslocus/knowledge/knowledge_multiple_choice.dart';
-import 'package:focuslocus/knowledge/knowledge_statement.dart';
-import 'package:focuslocus/knowledge/math_object.dart';
-import 'package:focuslocus/knowledge/math_universe.dart';
+import 'package:focuslocus/knowledge/multiple_choice.dart';
+import 'package:focuslocus/knowledge/statement.dart';
+import 'package:focuslocus/knowledge/universe.dart';
 import 'package:focuslocus/local_storage/knowledge_metadata_storage.dart';
 import 'package:xml/xml.dart';
 
@@ -54,7 +53,8 @@ class DeckIO {
     XmlNode rootNode = await getDeckDocument(knowledgePath)
         .then((value) => value.root.children[2]);
     //print(rootNode.children.toString());
-    List<MathUniverse> universes = parseMathUniverses(rootNode, knowledgePath);
+    Map<String, Universe> universes =
+        parseMathUniverses(rootNode, knowledgePath);
     DateTime standardDueTime = DateTime.now();
     for (XmlNode knowledgeItemNode in knowledgeItemNodes) {
       if (knowledgeItemNode.getAttribute("type") ==
@@ -82,7 +82,7 @@ class DeckIO {
   //TODO: For every ! your find in this file, add a try catch with a corresponding exception
 
   /// Returns a list containing all MathUniverse-Instances that are stored within the given XmlDocument as direct children of the rootNode.
-  static List<MathUniverse> parseMathUniverses(
+  static Map<String, Universe> parseMathUniverses(
     XmlNode rootNode,
     String knowledgePath,
   ) {
@@ -90,10 +90,10 @@ class DeckIO {
         .where((element) => element.getAttribute("type") == "mathUniverse")
         .toList();
     // The universes to be returned
-    List<MathUniverse> ret = [];
+    Map<String, Universe> ret = {};
     for (XmlNode mathUniverseNode in mathUniverseNodes) {
       // gives the universe an unique identifier
-      String universeId = getIdFromXmlNode(mathUniverseNode, knowledgePath);
+      String universeId = mathUniverseNode.getAttribute("id")!;
 
       // parses the names lists
       List<String> namesSingular = getNamesFromXmlNode(mathUniverseNode,
@@ -102,14 +102,18 @@ class DeckIO {
           nameListElementTag: "namesPlural");
 
       // parses all math objects in that universe
-      List<MathObject> mathObjects =
-          getMathObjectsFromXmlNode(mathUniverseNode, knowledgePath);
+      Set<String> mathObjects =
+          getUniverseObjectsFromXmlNode(mathUniverseNode, knowledgePath);
       // Initializes a universe object and adds it to the list
-      ret.add(MathUniverse(
-          universeId: universeId,
-          mathObjects: mathObjects,
+
+      if (ret[universeId] != null) {
+        throw Exception(
+            "Two universes in the same deck have the same ID: $universeId");
+      }
+      ret[universeId] = Universe(
+          objects: mathObjects,
           namesPlural: namesPlural,
-          namesSingular: namesSingular));
+          namesSingular: namesSingular);
     }
     return ret;
   }
@@ -117,21 +121,22 @@ class DeckIO {
   /// Parses an XmlNode with the type attribute 'knowledgeCategory' into a KnowledgeCategory object.
   /// It takes the knowledgePath to generate the unique identifier and the standardDueTime from the parser
   /// ensure that the due time has been surpassed for new knowledge items.
-  static KnowledgeCategory parseKnowledgeCategory(
+  static Category parseKnowledgeCategory(
       XmlNode knowledgeItemNode,
       String knowledgePath,
       DateTime standardDueTime,
-      List<MathUniverse> universes) {
+      Map<String, Universe> universes) {
     // ID of the knowledge
     String id = knowledgePath + "." + knowledgeItemNode.getAttribute("id")!;
 
     // The universe is parsed by the ID and taken from the list of universes.
     // This makes it possible to have multiple categories over the same universe
     String universeId = knowledgeItemNode.getElement("universe")!.text;
-    MathUniverse universe = universes.firstWhere((element) =>
-        element.universeId ==
-        "mathUniverse." +
-            getIdFromAttributeAndKnowledgePath(knowledgePath, universeId));
+    if (universes[universeId] == null) {
+      throw Exception(
+          "The universe of the ID: $universeId that would be used for the category $id does not exist. \nUniverses: ${universes.toString()}");
+    }
+    Universe universe = universes[universeId]!;
 
     // Questions
     XmlNode questionsNode = knowledgeItemNode.children
@@ -153,6 +158,10 @@ class DeckIO {
       for (String indexString in indicesInCategoryStrings)
         int.parse(indexString)
     ];
+
+    Set<String> inCategory = {
+      for (int index in indicesInCategory) universe.objects.elementAt(index)
+    };
 
     // CategoryNamesSingular
     XmlNode categoryNamesSingularNode = knowledgeItemNode.children.firstWhere(
@@ -176,88 +185,22 @@ class DeckIO {
       for (XmlNode nameNode in categoryNamesPluralNameNodes) nameNode.text
     ];
 
-    // Parts of a dual category, empty by default
-    List<String> dualQuestions = [];
-    List<int> indicesInDualCategory = [];
-    List<String> dualCategoryNamesSingular = [];
-    List<String> dualCategoryNamesPlural = [];
-
-    // Testing whether a dual category is saved. If the knowledgeItemNode
-    // has any child that starts with <dual, we assume that a dual set exists
-    List<XmlNode> childrenForDual = knowledgeItemNode.children
-        .where((element) => element.toString().startsWith("<dual"))
-        .toList();
-
-    // Dual category is parsed, if it exists
-    // Starting with dual questions
-    if (childrenForDual.isNotEmpty) {
-      XmlNode? dualQuestionsNode = knowledgeItemNode.children.firstWhere(
-          (element) => element.toString().startsWith("<dualQuestions>"));
-      List<XmlNode> dualQuestionNodes = dualQuestionsNode.children
-          .where((element) => element.toString().startsWith("<question>"))
-          .toList();
-      dualQuestions = [
-        for (XmlNode questionNode in dualQuestionNodes) questionNode.text
-      ];
-
-      // Indices in dual category
-      String indicesInDualCategoryString = knowledgeItemNode.children
-          .firstWhere((element) =>
-              element.toString().startsWith("<indicesInDualCategory>"))
-          .text;
-      List<String> indicesInDualCategoryStrings =
-          indicesInDualCategoryString.split(",");
-      indicesInDualCategory = [
-        for (String indexString in indicesInDualCategoryStrings)
-          int.parse(indexString)
-      ];
-
-      // Dual Category Names Singular
-      XmlNode dualCategoryNamesSingularNode = knowledgeItemNode.children
-          .firstWhere((element) =>
-              element.toString().startsWith("<dualCategoryNamesSingular"));
-      List<XmlNode> dualCategoryNamesSingularNameNodes =
-          dualCategoryNamesSingularNode.children
-              .where((element) => element.toString().startsWith("<name>"))
-              .toList();
-      dualCategoryNamesSingular = [
-        for (XmlNode nameNode in dualCategoryNamesSingularNameNodes)
-          nameNode.text
-      ];
-
-      // Dual Category Names Plural
-      XmlNode dualCategoryNamesPluralNode = knowledgeItemNode.children
-          .firstWhere((element) =>
-              element.toString().startsWith("<dualCategoryNamesPlural"));
-      List<XmlNode> dualCategoryNamesPluralNameNodes =
-          dualCategoryNamesPluralNode.children
-              .where((element) => element.toString().startsWith("<name>"))
-              .toList();
-      dualCategoryNamesPlural = [
-        for (XmlNode nameNode in dualCategoryNamesPluralNameNodes) nameNode.text
-      ];
-    }
-    KnowledgeCategory ret = KnowledgeCategory(
+    Category ret = Category(
       universe: universe,
       questions: questions,
-      indicesInCategory: indicesInCategory,
-      categoryNamesSingular: categoryNamesSingular,
-      categoryNamesPlural: categoryNamesPlural,
-      dualQuestions: dualQuestions,
-      dualCategoryNamesPlural: dualCategoryNamesPlural,
-      dualCategoryNamesSingular: dualCategoryNamesSingular,
-      indicesInDualCategory: indicesInDualCategory,
+      inCategory: inCategory,
+      namesSingular: categoryNamesSingular,
+      namesPlural: categoryNamesPlural,
       id: id,
     );
 
-    return generateKnowledgeSchedulingInfo<KnowledgeCategory>(
-        ret, standardDueTime);
+    return generateKnowledgeSchedulingInfo<Category>(ret, standardDueTime);
   }
 
   /// Parses an XmlNode with the type attribute 'knowledgeMultipleChoiceTexText' into a KnowledgeMultipleChoiceTexText object.
   /// It takes the knowledgePath to generate the unique identifier and the standardDueTime from the parser
   /// ensure that the due time has been surpassed for new knowledge items.
-  static KnowledgeMultipleChoiceTexText parseKnowledgeMultipleChoiceTexText(
+  static MultipleChoice parseKnowledgeMultipleChoiceTexText(
     XmlNode knowledgeItemNode,
     String knowledgePath,
     DateTime standardDueTime,
@@ -301,20 +244,20 @@ class DeckIO {
 
     // initializes the KnowledgeMultipleChoiceTextText object and adds scheduling
     // info from the hive database
-    KnowledgeMultipleChoiceTexText ret = KnowledgeMultipleChoiceTexText(
+    MultipleChoice ret = MultipleChoice(
         id: id,
         questions: questions,
-        correctChoices: correctChoices,
-        incorrectChoices: incorrectChoices);
+        correct: correctChoices,
+        incorrect: incorrectChoices);
 
-    return generateKnowledgeSchedulingInfo<KnowledgeMultipleChoiceTexText>(
+    return generateKnowledgeSchedulingInfo<MultipleChoice>(
         ret, standardDueTime);
   }
 
   /// Parses an XmlNode with the type attribute 'knowledgeStatement' into a KnowledgeStatement object.
   /// It takes the knowledgePath to generate the unique identifier and the standardDueTime from the parser
   /// ensure that the due time has been surpassed for new knowledge items.
-  static KnowledgeStatement parseKnowledgeStatement(
+  static Statement parseKnowledgeStatement(
     XmlNode knowledgeItemNode,
     String knowledgePath,
     DateTime standardDueTime,
@@ -327,28 +270,6 @@ class DeckIO {
     List<XmlNode> contentItemNodes = contentItemsnode.children
         .where((element) => element.toString().startsWith("<contentItem"))
         .toList();
-
-    // Checks whether only exactly one contentItemCompletable is within the
-    // statement element. If not, it throws an exception with a fitting message
-    // and recommendations what to do
-    int completableNodesCount = 0;
-    List<String> contentItems = [];
-    for (XmlNode node in contentItemNodes) {
-      if (node.toString().startsWith("<contentItemCompletable/>")) {
-        contentItems.add("");
-        completableNodesCount++;
-      } else {
-        contentItems.add(node.text.trim());
-      }
-    }
-    if (completableNodesCount != 1) {
-      throw ParseException(
-        "You added $completableNodesCount items of the type contentItemCompletable to $id." +
-            (completableNodesCount == 0
-                ? "Please add one node of the form <contentItemCompletable/> into your file."
-                : "Please remove all but one node of the form <contentItemCompletable/> from your file."),
-      );
-    }
 
     // parrsing correctFillIns
     XmlNode correctFillInsNode = knowledgeItemNode.children.firstWhere(
@@ -368,23 +289,53 @@ class DeckIO {
     List<XmlNode> incorrectFillInNodes = incorrectFillInsNode.children
         .where((element) => element.toString().startsWith("<fillIn>"))
         .toList();
-
     List<String> incorrectFillIns = [];
     for (XmlNode node in incorrectFillInNodes) {
       incorrectFillIns.add(node.text);
     }
+    // Checks whether only exactly one contentItemCompletable is within the
+    // statement element. If not, it throws an exception with a fitting message
+    // and recommendations what to do
+    int completableNodesCount = 0;
+    List<dynamic> content = [];
+    for (XmlNode node in contentItemNodes) {
+      if (node.toString().startsWith("<contentItemCompletable/>")) {
+        content.add(
+          Completable(
+            correct: [
+              for (String fillIn in correctFillIns)
+                FillIn(
+                  content: fillIn,
+                  visible: fillIn == correctFillIns.first,
+                ),
+            ],
+            incorrect: [
+              for (String fillIn in incorrectFillIns) FillIn(content: fillIn),
+            ],
+          ),
+        );
+        completableNodesCount++;
+      } else {
+        content.add(node.text.trim());
+      }
+    }
+    if (completableNodesCount != 1) {
+      throw ParseException(
+        "You added $completableNodesCount items of the type contentItemCompletable to $id." +
+            (completableNodesCount == 0
+                ? "Please add one node of the form <contentItemCompletable/> into your file."
+                : "Please remove all but one node of the form <contentItemCompletable/> from your file."),
+      );
+    }
 
     // initializing the KnowledgeStatement to be returned with the parsed values
-    KnowledgeStatement ret = KnowledgeStatement(
+    Statement ret = Statement(
       id: id,
-      contentItems: contentItems,
-      correctFillIns: correctFillIns,
-      incorrectFillIns: incorrectFillIns,
+      content: content,
     );
 
     // retrieves the sheduling info from the hive database and returns the object
-    return generateKnowledgeSchedulingInfo<KnowledgeStatement>(
-        ret, standardDueTime);
+    return generateKnowledgeSchedulingInfo<Statement>(ret, standardDueTime);
   }
   /********************************************
    * Retrieving data that may be needed for many knowledge items
@@ -440,7 +391,7 @@ class DeckIO {
   }
 
   /// Returns a list of MathObjects that are part of a universe
-  static List<MathObject> getMathObjectsFromXmlNode(
+  static Set<String> getUniverseObjectsFromXmlNode(
       XmlNode knowledgeItemNode, String knowledgePath) {
     XmlNode mathObjectsNode = knowledgeItemNode.children.firstWhere(
         (element) => element.toString().startsWith("<mathObjects>"));
@@ -454,11 +405,9 @@ class DeckIO {
     List<String> mathObjectRawStrings = [
       for (XmlNode mathObjectNode in mathObjectNodes) mathObjectNode.text
     ];
-    List<MathObject> ret = [
-      for (int i = 0; i < mathObjectIds.length; i++)
-        MathObject(
-            mathObjectId: mathObjectIds[i], rawString: mathObjectRawStrings[i])
-    ];
+    Set<String> ret = {
+      for (int i = 0; i < mathObjectIds.length; i++) mathObjectRawStrings[i]
+    };
     return ret;
   }
 }

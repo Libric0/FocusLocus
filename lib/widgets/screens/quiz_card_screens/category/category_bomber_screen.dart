@@ -13,7 +13,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:focuslocus/knowledge/knowledge_category.dart';
+import 'package:focuslocus/knowledge/category.dart';
 import 'package:focuslocus/util/color_transform.dart';
 import 'package:focuslocus/util/style_constants.dart';
 import 'package:focuslocus/widgets/quiz_card_items/quiz_card_help_dialog.dart';
@@ -35,7 +35,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 /// The Typical assignment here would be: "Only leave [] unharmed". It may be
 /// interesting to also say: "Destroy all X", due to focus and commission errors.
 class CategoryBomberScreen extends QuizCardScreen {
-  final List<KnowledgeCategory> categories;
+  final List<Category> categories;
   const CategoryBomberScreen({
     required this.categories,
     required void Function({
@@ -184,7 +184,7 @@ class _CategoryBomberScreenState extends State<CategoryBomberScreen> {
                 style: TextStyle(color: widget.color),
                 rawString: AppLocalizations.of(context)!
                     .categoryBomberStandardQuestion(
-                        widget.categories[0].categoryNamesPlural[0]),
+                        widget.categories[0].namesPlural[0]),
               ),
             ),
             Stack(
@@ -255,7 +255,7 @@ class _CategoryBomberScreenState extends State<CategoryBomberScreen> {
   /// are contained in the category if and only if the grid position has a distance
   /// of one (not diagonal) to the correctPosition
   List<List<String>> chooseItems(
-      KnowledgeCategory category, Point<int> correctPosition, Random random) {
+      Category category, Point<int> correctPosition, Random random) {
     // Constructing the correct grid. An item in that grid is true, if it is at
     // most one step (not diagonal) away
     List<List<bool>> correctGrid = [
@@ -273,12 +273,10 @@ class _CategoryBomberScreenState extends State<CategoryBomberScreen> {
         [
           for (int y = 0; y < 3; y++)
             correctGrid[x][y]
-                ? category.universe.texTextRawStringAt(
-                    (category.indicesInCategory[
-                        random.nextInt(category.indicesInCategory.length)]))
-                : category.universe.texTextRawStringAt(
-                    category.indicesNotInCategory[
-                        random.nextInt(category.indicesNotInCategory.length)])
+                ? category.inCategory
+                    .elementAt(random.nextInt(category.inCategory.length))
+                : category.notInCategory
+                    .elementAt(random.nextInt(category.notInCategory.length))
         ]
     ];
   }

@@ -12,10 +12,9 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:focuslocus/knowledge/knowledge_multiple_choice.dart';
+import 'package:focuslocus/knowledge/multiple_choice.dart';
 import 'package:focuslocus/util/color_transform.dart';
 import 'package:focuslocus/widgets/quiz_card_items/quiz_card_help_dialog.dart';
-import 'package:focuslocus/widgets/quiz_card_items/tex_text.dart';
 import 'package:focuslocus/widgets/screens/quiz_card_screens/wrappers/correction_wrapper.dart';
 import 'package:focuslocus/widgets/quiz_card_items/question_card.dart';
 import 'package:focuslocus/widgets/quiz_card_items/selectable_button.dart';
@@ -29,7 +28,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 /// The simplest kind of 'select fact' quizcard. The player is presented with
 /// a bunch of buttons and has to choose which of them are facts.
 class MultipleChoiceButtonScreen extends QuizCardScreen {
-  final List<KnowledgeMultipleChoiceTexText> multipleChoice;
+  final List<MultipleChoice> multipleChoice;
   const MultipleChoiceButtonScreen({
     required void Function({
       int errors,
@@ -165,7 +164,7 @@ class _MultipleChoiceButtonScreenState
             ),
             Expanded(
               child: RevealableTruthButtonColumn(
-                  multipleChoiceTexText: widget.multipleChoice[0],
+                  multipleChoice: widget.multipleChoice[0],
                   chosenItems: chosenItems,
                   onComplete: widget.onComplete,
                   color: widget.color),
@@ -178,13 +177,12 @@ class _MultipleChoiceButtonScreenState
   }
 
   /// Chooses at most 5 statements from a QuizMultipleChoiceTexText item.
-  List<String> chooseKnowledgeItems(
-      KnowledgeMultipleChoiceTexText multipleChoiceTexText) {
+  List<String> chooseKnowledgeItems(MultipleChoice mulipleChoice) {
     Random random = Random(DateTime.now().hashCode);
     List<String> ret = [];
     ret
-      ..addAll(multipleChoiceTexText.correctChoices)
-      ..addAll(multipleChoiceTexText.incorrectChoices)
+      ..addAll(mulipleChoice.correct)
+      ..addAll(mulipleChoice.incorrect)
       ..shuffle(random);
     if (ret.length > 5) {
       ret = ret.sublist(0, 5);
@@ -194,7 +192,7 @@ class _MultipleChoiceButtonScreenState
 }
 
 class RevealableTruthButtonColumn extends StatefulWidget {
-  final KnowledgeMultipleChoiceTexText multipleChoiceTexText;
+  final MultipleChoice multipleChoice;
   final void Function({
     int errors,
     int commissionErrors,
@@ -207,7 +205,7 @@ class RevealableTruthButtonColumn extends StatefulWidget {
   // The color of the column
   final Color color;
   const RevealableTruthButtonColumn(
-      {required this.multipleChoiceTexText,
+      {required this.multipleChoice,
       required this.onComplete,
       required this.chosenItems,
       this.color = Colors.blue,
@@ -269,7 +267,7 @@ class _RevealableTruthButtonColumnState
       firstBuild = false;
     }
     return CorrectionWrapper(
-      quizCardID: widget.multipleChoiceTexText.id,
+      quizCardID: widget.multipleChoice.id,
       revealed: revealed,
       onComplete: widget.onComplete,
       playtime: playtime,
@@ -310,7 +308,7 @@ class _RevealableTruthButtonColumnState
                               child: SelectableButton(
                                 texTextString: widget.chosenItems[i],
                                 hasCorrectStatement: widget
-                                    .multipleChoiceTexText.correctChoices
+                                    .multipleChoice.correct
                                     .contains(widget.chosenItems[i]),
                                 revealed: revealed,
                                 selected: selected[i],
@@ -391,8 +389,7 @@ class _RevealableTruthButtonColumnState
       // This evaluates to true iff (an item is selected iff an item belongs to
       // the correct statements)
       if (selected[i] !=
-          widget.multipleChoiceTexText.correctChoices
-              .contains(widget.chosenItems[i])) {
+          widget.multipleChoice.correct.contains(widget.chosenItems[i])) {
         errors++;
         if (selected[i]) {
           commissionErrors++;

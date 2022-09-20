@@ -5,6 +5,7 @@
     "version": "0.2.0",
     "configurations": [
 
+
         {
             "name": "focuslocus",
             "request": "launch",
@@ -15,6 +16,12 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
+        },
+        {
+            "name": "focuslocus (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
         },
     ]
 }

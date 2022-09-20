@@ -7,9 +7,13 @@
 // FocusLocus is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License along with FocusLocus. If not, see <https://www.gnu.org/licenses/>.
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:focuslocus/knowledge/knowledge_item.dart';
+import 'package:focuslocus/widgets/screens/quiz_card_screens/multiple_choice/multiple_choice_button_screen.dart';
+import 'package:focuslocus/widgets/screens/quiz_card_screens/multiple_choice/multiple_choice_swiping_screen.dart';
 import 'package:focuslocus/widgets/screens/quiz_card_screens/quiz_card_screen.dart';
 
 class MultipleChoice extends KnowledgeItem {
@@ -34,8 +38,20 @@ class MultipleChoice extends KnowledgeItem {
               required int playtime})
           onComplete,
       BuildContext context) {
-    // TODO: implement getRandomScreen
-    throw UnimplementedError();
+    Random random = Random();
+    int randInt = random.nextInt(2);
+    if (randInt == 0) {
+      return MultipleChoiceButtonScreen(
+        onComplete: onComplete,
+        multipleChoice: [this],
+        color: color,
+      );
+    }
+    return MultipleChoiceSwipingScreen(
+      onComplete: onComplete,
+      multipleChoice: [this],
+      color: color,
+    );
   }
 
   MultipleChoice({
@@ -47,10 +63,26 @@ class MultipleChoice extends KnowledgeItem {
     required this.correct,
     required this.incorrect,
   }) : super(
-            id: id,
-            due: due,
-            lastInterval: lastInterval,
-            lastPracticed: lastPracticed);
+          id: "M." + id,
+          due: due,
+          lastInterval: lastInterval,
+          lastPracticed: lastPracticed,
+        );
+
+  MultipleChoice.fromOtherKnowledge({
+    required String id,
+    DateTime? due,
+    DateTime? lastPracticed,
+    int lastInterval = 0,
+    required this.questions,
+    required this.correct,
+    required this.incorrect,
+  }) : super(
+          id: id,
+          due: due,
+          lastInterval: lastInterval,
+          lastPracticed: lastPracticed,
+        );
 
   factory MultipleChoice.fromJSON({
     required Map<String, dynamic> jsonObject,

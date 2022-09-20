@@ -12,6 +12,7 @@ import 'dart:math';
 
 import 'package:focuslocus/knowledge/knowledge_statement.dart';
 import 'package:flutter/material.dart';
+import 'package:focuslocus/knowledge/statement.dart';
 import 'package:focuslocus/util/color_transform.dart';
 import 'package:focuslocus/widgets/quiz_card_items/question_card.dart';
 import 'package:focuslocus/widgets/quiz_card_items/quiz_card_help_dialog.dart';
@@ -28,7 +29,7 @@ import '../quiz_card_screen.dart';
 /// The quiz-card-type in which the user has to select a word from a list
 /// of choices to fill a gap within a statement
 class StatementCompleteSelectionScreen extends QuizCardScreen {
-  final List<KnowledgeStatement> statements;
+  final List<Statement> statements;
 
   const StatementCompleteSelectionScreen({
     required this.statements,
@@ -108,6 +109,7 @@ class StatementCompleteSelectionScreen extends QuizCardScreen {
 
 class _StatementCompleteSelectionScreenState
     extends State<StatementCompleteSelectionScreen> {
+  int variant = 0;
   String correctFillIn = "";
   String beforeSelectable = "", selectable = " ", afterSelectable = "";
   bool firstBuild = true;
@@ -120,8 +122,10 @@ class _StatementCompleteSelectionScreenState
   @override
   Widget build(BuildContext context) {
     if (firstBuild) {
-      initStrings();
-      initButtons();
+      Random random = Random(DateTime.now().hashCode);
+      variant = random.nextInt(widget.statements[0].completables.length);
+      initStrings(random);
+      initButtons(random);
       firstBuild = false;
     }
     return QuizCardScreenPauseObserverWrapper(
@@ -174,8 +178,8 @@ class _StatementCompleteSelectionScreenState
                             padding: const EdgeInsets.all(4.0),
                             child: SelectableButton(
                               hasCorrectStatement: widget
-                                  .statements[0].correctFillIns
-                                  .contains(buttonText[i]),
+                                  .statements[0].completables[variant]
+                                  .fitsInput(buttonText[i]),
                               revealed: revealed,
                               width: buttonWidth[i],
                               height: 50,
@@ -236,7 +240,7 @@ class _StatementCompleteSelectionScreenState
   void correct() {
     for (int i = 0; i < buttonText.length; i++) {
       if (buttonSelected[i] !=
-          widget.statements[0].correctFillIns.contains(buttonText[i])) {
+          widget.statements[0].completables[variant].fitsInput(buttonText[i])) {
         errors = 1;
         return;
       }
@@ -266,47 +270,80 @@ class _StatementCompleteSelectionScreenState
   }
 
   /// Constructs the Strings beforeSelectable and AfterSelectable
-  void initStrings() {
-    // Constructing The Text before the Selectable
-    int index = 0;
-    while (widget.statements[0].contentItems[index] != "" &&
-        index < widget.statements[0].contentItems.length) {
-      beforeSelectable += " " + widget.statements[0].contentItems[index];
-      index++;
+  void initStrings(Random random) {
+    int completableIndex = 0;
+    for (dynamic contentItem in widget.statements[0].content) {
+      if (contentItem is String) {
+        if (completableIndex <= variant) {
+          beforeSelectable += " " + contentItem;
+        } else {
+          afterSelectable += " " + contentItem;
+        }
+      } else if (contentItem is Completable) {
+        if (completableIndex == variant) {
+          completableIndex++;
+          continue;
+        } else {
+          List visibleFillIns =
+              contentItem.correct.where((element) => element.visible).toList();
+          if (completableIndex < variant) {
+            // If none are marked as visible, we default to the first correct one
+            if (visibleFillIns.isNotEmpty) {
+              beforeSelectable +=
+                  " " + visibleFillIns[random.nextInt(visibleFillIns.length)];
+            } else {
+              beforeSelectable += " " + contentItem.correct[0].content;
+            }
+          } else {
+            // completableIndex > variant
+            if (visibleFillIns.isNotEmpty) {
+              afterSelectable +=
+                  " " + visibleFillIns[random.nextInt(visibleFillIns.length)];
+            } else {
+              afterSelectable += " " + contentItem.correct[0].content;
+            }
+          }
+          completableIndex++;
+        }
+      }
     }
     beforeSelectable = beforeSelectable.trim();
-    // Skipping the empty String
-    index++;
-    //construction the text after selectable
-    while (index < widget.statements[0].contentItems.length) {
-      afterSelectable += " " + widget.statements[0].contentItems[index];
-      index++;
-    }
+    afterSelectable = afterSelectable.trim();
   }
 
   /// Initializes the selectable Text within the buttons
-  void initButtons() {
-    correctFillIn = widget.statements[0].correctFillIns[0];
-    List<String> incorrectFillIns = widget.statements[0].incorrectFillIns;
+  void initButtons(Random random) {
+    List<FillIn> visibleCorrectFillins = widget
+        .statements[0].completables[variant].correct
+        .where((element) => element.visible)
+        .toList();
+    correctFillIn =
+        visibleCorrectFillins[random.nextInt(visibleCorrectFillins.length)]
+            .content;
+    List<String> visibleIncorrectFillIns = widget
+        .statements[0].completables[variant].incorrect
+        .where((element) => element.visible)
+        .toList()
+        .map<String>((fillIn) => fillIn.content)
+        .toList();
 
     //Getting rid of all non-latex-math-strings
-    incorrectFillIns = incorrectFillIns
-        .where((element) => !incorrectFillIns.contains("\\($element\\)"))
+    visibleIncorrectFillIns = visibleIncorrectFillIns
+        .where((element) => !visibleIncorrectFillIns.contains("\\($element\\)"))
         .toList();
     //Getting rid of all elements that also exist as \(\text{element}\)
-    incorrectFillIns = incorrectFillIns
-        .where(
-            (element) => !incorrectFillIns.contains("\\(\\\\text{$element}\\)"))
+    visibleIncorrectFillIns = visibleIncorrectFillIns
+        .where((element) =>
+            !visibleIncorrectFillIns.contains("\\(\\\\text{$element}\\)"))
         .toList();
-    Random random = Random(DateTime.now().hashCode);
-    incorrectFillIns.shuffle(random);
-    incorrectFillIns.sublist(0, min(incorrectFillIns.length, 4));
+    visibleIncorrectFillIns.shuffle(random);
+    visibleIncorrectFillIns.sublist(0, min(visibleIncorrectFillIns.length, 4));
     buttonText.add(correctFillIn);
-    incorrectFillIns.shuffle(random);
-    if (incorrectFillIns.length > 4) {
-      incorrectFillIns = incorrectFillIns.sublist(0, 4);
+    visibleIncorrectFillIns.shuffle(random);
+    if (visibleIncorrectFillIns.length > 4) {
+      visibleIncorrectFillIns = visibleIncorrectFillIns.sublist(0, 4);
     }
-    buttonText.addAll(incorrectFillIns);
+    buttonText.addAll(visibleIncorrectFillIns);
     buttonText.shuffle(random);
 
     for (int i = 0; i < buttonText.length; i++) {
