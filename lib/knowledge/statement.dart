@@ -290,7 +290,7 @@ class FillIn {
     // Type
     FillInType type = FillInType.text;
     try {
-      switch (jsonObject[type]) {
+      switch (jsonObject["type"]) {
         case "math":
           {
             type = FillInType.math;
@@ -314,8 +314,8 @@ class FillIn {
     } on TypeError catch (e) {
       if (jsonObject["visible"] != null) {
         // ignore: avoid_print
-        print(
-            "A non-boolean value was given for the visibility of the FillIn for {$content}. Resorting to default [true].");
+        throw Exception(
+            "A non-boolean value was given for the visibility of the FillIn for {$content}.");
       }
       // We arrive here if no visibility was provided. This is not an error,
       // and we still resort to the default
@@ -327,8 +327,8 @@ class FillIn {
     } on TypeError catch (e) {
       if (jsonObject["caseSensitive"] != null) {
         // ignore: avoid_print
-        print(
-            "A non-boolean value was given for the case-sensitivity of the FillIn for {$content}. Resorting to default [false].");
+        throw Exception(
+            "A non-boolean value was given for the case-sensitivity of the FillIn for {$content}.");
       }
       // We arrive here if no case-sensitivity was provided. This is not an error,
       // and we still resort to the default

@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:focuslocus/knowledge/knowledge_item.dart';
-import 'package:focuslocus/knowledge/knowledge_multiple_choice.dart';
 import 'package:focuslocus/knowledge/multiple_choice.dart';
 import 'package:focuslocus/knowledge/universe.dart';
 import 'package:focuslocus/widgets/screens/quiz_card_screens/category/category_bomber_screen.dart';
@@ -30,7 +29,7 @@ class Category extends KnowledgeItem {
   Universe universe;
 
   /// The questions that may be asked in standard exercises
-  List<String> questions;
+  List<String>? questions;
 
   /// For different exercises, one may want to provide names to fill them into
   /// the question. For example: "Choose every $categoryNamesSingular[0]." =>
@@ -57,7 +56,7 @@ class Category extends KnowledgeItem {
     DateTime? lastPracticed,
     int lastInterval = 0,
     required this.universe,
-    required this.questions,
+    this.questions,
     required this.namesSingular,
     required this.namesPlural,
     required this.inCategory,
@@ -112,21 +111,17 @@ class Category extends KnowledgeItem {
     List<String> questions = [];
     // Checking if questions is a non-empty list or String and assigning the questions
     // variable accordingly
-    if (jsonObject['questions'] == null) {
-      throw Exception('No questions have been provided for Category: $id');
-    } else if (jsonObject['questions'] is String) {
+    if (jsonObject['questions'] is String) {
       // We have only one string, so we add it to the list of questions
       questions.add(jsonObject['questions']);
-    } else if (jsonObject['questions'] == []) {
-      throw Exception('The list of questions is empty for Category: $id');
     } else if (jsonObject['questions'] is List) {
       for (dynamic question in jsonObject['questions']) {
         if (question is! String) {
           throw Exception(
               'The list of questions contains something other than a String for Category: $id');
         }
-        questions = jsonObject['questions'];
       }
+      questions = jsonObject['questions'];
     } else {
       throw Exception(
           'The \'questions\' value is neither a non-empty list nor a String for Category: $id');
