@@ -311,7 +311,7 @@ class FillIn {
     bool visible = true;
     try {
       visible = jsonObject["visible"];
-    } on TypeError catch (e) {
+    } on TypeError {
       if (jsonObject["visible"] != null) {
         // ignore: avoid_print
         throw Exception(
@@ -324,7 +324,7 @@ class FillIn {
     bool caseSensitive = false;
     try {
       caseSensitive = jsonObject["caseSensitive"];
-    } on TypeError catch (e) {
+    } on TypeError {
       if (jsonObject["caseSensitive"] != null) {
         // ignore: avoid_print
         throw Exception(

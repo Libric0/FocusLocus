@@ -9,6 +9,7 @@
 // You should have received a copy of the GNU General Public License along with FocusLocus. If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:async' show Future;
+import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:focuslocus/knowledge/category.dart';
@@ -26,52 +27,110 @@ import 'package:xml/xml.dart';
 class DeckIO {
   /// Returns the deck's knowledge as an XmlDocument. The Deck itself is
   /// identified by its knowledgePath
-  static Future<XmlDocument> getDeckDocument(String knowledgePath) async {
-    String documentString =
-        await rootBundle.loadString("assets/deck_data/$knowledgePath");
-    return XmlDocument.parse(documentString);
-  }
 
   /// Parses all knowledgeItemNodes (as XML nodes) into a list, given a quiz-decks
   /// knowledge Path, which can be found in the course file.
-  static Future<List<XmlNode>> getKnowledgeItemNodes(
-      String knowledgePath) async {
-    XmlDocument deckDocument = await getDeckDocument(knowledgePath);
+  static List<XmlNode> getKnowledgeItemXMLNodes(XmlDocument deckDocument) {
     List<XmlNode> knowledgeItemNodes = deckDocument.rootElement.children
         .where((node) => node.toString().startsWith("<knowledgeItem"))
         .toList();
     return knowledgeItemNodes;
   }
 
+  static Future<List<KnowledgeItem>> getKnowledge(String knowledgePath) async {
+    String documentString =
+        await rootBundle.loadString("assets/deck_data/$knowledgePath");
+
+    bool isJson = true;
+    Map<String, dynamic>? deckJsonObject;
+    XmlDocument? deckXmlDocument;
+    try {
+      deckJsonObject = jsonDecode(documentString);
+    } on FormatException catch (_) {
+      isJson = false;
+      try {
+        deckXmlDocument = XmlDocument.parse(documentString);
+      } on XmlParserException catch (_) {
+        throw Exception(
+            "The deck file $knowledgePath is not a valid Json document");
+      }
+    }
+
+    if (isJson) {
+      return getKnowledgeJson(deckJsonObject!, knowledgePath);
+    } else {
+      return getKnowledgeXML(deckXmlDocument!, knowledgePath);
+    }
+  }
+
   /// Parses all KnowledgeItems into a list, given only the knowledge path.
   /// Is asyncronous because it uses getKnowledgeItemNodes (and in turn get
   /// DeckDocument)
-  static Future<List<KnowledgeItem>> getKnowledge(String knowledgePath) async {
+  @Deprecated(
+      "Only use JSON, this is only for temporaty backwards compatibility")
+  static List<KnowledgeItem> getKnowledgeXML(
+      XmlDocument rootNode, String knowledgePath) {
     List<KnowledgeItem> knowledge = [];
-    List<XmlNode> knowledgeItemNodes =
-        await getKnowledgeItemNodes(knowledgePath);
-    XmlNode rootNode = await getDeckDocument(knowledgePath)
-        .then((value) => value.root.children[2]);
+    List<XmlNode> knowledgeItemNodes = getKnowledgeItemXMLNodes(rootNode);
     //print(rootNode.children.toString());
     Map<String, Universe> universes =
-        parseMathUniverses(rootNode, knowledgePath);
+        parseXmlUniverses(rootNode.root.children[2], knowledgePath);
     DateTime standardDueTime = DateTime.now();
     for (XmlNode knowledgeItemNode in knowledgeItemNodes) {
       if (knowledgeItemNode.getAttribute("type") ==
           "knowledgeMultipleChoiceTexText") {
-        knowledge.add(parseKnowledgeMultipleChoiceTexText(
+        knowledge.add(parseXMLKnowledgeMultipleChoiceTexText(
             knowledgeItemNode, knowledgePath, standardDueTime));
       } else if (knowledgeItemNode.getAttribute("type") ==
           "knowledgeCategory") {
-        knowledge.add(parseKnowledgeCategory(
+        knowledge.add(parseXMLKnowledgeCategory(
             knowledgeItemNode, knowledgePath, standardDueTime, universes));
       } else if (knowledgeItemNode.getAttribute("type") ==
           "knowledgeStatement") {
-        knowledge.add(parseKnowledgeStatement(
+        knowledge.add(parseXMLKnowledgeStatement(
             knowledgeItemNode, knowledgePath, standardDueTime));
       }
     }
     return knowledge;
+  }
+
+  static List<KnowledgeItem> getKnowledgeJson(
+      Map<String, dynamic> deckJsonObject, String knowledgePath) {
+    List<KnowledgeItem> ret = [];
+    Map<String, Universe> universes =
+        parseJsonUniverses(deckJsonObject, knowledgePath);
+    for (dynamic knowledgeItem in deckJsonObject["quizKnowledge"]) {
+      if (knowledgeItem["type"] == null) {
+        throw Exception(
+            "No type was given for the KnowledgeItem $knowledgeItem \nin the deck $knowledgePath");
+      }
+      if (knowledgeItem["type"] is! String) {
+        throw Exception(
+            "The value of the type variable is not a string for the KnowledgeItem $knowledgeItem \nin the deck $knowledgePath");
+      }
+      switch (knowledgeItem["type"]) {
+        case "MultipleChoice":
+          ret.add(MultipleChoice.fromJSON(
+              jsonObject: knowledgeItem,
+              id: getKnowledgeItemId(
+                knowledgeItem,
+                MultipleChoice,
+                knowledgePath,
+              )));
+          break;
+        case "Statement":
+          ret.add(Statement.fromJSON(
+              jsonObject: knowledgeItem,
+              id: getKnowledgeItemId(knowledgeItem, Statement, knowledgePath)));
+          break;
+        case "Category":
+          ret.add(Category.fromJSON(
+              jsonObject: knowledgeItem,
+              id: getKnowledgeItemId(knowledgeItem, Category, knowledgePath),
+              universes: universes));
+      }
+    }
+    return ret;
   }
 
   // ignore: slash_for_doc_comments
@@ -81,8 +140,22 @@ class DeckIO {
 
   //TODO: For every ! your find in this file, add a try catch with a corresponding exception
 
+  static Map<String, Universe> parseJsonUniverses(
+    Map<String, dynamic> deckJsonObject,
+    String knowledgePath,
+  ) {
+    Map<String, Universe> ret = {};
+    for (dynamic knowledgeItem in deckJsonObject["quizKnowledge"]) {
+      if (knowledgeItem["type"] == "Universe") {
+        Universe toAdd = Universe.fromJSON(jsonObject: knowledgeItem);
+        ret[knowledgeItem["id"]] = toAdd;
+      }
+    }
+    return ret;
+  }
+
   /// Returns a list containing all MathUniverse-Instances that are stored within the given XmlDocument as direct children of the rootNode.
-  static Map<String, Universe> parseMathUniverses(
+  static Map<String, Universe> parseXmlUniverses(
     XmlNode rootNode,
     String knowledgePath,
   ) {
@@ -121,7 +194,7 @@ class DeckIO {
   /// Parses an XmlNode with the type attribute 'knowledgeCategory' into a KnowledgeCategory object.
   /// It takes the knowledgePath to generate the unique identifier and the standardDueTime from the parser
   /// ensure that the due time has been surpassed for new knowledge items.
-  static Category parseKnowledgeCategory(
+  static Category parseXMLKnowledgeCategory(
       XmlNode knowledgeItemNode,
       String knowledgePath,
       DateTime standardDueTime,
@@ -200,7 +273,7 @@ class DeckIO {
   /// Parses an XmlNode with the type attribute 'knowledgeMultipleChoiceTexText' into a KnowledgeMultipleChoiceTexText object.
   /// It takes the knowledgePath to generate the unique identifier and the standardDueTime from the parser
   /// ensure that the due time has been surpassed for new knowledge items.
-  static MultipleChoice parseKnowledgeMultipleChoiceTexText(
+  static MultipleChoice parseXMLKnowledgeMultipleChoiceTexText(
     XmlNode knowledgeItemNode,
     String knowledgePath,
     DateTime standardDueTime,
@@ -257,7 +330,7 @@ class DeckIO {
   /// Parses an XmlNode with the type attribute 'knowledgeStatement' into a KnowledgeStatement object.
   /// It takes the knowledgePath to generate the unique identifier and the standardDueTime from the parser
   /// ensure that the due time has been surpassed for new knowledge items.
-  static Statement parseKnowledgeStatement(
+  static Statement parseXMLKnowledgeStatement(
     XmlNode knowledgeItemNode,
     String knowledgePath,
     DateTime standardDueTime,
@@ -409,5 +482,26 @@ class DeckIO {
       for (int i = 0; i < mathObjectIds.length; i++) mathObjectRawStrings[i]
     };
     return ret;
+  }
+
+  static String getKnowledgeItemId(
+      dynamic jsonObject, Type type, String deckPath) {
+    if (jsonObject["id"] == null) {
+      throw Exception(
+          "No id has been provided for the $type: ${jsonObject.toString()}");
+    }
+    if (jsonObject["id"] is! String) {
+      throw Exception(
+          "The id variable contains something other than a string for the $type ${jsonObject.toString()}");
+    }
+    if (jsonObject["id"] == "") {
+      throw Exception(
+          "The id variable contains the empty string for the $type ${jsonObject.toString()}");
+    }
+    if (jsonObject["id"].contains("/")) {
+      throw Exception(
+          "The id contains the illegal character '/' for the $type: ${jsonObject.toString()}");
+    }
+    return "$deckPath/${jsonObject["id"]}";
   }
 }

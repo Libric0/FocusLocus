@@ -12,7 +12,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:focuslocus/knowledge/category.dart';
-import 'package:focuslocus/knowledge/knowledge_category.dart';
 import 'package:focuslocus/util/color_transform.dart';
 import 'package:focuslocus/widgets/quiz_card_items/quiz_card_help_dialog.dart';
 import 'package:focuslocus/widgets/screens/quiz_card_screens/wrappers/correction_wrapper.dart';
@@ -190,8 +189,12 @@ class _CategoryGridButtonSelectState extends State<CategoryGridButtonSelect> {
           child: Column(
             children: [
               QuestionCard(
-                question: widget.categories[0].questions[
-                    random.nextInt(widget.categories[0].questions.length)],
+                question: widget.categories[0].questions != null &&
+                        (widget.categories[0].questions ?? []).isNotEmpty
+                    ? widget.categories[0].questions![
+                        random.nextInt(widget.categories[0].questions!.length)]
+                    : "Select all ${widget.categories[0].namesPlural[random.nextInt(widget.categories[0].namesPlural.length)]}",
+                //TODO: Translate
                 color: widget.color,
               ),
               CategoryButtonGrid(

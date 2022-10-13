@@ -10,7 +10,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:focuslocus/file_io/course_io.dart';
-import 'package:focuslocus/knowledge/quiz_course.dart';
+import 'package:focuslocus/knowledge/course.dart';
 import 'package:focuslocus/local_storage/course_metadata_storage.dart';
 import 'package:focuslocus/local_storage/user_storage.dart';
 import 'package:focuslocus/util/color_transform.dart';
@@ -64,7 +64,7 @@ class _CourseSelectionState extends State<CourseSelection> {
     return FutureBuilder(
       future:
           Future.delayed(const Duration(seconds: 1), CourseIO.getAllCourses),
-      builder: (context, AsyncSnapshot<List<QuizCourse>> snapshot) {
+      builder: (context, AsyncSnapshot<List<Course>> snapshot) {
         if (snapshot.hasData) {
           return Container(
             color: ColorTransform.scaffoldBackgroundColor(Colors.teal),
@@ -91,12 +91,12 @@ class _CourseSelectionState extends State<CourseSelection> {
                           crossAxisSpacing: 12,
                           crossAxisCount: 3,
                           children: [
-                            for (QuizCourse course in snapshot.data!)
+                            for (Course course in snapshot.data!)
                               FoloButton(
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: FittedBox(
-                                    child: Text(course.abbreviation),
+                                    child: Text(course.shortTitle),
                                   ),
                                 ),
                                 onPressed: () {
@@ -148,7 +148,7 @@ class _CourseSelectionState extends State<CourseSelection> {
     return SafeArea(
       child: FutureBuilder(
         future: CourseIO.getCourse(courseName),
-        builder: (context, AsyncSnapshot<QuizCourse> snapshot) {
+        builder: (context, AsyncSnapshot<Course> snapshot) {
           if (snapshot.hasData) {
             return Localizations.override(
               context: context,

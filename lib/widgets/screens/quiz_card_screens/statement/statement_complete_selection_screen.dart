@@ -10,7 +10,6 @@
 
 import 'dart:math';
 
-import 'package:focuslocus/knowledge/knowledge_statement.dart';
 import 'package:flutter/material.dart';
 import 'package:focuslocus/knowledge/statement.dart';
 import 'package:focuslocus/util/color_transform.dart';

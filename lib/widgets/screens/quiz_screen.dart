@@ -11,7 +11,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:focuslocus/knowledge/quiz_deck.dart';
+import 'package:focuslocus/knowledge/deck.dart';
 import 'package:focuslocus/knowledge/knowledge_item.dart';
 import 'package:focuslocus/local_storage/knowledge_metadata_storage.dart';
 import 'package:focuslocus/local_storage/learning_metadata_storage.dart';
@@ -32,7 +32,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class QuizScreen extends StatelessWidget {
   /// The method that is called
   final Function onFinish;
-  final List<QuizDeck> decks;
+  final List<Deck> decks;
   final Color color;
   final int numberScreens;
   const QuizScreen(
@@ -95,7 +95,7 @@ class QuizScreen extends StatelessWidget {
 
 class _BuiltQuizScreen extends StatefulWidget {
   final Color color;
-  final List<QuizDeck> decks;
+  final List<Deck> decks;
   final List<KnowledgeItem> quizKnowlegeItems;
   final Function onFinish;
   final int numberScreens;

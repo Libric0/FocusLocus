@@ -85,11 +85,11 @@ class Category extends KnowledgeItem {
         );
 
   factory Category.fromJSON({
+    required Map<String, dynamic> jsonObject,
     required String id,
     DateTime? due,
     DateTime? lastPracticed,
     int lastInterval = 0,
-    required Map<String, dynamic> jsonObject,
     required Map<String, Universe> universes,
   }) {
     Universe universe;
@@ -120,9 +120,9 @@ class Category extends KnowledgeItem {
           throw Exception(
               'The list of questions contains something other than a String for Category: $id');
         }
+        questions.add(question);
       }
-      questions = jsonObject['questions'];
-    } else {
+    } else if (jsonObject['questions'] != null) {
       throw Exception(
           'The \'questions\' value is neither a non-empty list nor a String for Category: $id');
     }

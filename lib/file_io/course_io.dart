@@ -9,10 +9,11 @@
 // You should have received a copy of the GNU General Public License along with FocusLocus. If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:async' show Future;
+import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:hexcolor/hexcolor.dart';
-import 'package:focuslocus/knowledge/quiz_course.dart';
-import 'package:focuslocus/knowledge/quiz_deck.dart';
+import 'package:focuslocus/knowledge/course.dart';
+import 'package:focuslocus/knowledge/deck.dart';
 import 'package:focuslocus/local_storage/course_metadata_storage.dart';
 import 'package:focuslocus/local_storage/deck_metadata_storage.dart';
 import 'package:focuslocus/util/color_transform.dart';
@@ -26,60 +27,77 @@ import 'package:flutter/material.dart';
 class CourseIO {
   /// Loads a .wcc file from the disk and turns it into a XmlDocument object
   /// that can be parsed in other methods
-  static Future<XmlDocument> getCourseDocument(String courseName) async {
+  static Future<String> getCourseString(String courseName) async {
     String fullPath = 'assets/deck_data/' + courseName + '/';
-    String courseString = await rootBundle.loadString(fullPath + 'course.wcc');
-    return XmlDocument.parse(courseString);
+    String courseString = await rootBundle.loadString(fullPath + 'course');
+
+    return courseString.trim();
   }
 
   /// Looks up all places where courses can exist and retrives a list of all course IDs
   static Future<List<String>> getAllCourseIDs() async {
     return Future<List<String>>(
-      () => ['BuK', 'Logra', 'KnowledgeRepresentation', 'Effi'],
+      () => ['BuK', 'Logra', 'KnowledgeRepresentation', 'Effi', 'testcourse'],
     );
   }
 
   /// Returns all existing quiz-courses
-  static Future<List<QuizCourse>> getAllCourses() async {
+  static Future<List<Course>> getAllCourses() async {
     List<String> courseIDs = await getAllCourseIDs();
-    List<QuizCourse> ret = [];
+    List<Course> ret = [];
     for (String courseID in courseIDs) {
-      QuizCourse course = await getCourse(courseID);
-      ret.add(course);
+      try {
+        Course course = await getCourse(courseID);
+        ret.add(course);
+      } catch (e) {}
     }
     return ret;
   }
 
-  /// Parses a QuizCourse file using the course ID and returns a QuizCourse object
-  /// Is asyncronous due to disk operations
-  static Future<QuizCourse> getCourse(String courseID) async {
-    XmlDocument courseXML = await getCourseDocument(courseID);
+  static Course parseXMLCourse(String courseString, courseId) {
+    XmlDocument courseXML = XmlDocument.parse(courseString);
     List<XmlNode> deckNodes = courseXML.rootElement.children
         .where((xmlNode) => xmlNode.toString().startsWith('<deck '))
         .toList();
 
-    List<QuizDeck> decks;
+    List<Deck> decks;
     String? colorsAttribute = courseXML.rootElement.getAttribute("colors");
     if (colorsAttribute == null) {
-      decks = parseQuizDecks(deckNodes);
+      decks = parseQuizDecks(deckNodes, courseId);
     } else {
-      decks = parseQuizDecks(deckNodes,
-          courseColors: parseCourseColors(colorsAttribute),
-          courseName: courseID);
+      decks = parseQuizDecks(
+        deckNodes,
+        courseId,
+        courseColors: parseCourseColors(colorsAttribute),
+      );
     }
     String titleAttribute =
-        courseXML.rootElement.getAttribute("title") ?? courseID;
+        courseXML.rootElement.getAttribute("title") ?? courseId;
 
     String? languageAttribute = courseXML.rootElement.getAttribute("language");
     languageAttribute ??= "en";
 
-    int decksUnlocked = CourseMetadataStorage.getDecksUnlocked(courseID);
-    return QuizCourse(
+    int decksUnlocked = CourseMetadataStorage.getDecksUnlocked(courseId);
+    return Course(
         decks: decks,
-        id: courseID,
+        id: courseId,
         decksUnlocked: decksUnlocked,
         language: languageAttribute,
         title: titleAttribute);
+  }
+
+  /// Parses a QuizCourse file using the course ID and returns a QuizCourse object
+  /// Is asyncronous due to disk operations
+  static Future<Course> getCourse(String courseID) async {
+    String courseString = await getCourseString(courseID);
+    if (courseString.startsWith('<')) {
+      return parseXMLCourse(courseString, courseID);
+    }
+    if (courseString.startsWith("{")) {
+      return Course.fromJSON(jsonDecode(courseString));
+    }
+    throw Exception(
+        "The course $courseID is not a correct JSON representation of a course");
   }
 
   /// Parses the colorscheme of a course given as its color attribute of the form
@@ -92,20 +110,19 @@ class CourseIO {
 
   /// Parses all quiz-deck objects within a given quiz-course file and returns
   /// a list containing them
-  static List<QuizDeck> parseQuizDecks(
-    List<XmlNode> deckNodes, {
+  static List<Deck> parseQuizDecks(
+    List<XmlNode> deckNodes,
+    String courseId, {
     List<Color> courseColors = const [],
-    String courseName = "",
   }) {
     // the list to be returned
-    List<QuizDeck> ret = [];
+    List<Deck> ret = [];
     for (XmlNode deckNode in deckNodes) {
       // TODO: Add try, catch
       String name = deckNode.getAttribute("name")!;
 
       // generate the knowledgePath for each deck
-      String knowledgePath =
-          courseName + "/" + deckNode.getAttribute("knowledgePath")!;
+      String knowledgePath = deckNode.getAttribute("knowledgePath")!;
 
       // Parse how often the deck should be practice. If not available, put 10
       int minToPractice =
@@ -143,13 +160,15 @@ class CourseIO {
 
       // creates the QuizDeck-object from the parsed variables and adds it to the
       // list that is to be returned.
-      QuizDeck toAdd = QuizDeck(
-          name: name,
-          keywords: keywords,
-          knowledgePath: knowledgePath,
-          deckColor: deckColor,
-          minToPractice: minToPractice,
-          isNameMath: isNameMath);
+      Deck toAdd = Deck(
+        id: knowledgePath,
+        title: name,
+        keywords: keywords,
+        courseId: courseId,
+        deckColor: deckColor,
+        minToPractice: minToPractice,
+        isNameMath: isNameMath,
+      );
       toAdd.timesPracticed = DeckMetadataStorage.getTimesPracticed(toAdd.id);
       ret.add(toAdd);
     }

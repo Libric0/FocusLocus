@@ -11,7 +11,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:focuslocus/knowledge/quiz_deck.dart';
+import 'package:focuslocus/knowledge/deck.dart';
 import 'package:focuslocus/util/color_transform.dart';
 import 'package:focuslocus/widgets/screens/quiz_screen.dart';
 import 'package:focuslocus/widgets/ui_elements/folo_button.dart';
@@ -21,7 +21,7 @@ import '../quiz_card_items/tex_text.dart';
 /// A screen that displays the name of the deck, keywords in the background
 /// and the play button that starts a quiz.
 class DeckScreen extends StatefulWidget {
-  final QuizDeck deck;
+  final Deck deck;
   final List<Widget> keywordBackground;
 
   /// The language of the course, used to launch a quiz with the correct language
@@ -34,7 +34,7 @@ class DeckScreen extends StatefulWidget {
   State<DeckScreen> createState() => _DeckScreenState();
 
   static List<Widget> generateKeywordBackground(
-      BuildContext context, QuizDeck deck) {
+      BuildContext context, Deck deck) {
     Random random = Random();
     List<Widget> ret = [];
     for (String keyword in deck.keywords) {

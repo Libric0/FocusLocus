@@ -111,7 +111,7 @@ class MultipleChoice extends KnowledgeItem {
           throw Exception(
               'The list of questions contains something other than a String for Multiple-Choice Item: $id');
         }
-        questions = jsonObject['questions'];
+        questions.add(question);
       }
     } else {
       throw Exception(
@@ -137,7 +137,7 @@ class MultipleChoice extends KnowledgeItem {
           throw Exception(
               'The list of correct answers contains something other than a String for Multiple-Choice Item: $id');
         }
-        correct = jsonObject['correct'];
+        correct.add(answer);
       }
     } else {
       throw Exception(
@@ -163,7 +163,7 @@ class MultipleChoice extends KnowledgeItem {
           throw Exception(
               'The list of incorrect answers contains something other than a String for Multiple-Choice Item: $id');
         }
-        incorrect = jsonObject['incorrect'];
+        incorrect.add(answer);
       }
     } else {
       throw Exception(

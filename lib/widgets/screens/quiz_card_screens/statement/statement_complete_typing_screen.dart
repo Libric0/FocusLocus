@@ -12,10 +12,8 @@ import 'dart:math';
 
 import 'package:focuslocus/knowledge/statement.dart';
 import 'package:focuslocus/widgets/quiz_card_items/tex_text.dart';
-import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 
 import 'package:flutter/material.dart';
-import 'package:focuslocus/knowledge/knowledge_statement.dart';
 import 'package:focuslocus/util/color_transform.dart';
 import 'package:focuslocus/widgets/quiz_card_items/quiz_card_help_dialog.dart';
 import 'package:focuslocus/widgets/screens/quiz_card_screens/wrappers/correction_wrapper.dart';
@@ -253,10 +251,7 @@ class _StatementCompleteTypingScreenState
   /// Constructs the Strings beforeSelectable and AfterSelectable
   void initStrings(Random random) {
     int completableIndex = 0;
-    print("Variant: $variant");
     for (dynamic contentItem in widget.statements[0].content) {
-      print("Before: $beforeCompletable");
-      print("After: $afterCompletable");
       if (contentItem is String) {
         if (completableIndex <= variant) {
           beforeCompletable += " " + contentItem;

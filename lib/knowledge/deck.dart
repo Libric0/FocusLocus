@@ -15,20 +15,17 @@ import 'package:focuslocus/file_io/deck_io.dart';
 import 'package:focuslocus/local_storage/deck_metadata_storage.dart';
 import 'knowledge_item.dart';
 
-class QuizDeck {
+class Deck {
   /// The Name of the deck. It will be displayed on the deckscreen
   String name;
-
-  /// If this variable is true, the getName() function will return a wrapped
-  /// texText widget. If it is false, the Name will be a simple text-widget
-  bool isNameMath;
 
   /// The path in the internal file system. It is also used for storing deck
   /// Learning metadata (such as timesPracticed). Will always be of the form
   /// CourseName/01_deck_name.wcd
-  String knowledgePath;
+  /// It is just syntactical sugar and equivalent to id
+  String get knowledgePath => id;
 
-  /// The internal id of the deck, it is equivalent to the knowledgePath
+  /// The internal id of the deck
   String id;
 
   /// The variable is used to show how often a deck was practiced
@@ -58,30 +55,27 @@ class QuizDeck {
   /// The keywords of the deck. They will be rendered in random positions
   List<String> keywords;
 
-  QuizDeck({
-    required String name,
-    required String knowledgePath,
+  Deck({
+    required String title,
+    required String id,
+    required String courseId,
     List<String> keywords = const [],
     bool isNameMath = true,
     int timesPracticed = 0,
     int minToPractice = 10,
     Color deckColor = Colors.deepOrange,
   }) : this._(
-          name: name,
-          id: knowledgePath,
-          knowledgePath: knowledgePath,
+          name: title,
+          id: "$courseId/$id",
           keywords: keywords,
-          isNameMath: isNameMath,
           timesPracticed: timesPracticed,
           minToPractice: minToPractice,
           deckColor: deckColor,
         );
-  QuizDeck._({
+  Deck._({
     required this.name,
     required this.id,
-    required this.knowledgePath,
     this.keywords = const [],
-    this.isNameMath = true,
     int timesPracticed = 0,
     this.minToPractice = 10,
     this.cardTypes = const [],
@@ -89,6 +83,42 @@ class QuizDeck {
     this.deckColor = Colors.deepOrange,
   }) {
     _timesPracticed = timesPracticed;
+  }
+
+  factory Deck.fromJSON(
+      {required Map<String, dynamic> jsonObject,
+      required String courseId,
+      Color? deckColor}) {
+    if (jsonObject["id"] == null) {
+      throw Exception(
+          "No id has been provided for the deck: ${jsonObject.toString()}");
+    }
+    if (jsonObject["id"] is! String) {
+      throw Exception(
+          "The id variable contains something other than a string for the deck ${jsonObject.toString()}");
+    }
+    if (jsonObject["id"] == "") {
+      throw Exception(
+          "The id variable contains the empty string for the deck ${jsonObject.toString()}");
+    }
+    if (jsonObject["id"].contains("/")) {
+      throw Exception(
+          "The id contains the illegal character '/' for the deck: ${jsonObject.toString()}");
+    }
+    String id = jsonObject["id"];
+
+    if (jsonObject["title"] != null && jsonObject["title"] is! String) {
+      throw Exception(
+          "The variable title is something other than a string for the deck: $id");
+    }
+    String? title = jsonObject["title"];
+
+    return Deck(
+      title: title ?? id,
+      id: id,
+      courseId: courseId,
+      deckColor: deckColor ?? Colors.red,
+    );
   }
 
   /// Returns a list of knowledge items. The due items appear in the same order
