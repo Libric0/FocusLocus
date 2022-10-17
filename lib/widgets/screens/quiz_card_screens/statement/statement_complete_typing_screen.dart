@@ -263,21 +263,21 @@ class _StatementCompleteTypingScreenState
           completableIndex++;
           continue;
         } else {
-          List visibleFillIns =
+          List<FillIn> visibleFillIns =
               contentItem.correct.where((element) => element.visible).toList();
           if (completableIndex < variant) {
             // If none are marked as visible, we default to the first correct one
             if (visibleFillIns.isNotEmpty) {
-              beforeCompletable +=
-                  " " + visibleFillIns[random.nextInt(visibleFillIns.length)];
+              beforeCompletable += " " +
+                  visibleFillIns[random.nextInt(visibleFillIns.length)].content;
             } else {
               beforeCompletable += " " + contentItem.correct[0].content;
             }
           } else {
             // completableIndex > variant
             if (visibleFillIns.isNotEmpty) {
-              afterCompletable +=
-                  " " + visibleFillIns[random.nextInt(visibleFillIns.length)];
+              afterCompletable += " " +
+                  visibleFillIns[random.nextInt(visibleFillIns.length)].content;
             } else {
               afterCompletable += " " + contentItem.correct[0].content;
             }
