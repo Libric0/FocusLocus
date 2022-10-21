@@ -10,6 +10,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:focuslocus/knowledge/deck.dart';
+import 'package:focuslocus/local_storage/course_metadata_storage.dart';
+import 'package:focuslocus/local_storage/deck_metadata_storage.dart';
 import 'package:focuslocus/util/color_transform.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -163,11 +165,12 @@ class Course {
           colors,
         );
       }
-      decks.add(Deck.fromJSON(
-        jsonObject: jsonObject["decks"][i],
-        courseId: id,
-        deckColor: deckColor,
-      ));
+      Deck toAdd = Deck.fromJSON(
+          jsonObject: jsonObject["decks"][i],
+          courseId: id,
+          deckColor: deckColor);
+      toAdd.timesPracticed = DeckMetadataStorage.getTimesPracticed(toAdd.id);
+      decks.add(toAdd);
     }
 
     return Course(

@@ -11,8 +11,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:focuslocus/util/tex_text_parser.dart';
-import 'package:petitparser/petitparser.dart';
-import 'dart:math';
 
 class TexText extends StatelessWidget {
   final List content;

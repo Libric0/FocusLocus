@@ -59,6 +59,7 @@ class DeckIO {
     if (isJson) {
       return getKnowledgeJson(deckJsonObject!, knowledgePath);
     } else {
+      // ignore: deprecated_member_use_from_same_package
       return getKnowledgeXML(deckXmlDocument!, knowledgePath);
     }
   }
@@ -99,6 +100,7 @@ class DeckIO {
     List<KnowledgeItem> ret = [];
     Map<String, Universe> universes =
         parseJsonUniverses(deckJsonObject, knowledgePath);
+    DateTime standardDueTime = DateTime.now();
     for (dynamic knowledgeItem in deckJsonObject["quizKnowledge"]) {
       if (knowledgeItem["type"] == null) {
         throw Exception(
@@ -110,24 +112,32 @@ class DeckIO {
       }
       switch (knowledgeItem["type"]) {
         case "MultipleChoice":
-          ret.add(MultipleChoice.fromJSON(
-              jsonObject: knowledgeItem,
-              id: getKnowledgeItemId(
-                knowledgeItem,
-                MultipleChoice,
-                knowledgePath,
-              )));
+          ret.add(generateKnowledgeSchedulingInfo<MultipleChoice>(
+              MultipleChoice.fromJSON(
+                  jsonObject: knowledgeItem,
+                  id: getKnowledgeItemId(
+                    knowledgeItem,
+                    MultipleChoice,
+                    knowledgePath,
+                  )),
+              standardDueTime));
           break;
         case "Statement":
-          ret.add(Statement.fromJSON(
-              jsonObject: knowledgeItem,
-              id: getKnowledgeItemId(knowledgeItem, Statement, knowledgePath)));
+          ret.add(generateKnowledgeSchedulingInfo<Statement>(
+              Statement.fromJSON(
+                  jsonObject: knowledgeItem,
+                  id: getKnowledgeItemId(
+                      knowledgeItem, Statement, knowledgePath)),
+              standardDueTime));
           break;
         case "Category":
-          ret.add(Category.fromJSON(
-              jsonObject: knowledgeItem,
-              id: getKnowledgeItemId(knowledgeItem, Category, knowledgePath),
-              universes: universes));
+          ret.add(generateKnowledgeSchedulingInfo<Category>(
+              Category.fromJSON(
+                  jsonObject: knowledgeItem,
+                  id: getKnowledgeItemId(
+                      knowledgeItem, Category, knowledgePath),
+                  universes: universes),
+              standardDueTime));
       }
     }
     return ret;

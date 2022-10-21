@@ -106,7 +106,6 @@ class Deck {
           "The id contains the illegal character '/' for the deck: ${jsonObject.toString()}");
     }
     String id = jsonObject["id"];
-
     if (jsonObject["title"] != null && jsonObject["title"] is! String) {
       throw Exception(
           "The variable title is something other than a string for the deck: $id");

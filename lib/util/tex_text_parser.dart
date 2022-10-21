@@ -121,7 +121,7 @@ List<dynamic> removeFailures(List list) {
   for (var child in list) {
     if (child is List<dynamic>) {
       List<dynamic> childFailureFree = removeFailures(child);
-      if (childFailureFree.length > 0 && childFailureFree != [""]) {
+      if (childFailureFree.isNotEmpty && childFailureFree != [""]) {
         ret.add(childFailureFree);
       }
     } else if (child is! Result && child != "") {

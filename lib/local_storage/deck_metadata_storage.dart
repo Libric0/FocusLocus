@@ -28,26 +28,24 @@ class DeckMetadataStorage {
   static int getTimesPracticed(String deckId) {
     _initIfNull();
     DeckMetadataStorageModel? deck = _deckStorage!.get(deckId);
-    if (deck != null) {
-      return deck.timesPracticed;
-    } else {
+    if (deck == null) {
       deck = DeckMetadataStorageModel();
       _deckStorage!.put(deckId, deck);
     }
     return deck.timesPracticed;
   }
 
-  static void incrementTimesPracticed(String deckId) {
-    _initIfNull();
-    DeckMetadataStorageModel? deck = _deckStorage!.get(deckId);
-    if (deck != null) {
-      deck.timesPracticed++;
-      deck.save();
-    } else {
-      deck = DeckMetadataStorageModel(timesPracticed: 1);
-      _deckStorage!.put(deckId, deck);
-    }
-  }
+  // static void incrementTimesPracticed(String deckId) {
+  //   _initIfNull();
+  //   DeckMetadataStorageModel? deck = _deckStorage!.get(deckId);
+  //   if (deck != null) {
+  //     deck.timesPracticed++;
+  //     deck.save();
+  //   } else {
+  //     deck = DeckMetadataStorageModel(timesPracticed: 1);
+  //     _deckStorage!.put(deckId, deck);
+  //   }
+  // }
 
   static void setTimesPracticed(String deckId, int timesPracticed) {
     _initIfNull();

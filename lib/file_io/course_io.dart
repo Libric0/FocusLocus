@@ -56,7 +56,9 @@ class CourseIO {
       try {
         Course course = await getCourse(courseID);
         ret.add(course);
-      } catch (e) {}
+      } catch (e) {
+        //TODO: Show dialog giving a warning, option to remove, ignore
+      }
     }
     return ret;
   }
