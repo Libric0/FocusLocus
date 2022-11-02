@@ -108,15 +108,42 @@ class Deck {
     String id = jsonObject["id"];
     if (jsonObject["title"] != null && jsonObject["title"] is! String) {
       throw Exception(
-          "The variable title is something other than a string for the deck: $id");
+          "The variable title is something other than a string for the deck: $courseId/$id");
     }
     String? title = jsonObject["title"];
 
+    if (jsonObject["minToPractice"] != null &&
+        jsonObject["minToPractice"] is! int) {
+      throw Exception(
+          "The variable minToPractice contains something other than an integer for deck $courseId/$id");
+    }
+    int? minToPractice = jsonObject["minToPractice"];
+    if (jsonObject["isNameMath"] != null && jsonObject["isNameMath"] is! bool) {
+      throw Exception(
+          "The variable isNameMath contains something other than an integer for deck: $courseId/$id");
+    }
+    bool? isNameMath = jsonObject["isNameMath"];
+
+    List<String> keywords = [];
+    if (jsonObject["keywords"] != null && jsonObject["keywords"] is! List) {
+      throw Exception(
+          "The variable keywords contains something other than a list for deck $courseId/$id");
+    }
+    for (dynamic keyword in jsonObject["keywords"]) {
+      if (keyword is! String) {
+        throw Exception(
+            "The keywords list contains something other than a string for deck $courseId/$id");
+      }
+      keywords.add(keyword);
+    }
     return Deck(
       title: title ?? id,
       id: id,
       courseId: courseId,
       deckColor: deckColor ?? Colors.red,
+      isNameMath: isNameMath ?? true,
+      keywords: keywords,
+      minToPractice: minToPractice ?? 7,
     );
   }
 
