@@ -177,16 +177,44 @@ class _MultipleChoiceButtonScreenState
   }
 
   /// Chooses at most 5 statements from a QuizMultipleChoiceTexText item.
-  List<String> chooseKnowledgeItems(MultipleChoice mulipleChoice) {
+  /// To limit obvious patterns emerging, there is a 50/50 chance that
+  /// a correct or an incorrect item is drawn
+  List<String> chooseKnowledgeItems(MultipleChoice multipleChoice) {
     Random random = Random(DateTime.now().hashCode);
-    List<String> ret = [];
-    ret
-      ..addAll(mulipleChoice.correct)
-      ..addAll(mulipleChoice.incorrect)
+    List<String> ret = [], correct = [], incorrect = [];
+    // This may be less performant, but makes sure that the multiplechoice item stays immutable
+    correct
+      ..addAll(multipleChoice.correct)
       ..shuffle(random);
-    if (ret.length > 5) {
-      ret = ret.sublist(0, 5);
+    incorrect
+      ..addAll(multipleChoice.incorrect)
+      ..shuffle(random);
+    for (int i = 0; i < 5; i++) {
+      bool currentBool = random.nextBool();
+      // Handling cases when either or both are empty
+      if (correct.isEmpty && incorrect.isEmpty) {
+        break;
+      } else if (correct.isEmpty) {
+        if (currentBool) {
+          ret.add(incorrect.removeLast());
+        }
+        continue;
+      } else if (incorrect.isEmpty) {
+        if (!currentBool) {
+          ret.add(correct.removeLast());
+        }
+        continue;
+      }
+      // Randomly selecting whether to draw from correct or incorrect
+      else {
+        if (random.nextBool()) {
+          ret.add(correct.removeLast());
+        } else {
+          ret.add(incorrect.removeLast());
+        }
+      }
     }
+    ret.shuffle();
     return ret;
   }
 }

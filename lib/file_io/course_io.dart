@@ -42,8 +42,8 @@ class CourseIO {
         'Logra',
         'KnowledgeRepresentation',
         'Effi',
-        'testcourse',
-        "IDS"
+        "IDS",
+        "Methods",
       ],
     );
   }
@@ -54,9 +54,12 @@ class CourseIO {
     List<Course> ret = [];
     for (String courseID in courseIDs) {
       try {
+        print("I am here");
         Course course = await getCourse(courseID);
+        print(courseID);
         ret.add(course);
       } catch (e) {
+        return Future.error(e);
         //TODO: Show dialog giving a warning, option to remove, ignore
       }
     }
